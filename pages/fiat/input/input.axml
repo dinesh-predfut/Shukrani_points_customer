@@ -1,0 +1,78 @@
+<view class="f-body m-16">
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-box"
+    class="mb-16"
+  />
+
+  <f-input 
+    placeholder="placeholder" 
+    label="text-box with small style label"
+    class="mb-16 f-input__text-box--small-label"
+  />
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-box with inner icon left"
+    class="mb-16"
+  >
+    <image src="/components/fiat/assets/search.svg" slot="iconInnerLeft" />
+  </f-input>
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-box with loader"
+    showLoader="{{true}}"
+    class="mb-16"
+  />
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-box with helper text"
+    helperMsg="helper text"
+    class="mb-16"
+  />
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-box with error"
+    errorMsg="error text"
+    class="mb-16"
+  />
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-box with outer icon right"
+    class="mb-16"
+  >
+    <image
+      src="/components/fiat/assets/question.svg"
+      slot="iconOutterRight"
+      onTap="handleTapIconOutterRight"
+    />
+  </f-input>
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-field-amount"
+    inputType="text-field-amount"
+    class="mb-16"
+  />
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-field-amount with icon inner left"
+    inputType="text-field-amount"
+    class="mb-16"
+  >
+   <image src="/components/fiat/assets/search.svg" slot="iconInnerLeft" />
+  </f-input>
+
+  <f-input 
+    placeholder="example placeholder" 
+    label="text-field-amount with Currency text as icon inner left"
+    inputType="text-field-amount"
+  >
+    <view slot="iconInnerLeft">Rp</view>
+  </f-input>
+</view>

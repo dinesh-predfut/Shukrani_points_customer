@@ -1,0 +1,10 @@
+{
+  "defaultTitle": "FIAT Components",
+  "usingComponents": {
+    "f-cell": "/components/fiat/f-cell/f-cell",
+    "f-cell-action": "/components/fiat/f-cell-action/f-cell-action",
+    "f-cell-content": "/components/fiat/f-cell-content/f-cell-content",
+    "f-cell-label": "/components/fiat/f-cell-label/f-cell-label",
+    "f-divider": "/components/fiat/f-divider/f-divider"
+  }
+}

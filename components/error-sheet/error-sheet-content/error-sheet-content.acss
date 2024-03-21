@@ -1,0 +1,5 @@
+.error-sheet-content {
+  color: #727272; /* @grey-70 */
+  line-height: 1.25;
+  text-align: center;
+}

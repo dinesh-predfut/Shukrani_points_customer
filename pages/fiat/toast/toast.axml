@@ -1,0 +1,66 @@
+<view class="f-body m-16">
+  <view class="title-16 mt-20 mb-16 f-text-center">
+    <text>Toast with component props</text>
+  </view>
+
+  <f-toast type="spin" visible="{{ isToastSpinVisible }}"/>
+  <f-btn onTap="handleToastSpin">
+    Spinner
+  </f-btn>
+  
+  <f-toast type="warning"
+    visible="{{ isToastWarningVisible }}"
+    message="Placeholder for message here"
+    onHide="hideToastWarning"/>
+  <f-btn onTap="showToastWarning">
+    Toast default
+  </f-btn>
+
+  <f-toast type="error" icon="dana-coin"
+    visible="{{ isToastIconVisible }}"
+    message="Placeholder for 2- line message here. Please put your message here. Please put your message here."
+    onHide="hideToastIcon"/>
+  <f-btn onTap="showToastIcon">
+    Toast with icon
+  </f-btn>
+
+  <f-toast type="success" class="toast-custom-class"
+    visible="{{ isToastCustomVisible }}"
+    message="Placeholder for 2- line message here. Please put your message here. "
+    onHide="hideToastCustom"/>
+  <f-btn onTap="showToastCustom">
+    Toast callback and costum class
+  </f-btn>
+
+  <f-toast snackbar type="success"
+    visible="{{ isToastSnackbarVisible }}"
+    message="Placeholder for 2 - line message here. Please put your message here. "
+    onHide="hideToastSnackbar"
+    onAction="handleToastSnackbarAction"
+    actionText="ACTION"
+    duration="10000"/>
+
+  <f-btn onTap="showToastSnackbar">
+    Snackbar
+  </f-btn>
+
+  <view class="title-16 mt-32 mb-16 f-text-center">
+    <text>Toast with ref</text>
+  </view>
+  <f-toast ref="saveToastRef" class="custom-class"/>
+  <f-btn onTap="handleToastRefSpin">
+    Spinner
+  </f-btn>
+  <f-btn onTap="handleToastRefWarning">
+    Toast default
+  </f-btn>
+  <f-btn onTap="handleToastRefIcon">
+    Toast with icon
+  </f-btn>
+  <f-btn onTap="handleToastRefCustom">
+    Toast callback
+  </f-btn>
+  <f-btn onTap="handleToastRefSnackbar">
+    Snackbar
+  </f-btn>
+</view>

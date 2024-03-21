@@ -1,0 +1,12 @@
+.error-sheet .f-sheet {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 16px 16px;
+  pointer-events: auto;
+}
+
+.error-sheet .dash {
+  margin-bottom: 12px;
+}

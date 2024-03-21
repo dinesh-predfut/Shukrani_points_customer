@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "error-sheet": "/components/error-sheet/error-sheet",
+    "error-sheet-image": "/components/error-sheet/error-sheet-image/error-sheet-image",
+    "error-sheet-title": "/components/error-sheet/error-sheet-title/error-sheet-title", 
+    "error-sheet-content": "/components/error-sheet/error-sheet-content/error-sheet-content",
+    "error-sheet-action": "/components/error-sheet/error-sheet-action/error-sheet-action",
+    "f-btn": "/components/fiat/f-btn/f-btn",
+    "f-toast": "/components/fiat/f-toast/f-toast"
+  }
+}

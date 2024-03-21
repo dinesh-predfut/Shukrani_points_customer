@@ -1,0 +1,15 @@
+.f-cell__action {
+  position: relative;
+}
+
+.f-cell__action .arrow {
+  width: 24px;
+  height: 24px;
+  background-image: url('components/fiat/assets/chev-right.svg');
+  background-size: cover;
+}
+
+.f-cell__action .f-notif.dot {
+  width: 12px;
+  height: 12px;
+}

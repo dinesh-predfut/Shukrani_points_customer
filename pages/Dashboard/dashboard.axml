@@ -1,0 +1,49 @@
+<view class="title-name">
+  Hello Raj,
+  <image
+    src="https://img.icons8.com/ios-glyphs/30/FFFFFF/filled-appointment-reminders.png"
+    class="bell-icon"
+  />
+</view>
+
+<view class="section">
+
+  <image src="/Assets/background.png" alt="Background Image" class="promotion-card" />
+  <view class="rewardwallet">Reward Wallet</view>
+  <view class="brand-count">
+    0
+  </view>
+  <view class="brand">
+    Brands
+  </view>
+  <view class="empty-line">
+  </view>
+  <view class="totel-reward-count">
+    0
+  </view>
+  <view class="totel-reward-brand">
+    Totel Rewards Points
+  </view>
+  <view class="point-info">
+    1 Point= 1Tsp
+  </view>
+  <view class="title-name">
+    All rewards
+
+  </view>
+  <view class="f-body d-flex">
+    <f-input placeholder="Search your provider" class="p-20" onInput="onSearchInput">
+      <image src="/Assets/icons8-search-150.png" slot="iconInnerLeft" />
+    </f-input>
+
+      <picker onChange="bindObjPickerChange" class="categoryBTN" value="{{}}" range="{{objectArray}}" range-key="name">
+        <view class="row categaryBtn" >
+          <!-- <view class="row-title">{{ objectArray[arrIndex].name ? objectArray[arrIndex].name : "Category" }}</view> -->
+          <view class="row-extra"> Category</view>
+          <image class="row-arrow" src="https://static.thenounproject.com/png/1590629-200.png" mode="aspectFill" />
+        </view>
+        </picker>
+
+   
+
+    </view>

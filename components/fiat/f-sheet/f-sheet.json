@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "swipe": "/components/swipe/swipe",
+    "transition": "/components/transition/transition",
+    "f-overlay": "/components/fiat/f-overlay/f-overlay"
+  }
+}

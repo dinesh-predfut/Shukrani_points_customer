@@ -1,0 +1,41 @@
+<view class="m-16">
+  <f-btn onTap="showDialog2" type="primary" class="mb-16">
+    Dialog-2 using methods
+  </f-btn>
+
+  <f-dialog ref="saveRefDialog2">
+    <f-card class="p-16 mx-16">
+      <f-card-content class="mb-16">
+        Dialog-2 using methods
+      </f-card-content>
+      <f-card-actions>
+        <f-btn onTap="closeDialog2" type="secondary" class="mr-8">
+          Cancel
+        </f-btn>
+        <f-btn onTap="closeDialog2" type="primary">
+          Ok
+        </f-btn>
+      </f-card-actions>
+    </f-card>
+  </f-dialog>
+
+  <f-btn onTap="showDialog3" type="primary">
+    Dialog-3 using with data binding
+  </f-btn>
+
+  <f-dialog visible="{{ dialog3Visible }}">
+    <f-card class="p-16 mx-16">
+      <f-card-content class="mb-16">
+        Dialog-3 using data binding
+      </f-card-content>
+      <f-card-actions>
+        <f-btn onTap="closeDialog3" type="secondary" class="mr-8">
+          Cancel
+        </f-btn>
+        <f-btn onTap="closeDialog3" type="primary">
+          Ok
+        </f-btn>
+      </f-card-actions>
+    </f-card>
+  </f-dialog>
+</view>

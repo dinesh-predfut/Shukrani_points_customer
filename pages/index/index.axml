@@ -1,3 +1,9 @@
 <view>
-  this is a blank page
+ <dashboard></dashboard> 
+ <provider-list 
+ providers="{{ providers }}" 
+ isSearch="{{ isSearch }}" 
+ 
+/>
+
 </view>

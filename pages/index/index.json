@@ -1,1 +1,9 @@
-{}
+{
+  "usingComponents": {
+    "dashboard": "/pages/Dashboard/dashboard",
+    "provider-list":"/components/provider-list/provider-list",
+    "provider-select":"/pages/provider-select/provider-select"
+   
+  }
+  
+}

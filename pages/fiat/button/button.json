@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "FIAT - Button",
+  "usingComponents": {
+    "f-btn": "/components/fiat/f-btn/f-btn"
+  }
+}

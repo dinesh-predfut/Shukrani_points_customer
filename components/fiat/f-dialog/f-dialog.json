@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "transition": "/components/transition/transition",
+    "f-overlay": "/components/fiat/f-overlay/f-overlay"
+  }
+}

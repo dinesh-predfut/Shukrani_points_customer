@@ -1,0 +1,19 @@
+.help-dialog-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.help-dialog .f-dialog__container {
+  margin-left: 34px;
+  margin-right: 34px;
+  width: initial;
+  left: 0%;
+  transform: translate3d(0%, -50%, 0px);
+}
+
+.help-dialog .f-alert-dialog-enter{
+  opacity:0;
+  transform: scale(.92) translate3d(0%,-50%,0) !important;
+  -webkit-transform: scale(.92) translate3d(0%,-50%,0) !important;
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "f-dialog": "/components/fiat/f-dialog/f-dialog"
+  }
+}

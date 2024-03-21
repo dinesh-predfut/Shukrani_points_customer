@@ -1,0 +1,42 @@
+.denom-list {
+  width: 100%;
+}
+
+.denom-row {
+  display: flex;
+  width: 100%;
+}
+
+.denom-row .denom-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-weight: 600;
+  justify-content: center;
+  border: solid 1px #e3e3e3; /* grey-20 */
+  border-radius: 4px;
+  margin-right: 16px;
+  margin-bottom: 8px;
+  padding: 12px 16px 12px;
+  transition: background-color .15s ease;
+}
+
+.denom-row .denom-card:nth-child(2) {
+  margin-right: 0px;
+}
+
+.denom-row.single {
+  width: 50%;
+}
+
+.denom-row.single .denom-card {
+  margin-right: 8px;
+}
+
+.denom-row .denom-card .price {
+  color: #108ee9; /* @blue-50 */
+}
+
+.denom-row .denom-card:active {
+  background-color: #ededed;
+}

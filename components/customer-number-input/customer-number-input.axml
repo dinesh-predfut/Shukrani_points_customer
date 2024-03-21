@@ -1,0 +1,12 @@
+<f-input class="customer-number-input mb-10 f-input__text-box--small-label text-grey-70"
+  label="INPUT NUMBER"
+  onInput="onInput"
+  type="{{ type }}"
+  maxlength="{{ maxlength }}"
+  placeholder="{{ placeholder }}",
+  showLoader="{{ showLoader }}",
+  helperMsg="{{ helperMsg }}",
+  errorMsg="{{ errorMsg }}",
+  inputType="{{ inputType }}">
+  <slot slot="iconOutterRight" name="iconOutterRight"/>
+</f-input>

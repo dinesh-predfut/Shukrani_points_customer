@@ -1,0 +1,3 @@
+<button class="help-button" onTap="onTap">
+  <f-icon name="question"/>
+</button>

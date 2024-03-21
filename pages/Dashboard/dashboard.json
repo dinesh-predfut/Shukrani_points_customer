@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "f-input":"/components/fiat/f-input/f-input" ,
+    "list": "mini-antui/es/list/index",
+    "list-item": "mini-antui/es/list/list-item/index",
+    "provider-list":"/components/provider-list/provider-list" 
+   
+    
+    
+  }
+}

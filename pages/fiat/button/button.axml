@@ -1,0 +1,27 @@
+<view class="f-body m-16">  
+  <f-btn>Button Primary</f-btn>
+
+  <view class="m-16"></view>
+
+  <f-btn disabled>Button Primary disabled</f-btn>
+
+  <view class="m-16"></view>
+  
+  <f-btn type="secondary">Button Secondary</f-btn>
+
+  <view class="m-16"></view>
+
+  <f-btn type="secondary" disabled>Button Secondary disabled</f-btn>
+
+  <view class="m-16"></view>
+  
+  <f-btn size="small">button primary small</f-btn>
+  
+  <view class="m-16"></view>
+  
+  <f-btn type="secondary" size="small">button secondary small</f-btn>
+  
+  <view class="m-16"></view>
+  
+  <f-btn size="small" uppercase="{{true}}">button primary small uppercase</f-btn>
+</view>

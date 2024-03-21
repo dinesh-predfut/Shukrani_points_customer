@@ -1,0 +1,3 @@
+<view class="error-sheet-content mb-24">
+  <slot/>
+</view>

@@ -1,0 +1,114 @@
+.f-toast {
+  z-index: 99;
+  display: flex; 
+  position: fixed;
+  width: 100vw;
+  top: 0px;
+  left: 0px;
+}
+
+.f-toast-inner-container {
+  display: flex;
+  flex: 1;
+  margin: 8px 16px 8px;
+  height: fit-content;
+
+  font-size: 12px;
+  line-height: 1.34;
+  align-items: center;
+  color: #313131; /* @grey-90 */
+}
+
+.f-toast .icon-wrapper {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  margin-right: 8px;
+}
+
+.f-toast .icon-wrapper .f-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.f-toast .text {
+  flex-grow: 1;
+}
+
+.f-toast.warning .f-toast-alert-container {
+  border: solid 1px #fb8b01; /* @yellow-50 */
+}
+
+.f-toast.error .f-toast-alert-container {
+  border: solid 1px #ff5d55; /* @red-50; */
+}
+
+.f-toast.success .f-toast-alert-container {
+  border: solid 1px #00ce64; /* @green-50 */
+}
+
+.f-overlay .logo-back, .f-overlay .logo-front {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.f-overlay .logo-back {
+  z-index: 102;
+  width: 54px !important;
+  height: 54px !important;
+}
+
+.f-overlay .logo-front {
+  z-index: 103;
+  width: 38px !important;
+  height: 38px !important;
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: translate(-50%,-50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%,-50%) rotate(359deg);
+  }
+}
+
+.f-toast.f-toast-snackbar {
+  align-items: flex-end;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.f-toast.f-toast-snackbar .f-toast-inner-container {
+  margin: 8px 16px 24px 8px;
+}
+
+.f-toast-button-wrapper {
+  flex-grow: 1;
+  pointer-events: auto;
+}
+
+.f-toast-alert-container {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 11px 16px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* .f-toast-button-wrapper .f-btn {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */

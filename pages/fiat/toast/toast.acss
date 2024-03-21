@@ -1,0 +1,7 @@
+button {
+  margin-bottom: 16px;
+}
+
+.f-toast .f-btn {
+  margin-bottom: 0px !important;
+}

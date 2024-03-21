@@ -1,0 +1,130 @@
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-icon class="mr-12">
+    <f-icon name="dana-coin"/>
+  </f-cell-icon>
+  <f-cell-content>
+    <f-cell-label>
+      Cell with Icon, Label
+    </f-cell-label>
+    <f-cell-desc>
+      and Description
+    </f-cell-desc>
+  </f-cell-content>
+</f-cell>
+
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-icon class="mr-12">
+    <f-icon name="dana-coin"/>
+  </f-cell-icon>
+  <f-cell-content>
+    <f-cell-label>
+      Cell with Icon and Label
+    </f-cell-label>
+  </f-cell-content>
+</f-cell>
+
+<f-divider/>
+<f-cell class="pl-16 pr-4 py-12">
+  <f-cell-icon class="mr-12">
+    <f-icon name="dana-coin"/>
+  </f-cell-icon>
+  <f-cell-content>
+    <f-cell-label>
+      Cell with Icon, Label, Arrow
+    </f-cell-label>
+    <f-cell-desc>
+      Description
+    </f-cell-desc>
+  </f-cell-content>
+  <f-cell-action>
+    <view class="arrow"/>
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="pl-16 pr-4 py-12">
+  <f-cell-icon w="30" h="30" class="mr-12">
+    <f-icon name="dana-coin"/>
+  </f-cell-icon>
+  <f-cell-content>
+    <f-cell-label>
+      Cell with Icon, Label, Arrow, Right content
+    </f-cell-label>
+  </f-cell-content>
+  <f-cell-action class="f-flex flex-center" onTap="onTap">
+    <view class="f-body body-16 text-blue-50">
+      Value
+    </view>
+    <view class="arrow"/>
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="pl-16 pr-4 py-12">
+  <f-cell-icon w="40" h="40" class="mr-12">
+    <f-icon name="dana-coin"/>
+  </f-cell-icon>
+</f-cell>
+
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-content>
+    <f-cell-label>
+      Cell with Label only
+    </f-cell-label>
+  </f-cell-content>
+</f-cell>
+
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-content></f-cell-content>
+  <f-cell-action class="f-text-right">
+    Cell content right
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-content></f-cell-content>
+  <f-cell-action class="f-text-right">
+    <view class="f-body">Cell content right</view>
+    <view class="f-caption caption-12 secondary">Sub content</view>
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-content></f-cell-content>
+  <f-cell-action class="f-text-right">
+    <f-btn type="secondary" size="small" uppercase="{{true}}">button</f-btn>
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="p-16">
+  <f-cell-content></f-cell-content>
+  <f-cell-action>
+    <text class="f-title title-27 text-yellow-50">Rp50.000</text>
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="pl-16 pr-4 py-12">
+  <f-cell-content></f-cell-content>
+  <f-cell-action class="f-flex flex-center">
+    <view class="f-body body-16 text-blue-50">
+      Value
+    </view>
+    <view class="arrow"/>
+  </f-cell-action>
+</f-cell>
+
+<f-divider/>
+<f-cell class="pl-16 pr-4 py-12">
+  <f-cell-content></f-cell-content>
+  <f-cell-action class="f-flex flex-center">
+    <view class="arrow"/>
+  </f-cell-action>
+</f-cell>

@@ -1,0 +1,43 @@
+<import-sjs name="denom" from="/utils/denom.sjs"/>
+
+<view class="denom-list">
+  <view class="denom-row {{ denomRow.length == 1 ? ' single' : '' }}"
+    a:for="{{ denomRows }}"
+    a:for-item="denomRow">
+    <view class="denom-card"
+      a:for="{{ denomRow }}"
+      a:for-item="denomColumn"
+      onTap="onDenomCardTap" data-goods="{{ denomColumn }}"
+    >
+      <view class="desc title-24">
+        {{ denom.major(denomColumn.denom.amount, short) }}
+        <text class="minor title-12 ml-2">
+          {{ denom.minor(denomColumn.denom.amount, short) }}
+        </text>
+      </view>
+      <view class="price">
+        {{ denomColumn.price.currency }}{{ denomColumn.price.amount }}
+      </view>
+    </view> 
+  </view>
+</view>
+
+<error-sheet ref="saveCutOffTimeErrorSheetRef">
+  <error-sheet-image src="https://a.m.dana.id/resource/imgs/miniprogram/failed.png"/>
+  <error-sheet-title>Ah, you came at the wrong time</error-sheet-title>
+  <error-sheet-content>{{ cutOffTimeErrorMessage }}</error-sheet-content>
+  <error-sheet-action>
+    <f-btn onTap="hideCutOffTimeError">GOT IT</f-btn>
+  </error-sheet-action>
+</error-sheet>
+
+<error-sheet ref="saveGeneralErrorSheetRef">
+  <error-sheet-image src="https://a.m.dana.id/resource/imgs/miniprogram/something-wrong.svg"/>
+  <error-sheet-title>Uh-oh, something’s wrong</error-sheet-title>
+  <error-sheet-content>{{ generalErrorMessage }}</error-sheet-content>
+  <error-sheet-action>
+    <f-btn onTap="hideGeneralError">GOT IT</f-btn>
+  </error-sheet-action>
+</error-sheet>
+
+<f-toast ref="saveToastRef"/>

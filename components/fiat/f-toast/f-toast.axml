@@ -1,0 +1,39 @@
+<import-sjs name="element" from="../../../utils/element.sjs"/>
+
+<view class="{{ element.classAttr('f-toast ' + internalProps.type + (internalProps.snackbar ? ' f-toast-snackbar' : ''), className) }}"
+  style="display: {{ internalProps.visible ? 'flex' : 'none' }};">
+  <view class="f-toast-inner-container">
+    <transition name="f-fade" a:if="{{ internalProps.type === 'spin' }}" visible="{{ internalProps.type === 'spin' && !leaving }}">
+      <f-overlay slot-scope="props"
+        class="{{ props.transitionClass }}"
+        type="white">
+        <f-icon name="loading-spinner" class="logo-front"/>
+        <f-icon name="loading-back" class="logo-back"/>
+      </f-overlay>
+    </transition>
+    <transition name="f-alert" visible="{{ internalProps.type !== 'spin' && !leaving }}">
+      <view a:if="{{ internalProps.type !== 'spin' }}"
+        slot-scope="props"
+        class="f-toast-alert-container {{ props.transitionClass }}"
+        style="{{ internalProps.type === 'spin' ? 'background: none;' : '' }}">
+        <view class="icon-wrapper">
+          <f-icon name="{{ internalProps.icon }}" a:if="{{ internalProps.icon }}"/>
+          <f-icon name="f-success" a:elif="{{ internalProps.type === 'success' }}"/>
+          <f-icon name="f-warning" a:elif="{{ internalProps.type === 'warning' }}"/>
+          <f-icon name="f-error-round" a:elif="{{ internalProps.type === 'error' }}"/>
+        </view>
+        <view class="text">{{ internalProps.message }}</view>
+        <view
+          a:if="{{ internalProps.actionText }}"
+          class="f-toast-button-wrapper">
+          <f-btn onTap="onAction"
+            type="ghost"
+            size="small"
+            class="pr-0">
+            {{ internalProps.actionText }}
+          </f-btn>
+        </view>
+      </view>
+    </transition>
+  </view>
+</view>

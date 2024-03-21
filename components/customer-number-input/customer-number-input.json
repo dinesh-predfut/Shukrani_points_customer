@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "f-input": "/components/fiat/f-input/f-input"
+  }
+}

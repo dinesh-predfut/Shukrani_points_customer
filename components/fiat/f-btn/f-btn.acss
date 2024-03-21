@@ -1,0 +1,76 @@
+.f-btn {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 4px;
+  outline: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.f-btn-primary {
+  color: #FFF;
+  background-color: #108ee9;
+} 
+
+.f-btn-primary[disabled] {
+  color: #FFF;
+  background-color: #bfbfbf;
+}
+
+.f-btn-secondary {
+  color: #108ee9;
+  background-color: #ffffff;
+  border: solid 0.01rem #108ee9;
+}
+
+.f-btn-secondary[disabled]  {
+  color: #bfbfbf;
+  border-color: #e3e3e3;
+}
+
+.f-btn-large {
+  width: 100%;
+  height: 44px;
+  padding-right: 12px;
+  padding-left: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: OpenSans, sans-serif;
+  line-height: 44px;
+}
+
+.f-btn-small {
+  font-weight: 600;
+  font-size: 12px;
+  font-family: OpenSans, sans-serif;
+  padding: 0 12px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.f-btn-uppercase {
+  text-transform: uppercase;
+}
+
+.f-btn-ghost {
+  color: #108ee9; /* @blue-50 */
+  background-color: transparent;
+}
+
+.f-btn-ghost:disabled {
+  color: #bfbfbf; /* @grey-40 */
+  position: relative;
+}
+
+.f-btn-ghost:disabled:after {
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  content: '';
+}

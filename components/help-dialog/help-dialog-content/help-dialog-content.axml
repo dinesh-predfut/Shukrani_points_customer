@@ -1,0 +1,3 @@
+<view class="help-dialog-content body-14 mb-16">
+  <slot/>
+</view>

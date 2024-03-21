@@ -1,0 +1,28 @@
+
+<view>
+  <popup show="{{showTop}}" position="bottom" onClose="onPopupClose" >
+ 
+  <view style="height: 200px; background: #fff; display: flex; justify-content: center; align-items: center;"> <provider-name class="mt-8 mb-12" providerName="{{ providerName }}"/>
+
+    <customer-number-input 
+      onInput="onCustomerNumberInput" 
+      showLoader="{{ customerNumberLoading }}"
+      errorMsg="{{ custNumberInputErrorMsg }}"
+    >
+      <help-button slot="iconOutterRight" onTap="openHelpDialog"/> 
+    </customer-number-input> 
+  
+    <denom-list denoms="{{ denoms }}" onInputError="onInputError" /></view>
+</popup>
+</view>
+
+<!-- <help-dialog ref="saveHelpDialogRef">
+  <help-dialog-title>How to get your customer number info modal</help-dialog-title>
+  <help-dialog-content>
+    <view class="mb-16">{{ helpDialogMessage }}</view>
+    <image mode="widthFix" src="https://a.m.dana.id/resource/imgs/miniprogram/howto-image.svg"/>
+  </help-dialog-content>
+  <help-dialog-action>
+    <f-btn size="small" onTap="closeHelpDialog">I UNDERSTAND</f-btn>
+  </help-dialog-action>
+</help-dialog> -->

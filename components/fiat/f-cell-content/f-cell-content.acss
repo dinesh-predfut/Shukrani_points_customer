@@ -1,0 +1,7 @@
+.f-cell__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 0;
+  flex-grow: 1;
+}

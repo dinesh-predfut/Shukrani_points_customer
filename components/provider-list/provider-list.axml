@@ -1,0 +1,38 @@
+<view
+  class="f-title title-12 text-grey-70 px-16 py-8" 
+  a:if="{{ isSearch }}"
+>
+  SEARCH RESULT
+  <view a:if="{{ providers.length === 0}}" class="f-text-center mt-32">
+    <image 
+      class="mx-auto img-search-not-found" 
+      src="https://a.m.dana.id/resource/imgs/miniprogram/search-not-found.svg"/>
+    <view class="f-title title-18 my-8">
+      Oops, search not found.
+    </view>
+    <text>Seems like we can’t find the provider you’re looking for. Please check your spelling and try again.</text>
+  </view>
+</view>
+
+<view a:for="{{providers}}">
+ 
+  <f-cell class="pl-16 pr-4 py-12" onTap="onProviderCellTap" provider="{{ providers[index] }}">
+    <f-cell-icon w="30" h="30" class="mr-12">
+      <f-icon name="dana-coin"/>
+    </f-cell-icon>
+    <f-cell-content>
+      <f-cell-label>
+        {{item.name}}
+      </f-cell-label>
+    </f-cell-content>
+    <f-cell-action class="f-flex flex-center">
+      
+    </f-cell-action>
+  </f-cell>
+  
+  <f-divider/>
+</view>
+<popup show="{{showTop}}" position="bottom" onClose="onPopupClose" >
+  <view style="height: 420px; background: rgb(102, 51, 151, 1);color:white; display: flex; justify-content: center; align-items: center;border-top-left-radius:5%;border-top-right-radius:5%"><provider-name class="mt-8 mb-12" providerName="{{ providerName }}"/></view>
+</popup>
+

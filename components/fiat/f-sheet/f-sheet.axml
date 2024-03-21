@@ -1,0 +1,14 @@
+<import-sjs name="element" from="../../../utils/element.sjs"/>
+
+<view class="{{ element.classAttr('f-sheet--container', className) }}"
+  style="display: {{ visible ? 'flex' : 'none' }};">
+  <transition name="f-fade" visible="{{ !leaving }}">
+    <f-overlay slot-scope="props"
+      class="{{ props.transitionClass }}"
+      onTap="dismiss"/>
+  </transition>
+  <swipe disabled="{{ !swipe }}" class="f-sheet {{ sheetClass }}" animation="{{ sheetAnimation }}"
+    onSwipeEnd="onSwipeEnd">
+    <slot/>
+  </swipe>
+</view>

@@ -1,0 +1,14 @@
+<view class="f-title title-16 m-16">FIAT Components</view>
+<view a:for="{{fiatPages}}" onTap="onTapCell" data-url="{{ item.url }}">
+  <f-cell class="pl-16 pr-4 py-12">
+    <f-cell-content>
+      <f-cell-label>
+        {{ item.name }}
+      </f-cell-label>
+    </f-cell-content>
+    <f-cell-action>
+      <view class="arrow"/>
+    </f-cell-action>
+  </f-cell>
+  <f-divider/>
+</view>

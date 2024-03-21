@@ -1,0 +1,3 @@
+<f-dialog ref="saveDialogRef" class="help-dialog" containerClass="help-dialog-container">
+  <slot/>
+</f-dialog>

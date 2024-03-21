@@ -1,0 +1,6 @@
+.f-cell__desc {
+  color: #727272; /* grey-70 */
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.34;
+}

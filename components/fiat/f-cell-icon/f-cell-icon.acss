@@ -1,0 +1,8 @@
+.f-cell__icon {
+  display: flex;
+}
+
+.f-cell__icon .f-icon {
+  width: 100%;
+  height: 100%;
+}

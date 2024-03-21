@@ -1,0 +1,17 @@
+<import-sjs name="element" from="/utils/element.sjs"/>
+
+<view class="{{ element.classAttr('provider-select', className) }}">
+  <view onTap="onReset">
+    <image mode="scaleToFill" src="../../Assets/icons8-close-50.png" class="btn-close"  />
+  <f-icon name='dana-coin'  class="icons-popup"/>
+  </view>
+  <view class='provider-select__name f-body-16'>{{ providerName }}</view>
+  <view class='provider-reward f-body-16'>5000</view>
+  <view class='provider-totel-reward f-body-16'>Totel Reward Point</view>
+  <view class="btn-section">
+    <button size="default" class="pop-up-btn"><image mode="scaleToFill" src="../../Assets/redeemIcon.png" class="btn-img" />Redeem</button>
+   
+    <button size="default" class="pop-up-btn"><image mode="scaleToFill" src="../../Assets/share.png" class="btn-img-3" />Share</button>
+  </view>
+ 
+</view>

@@ -1,0 +1,7 @@
+.help-dialog-content {
+  text-align: center;
+}
+
+.help-dialog-content image {
+  width: 100%;
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "f-sheet": "/components/fiat/f-sheet/f-sheet"
+  }
+}

@@ -1,0 +1,8 @@
+.help-button {
+  border: none;
+  overflow: visible;
+}
+
+.help-button:active, .help-button:focus {
+  border: none;
+}

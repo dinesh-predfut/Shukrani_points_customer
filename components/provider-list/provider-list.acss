@@ -1,0 +1,4 @@
+.img-search-not-found {
+  height: 160px;
+  width: 160px;
+}

@@ -1,0 +1,4 @@
+<f-sheet ref="saveSheetRef" class="error-sheet" swipe roundedTop>
+  <view class="dash"/>
+  <slot/>
+</f-sheet>

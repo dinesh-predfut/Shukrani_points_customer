@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "f-btn": "/components/fiat/f-btn/f-btn",
+    "f-icon": "/components/fiat/f-icon/f-icon"
+  }
+}

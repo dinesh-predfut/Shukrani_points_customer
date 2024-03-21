@@ -1,0 +1,86 @@
+.provider-select__body {
+  display: flex;
+  align-items: center;
+  padding: 14px 0px 14px;
+}
+
+.provider-select__body .f-icon {
+  flex-shrink: 0;
+}
+.icons-popup{
+  width: 60px ;
+  height: 60px;
+  position: absolute;
+  top: 10px;
+  left: 43%;
+}
+.provider-select__name {
+  flex-shrink: 0;
+  flex-grow: 1;
+  margin: 0px 12px 0px 10px;
+  position: absolute;
+  top: 80px;
+  right: 150px;
+  
+  font-size: 12px;
+}
+.provider-reward {
+  flex-shrink: 0;
+  flex-grow: 1;
+  margin: 0px 22px 0px 0px;
+  position: absolute;
+  top: 100px;
+  right: 130px;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 10px;
+
+}
+.provider-totel-reward{
+  margin: -5px 0px 20px 0px;
+  font-size: 10px;
+  position: absolute;
+  top: 160px;
+  right: 160px;
+  /* padding-bottom: 10px; */
+}
+
+.pop-up-btn{
+  width: 350px;
+  height: 60px;
+  background-color: white;
+  /* padding: 10px; */
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  
+}
+.btn-section{
+  position: absolute;
+  bottom: 80px;
+  left: 10px;
+ 
+}
+.btn-img{
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+  margin-top: 18px;
+  
+}
+
+.btn-img-3{
+  width: 20px; 
+  height: 20px;
+  margin-right: 20px;
+  margin-top: 13PX;
+  margin-left: -20px;
+}
+.btn-close{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
