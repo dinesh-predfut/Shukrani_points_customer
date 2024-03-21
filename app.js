@@ -8,5 +8,5 @@ App({
   },
 });
 my.hideTabBar({
-  animation: false
+  animation: true
 })

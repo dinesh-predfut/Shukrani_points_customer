@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "redeem": "/components/redeem/redeem"
+  }
+}

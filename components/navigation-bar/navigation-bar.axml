@@ -1,0 +1,28 @@
+<view class="bottom-navbar-section">
+  <view class="bottom-navbar-section-content">
+    <navigator url="">
+      <text class="nav-item">
+        <image src="/assets/Rewards.svg" onLoad="loadImage" />
+        Rewards
+      </text>
+    </navigator>
+
+    <navigator url="">
+      <text class="nav-item">
+        <image src="/assets/redeem.svg" onLoad="loadImage" /> Redeem
+      </text>
+    </navigator>
+
+    <navigator url="">
+      <text class="nav-item">
+        <image src="/assets/Brand.svg" onLoad="loadImage" /> Brands
+      </text>
+    </navigator>
+
+    <navigator url="">
+      <text class="nav-item">
+        <image src="/assets/user.svg" onLoad="loadImage" /> Profile
+      </text>
+    </navigator>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+<view a:if="{{show}}" class="popup" catchtap="{{closePopup}}">
+
+  <view class="popup-content-box">
+
+    <view class="close-btn" onTap="{{closePopup}}">
+      <icon class="close-icon" type="clear" aria-label="clear" />
+    </view>
+
+    <slot/>
+
+  </view>
+
+</view>

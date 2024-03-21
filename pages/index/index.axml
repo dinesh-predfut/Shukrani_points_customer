@@ -1,3 +1,4 @@
-<view>
-  this is a blank page
+<view >
+  <redeem/>
+  <navigation-bar />
 </view>

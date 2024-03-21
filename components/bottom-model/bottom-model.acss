@@ -1,0 +1,49 @@
+.popup {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 0;
+  background-color: #FFFFFF;
+  transition: transform 0.3s ease-out;
+  z-index: 1000;
+  height: auto;
+  border-radius: 15px 15px 0 0;
+  height: 90%;
+  overflow-x: scroll;
+  width: calc(100% - 40px);
+
+}
+
+.popup-heading {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.2px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 36px 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.close-btn .close-icon {
+  font-size: 14px;
+}
+
+.popup-content-box {
+  padding: 0 25px;
+  position: relative;
+}

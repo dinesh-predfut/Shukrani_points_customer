@@ -1,0 +1,57 @@
+<view>
+  <view class="content">
+    <button onTap="openPopup">Open Popup</button>
+  </view>
+
+  <model show="{{isPopupOpen}}" closePopup="closePopup">
+
+    <!-- QR Scanner -->
+    <view>
+      <text class="popup-heading">
+        Scan to
+      </text>
+      <view class="amout-input">
+        <input placeholder="Amount" />
+      </view>
+      <view class="qr-container">
+        <text>Bar Code</text>
+      </view>
+      <view class="or-line">
+        <text class="line-one"></text>
+        <text class="or-text">OR</text>
+        <text class="line-two"></text>
+      </view>
+      <view class="amout-input pay-number-input">
+        <input placeholder="Enter Lipa namba" />
+      </view>
+      <view class="nxt-btn">
+        <button>Next</button>
+      </view>
+
+      <button onTap="closePopup">Close</button>
+    </view>
+
+    <!-- Chooes redeem option -->
+    <view class="waikiki-section">
+      <view class="waikiki-popup-img">
+        <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" />
+      </view>
+      <view class="lc-waikki-title">
+        LC Waikiki
+      </view>
+      <view class="value-title">
+        Transaction value
+      </view>
+      <view class="value-total-amount">
+        150,000
+      </view>
+      <view class="check-btn">
+        <button class="content-btn" size="default">Redeem your earned points</button>
+        <button class="content-btn" size="default">Pay cash, get reward</button>
+        <button class="content-btn" size="default">Pay and collect reward</button>
+      </view>
+
+    </view>
+
+  </model>
+</view>
