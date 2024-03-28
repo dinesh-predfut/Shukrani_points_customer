@@ -1,9 +1,12 @@
 {
   "usingComponents": {
-    "dashboard": "/pages/Dashboard/dashboard",
+   
     "provider-list":"/components/provider-list/provider-list",
     "provider-select":"/pages/provider-select/provider-select",
-   "navbar":"/components/Nav-bar/navbar"
+    "navbar":"/components/Nav-bar/navbar",
+    "model":"/components/bottom-model/bottom-model",
+    "f-input":"/components/fiat/f-input/f-input" 
+   
   }
   
 }

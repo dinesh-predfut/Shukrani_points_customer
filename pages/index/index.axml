@@ -5,5 +5,5 @@
  isSearch="{{ isSearch }}" 
  
 />
-
+<navbar></navbar>
 </view>
