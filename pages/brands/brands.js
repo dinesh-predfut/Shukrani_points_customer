@@ -35,12 +35,26 @@ Page({
 
   data: {
     modalOpened: false,
+    rewardsOn:false,
+    menuOn:false,
+    array: ['Mlimani city1', 'Mlimani city2', 'Mlimani city3', 'Mlimani city4'],
+    index: 0
   },
-  openModal() {
+  openPopup() {
+    console.log('open clicked')
     this.setData({
       modalOpened: true,
     });
-  },
+    },
+    closePopup() {
+    console.log('close clicked from redeem file ---')
+    this.setData({
+      modalOpened: false,
+      rewardsOn:false,
+      menuOn:false,
+      // nextPage:false
+    });
+    },
   onModalClick() {
     this.setData({
       modalOpened: false,
@@ -50,5 +64,21 @@ Page({
     this.setData({
       modalOpened: false,
     });
-  }
+  },
+  onRewardsModalClick(){
+    this.setData({
+      rewardsOn:true
+    })
+  },
+  onMenuModalClick(){
+    this.setData({
+      menuOn:true
+    })
+  },
+  bindPickerChange(e) {
+    console.log('picker sends selection change, carried value ', e.detail.value);
+    this.setData({
+      index: e.detail.value,
+    });
+  },
 });

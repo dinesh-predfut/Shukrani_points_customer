@@ -1,4 +1,5 @@
 <view >
-  <redeem/>
-  <navigation-bar />
+  <!-- <redeem/> -->
+  <navigation-bar  />
+  <!-- <loading/> -->
 </view>

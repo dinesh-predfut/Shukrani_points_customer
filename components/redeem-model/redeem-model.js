@@ -1,8 +1,6 @@
 Component({
   mixins: [],
-  data: {
-
-  },
+  data: {},
   props: {},
   didMount() { },
   didUpdate() { },

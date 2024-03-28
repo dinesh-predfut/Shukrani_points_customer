@@ -1,0 +1,39 @@
+.loding-section {
+  position: absolute;
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-img image {
+  width: 92px;
+  height: 92px;
+  margin-bottom: 24px;
+}
+
+.wait-text {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.2px;
+  text-align: center;
+  color: #000;
+}
+
+.account-text {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 14.52px;
+  text-align: center;
+  color: rgba(128, 128, 128, 1);
+  ;
+}

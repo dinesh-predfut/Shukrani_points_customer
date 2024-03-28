@@ -1,0 +1,230 @@
+<!-- brand section start here -->
+
+<view class="brand-section-page">
+  <view class="brand-section">
+    <view class="brand-section-title">
+      <text class="title">Brands</text>
+      <image mode="scaleToFill" src="https://i.postimg.cc/pX8ZfQY3/bell.png" />
+    </view>
+    <view class="search-container">
+      <view class="search-input-box">
+        <image mode="scaleToFill" src="https://i.postimg.cc/qvTGjt1q/search.png" />
+        <input class="search-input" placeholder="Search brand/category" />
+      </view>
+      <view class="categorie">
+        <text class="categorie-title">Categories</text>
+        <image mode="scaleToFill" src="https://i.postimg.cc/Wz1BDWkR/arrow.png" />
+      </view>
+    </view>
+  </view>
+  <view class="product-box">
+    <view class="product-box-list" onTap="openPopup">
+      <image mode="scaleToFill" src="https://i.postimg.cc/Z5F8bggj/product.png" />
+      <view class="product-box-box">
+        <view class="product-title">Pizza Hut</view>
+        <view class="product-sub-title">Fast Food</view>
+      </view>
+  
+  
+    </view>
+    <view class="product-box-list">
+      <image mode="scaleToFill" src="https://i.postimg.cc/QxLTGGsB/gss-logo.png" />
+      <view class="product-box-box">
+        <view class="product-title">GSM Home</view>
+        <view class="product-sub-title">Shopping</view>
+      </view>
+  
+  
+    </view>
+    <view class="product-box-list">
+      <image mode="scaleToFill" src="https://i.postimg.cc/qB27KtVR/Lc-logo.png" />
+      <view class="product-box-box">
+        <view class="product-title">LC Waikiki</view>
+        <view class="product-sub-title">Clothing</view>
+      </view>
+  
+  
+    </view>
+    <view class="product-box-list">
+      <image mode="scaleToFill" src="https://i.postimg.cc/fysDCKnb/sam-logo.png" />
+      <view class="product-box-box">
+        <view class="product-title">Samaki Smaki</view>
+        <view class="product-sub-title">Restaurant</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- end brand section -->
+
+
+<!-- brand details model start -->
+<model show="{{modalOpened}}">
+<view class="brand-model-popup" a:if="{{!rewardsOn && !menuOn}}">
+  <!-- Close button -->
+
+  <view class="close-btn" onTap="closePopup">
+    <icon class="close-icon" type="clear" aria-label="clear" />
+  </view>
+
+  <view class="brand-model-img">
+    <image src="https://i.postimg.cc/LXbcw6KW/brand-img.png" />
+    <image class="brand-verified-img" src="https://i.postimg.cc/jqG5JRwv/Brand-verified.png" />
+
+  </view>
+  <view class="brand-model-details">
+    <view class="brand-model-title">
+      Pizza Hut
+    </view>
+    <view class="brand-model-sub-title">
+      Fast Food
+    </view>
+
+  </view>
+  <view class="brand-rateing">
+    <view class="brand-rateing-img">
+      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
+      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
+      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
+      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
+      <image class="rateing-star" src="https://i.postimg.cc/mrWRbSDS/rateing-uncheck-star.png" />
+
+    </view>
+    <view class="rateing-details">
+      <view class="rateing-number">
+        <view class="rateing-number-text">
+          4.0
+        </view>
+        <image class="rateing-image" src="https://i.postimg.cc/YCzGBj2j/rateing-number-star.png" />
+
+      </view>
+      <view>
+        |
+      </view>
+      <view class="rateing-comment">
+        <image class="rateing-image" src="https://i.postimg.cc/cC3C9L5x/rateing-comment-star.png" />
+        <view class="rateing-comment-text">
+          213
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+  <view class="minimum-spending-section">
+    <view class="minimum-spending-amount">
+      <view class="minimum-spending-amount-img">
+        <image src="https://i.postimg.cc/595XDn4b/minimum-spending.png" />
+      </view>
+      <view class="spending-data">
+        <view class="spending-data-amount">
+          TZS 10,000
+        </view>
+        <view class="spending-data-text">
+          Minimum spending
+        </view>
+
+      </view>
+
+    </view>
+    <view class="minimum-spending-section-social">
+      <image src="https://i.postimg.cc/RCc2xnJc/instagram.png" />
+      <image src="https://i.postimg.cc/C1br0W5F/facebook.png" />
+      <image src="https://i.postimg.cc/85kfkvPj/twitter.png" />
+    </view>
+
+  </view>
+  <view class="button-model">
+    <!-- <button> Mlimani City
+      <image class="minimum-arrow" src="https://i.postimg.cc/ZYBqS2My/down-arrow.png" />
+    </button> -->
+    <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <!-- <view class="picker">
+        Select City {{array[index]}}
+      </view> -->
+      <button> {{array[index]}}
+        <image class="minimum-arrow" src="https://i.postimg.cc/ZYBqS2My/down-arrow.png" />
+      </button>
+    </picker>
+    <button onTap="onRewardsModalClick">Rewards</button>
+    <button onTap="onMenuModalClick">Menu</button>
+  </view>
+  <view class="button-model-text">
+    Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa
+  </view>
+  <view class="brand-direct-links">
+    <button>
+      <image src="https://i.postimg.cc/L6790TT3/location.png" /> Direction</button>
+    <button>
+      <image src="https://i.postimg.cc/8CGVqnrM/whatsup.png" /> Whatsapp</button>
+    <button>
+      <image src="https://i.postimg.cc/3RwzhMr4/call.png" /> Call</button>
+  </view>
+
+</view>
+
+<!-- Rewards table model -->
+<view a:if="{{rewardsOn}}">
+  <!-- Close button -->
+
+  <view class="close-btn" onTap="closePopup">
+    <icon class="close-icon" type="clear" aria-label="clear" />
+  </view>
+
+  <view class="rewards-table-table">
+    Rewards table
+  </view>
+  <view class="table">
+    <view class="table-row header">
+      <text class="header-title">Min</text>
+      <text class="header-title">Max</text>
+      <text class="header-title">Reward%</text>
+    </view>
+    <view class="table-row">
+      <text class="table-cell">10,000</text>
+      <text class="table-cell">100,000</text>
+      <text class="table-cell">1%</text>
+    </view>
+    <view class="table-row">
+      <text class="table-cell">100,001</text>
+      <text class="table-cell">1,000,000</text>
+      <text class="table-cell">2%</text>
+    </view>
+    <view class="table-row">
+      <text class="table-cell">1,000,001</text>
+      <text class="table-cell">5,000,000</text>
+      <text class="table-cell">3%</text>
+    </view>
+    <view class="table-row">
+      <text class="table-cell">5,000,0001</text>
+      <text class="table-cell">10,000,000</text>
+      <text class="table-cell">4%</text>
+    </view>
+
+
+  </view>
+</view>
+<!-- End Rewards table model -->
+
+
+<!-- brand menu model -->
+<view a:if="{{ menuOn}}"> 
+  <!-- Close button -->
+
+  <view class="close-btn" onTap="closePopup">
+    <icon class="close-icon" type="clear" aria-label="clear" />
+  </view>
+  
+  <view class="menu-title">MENU</view>
+  <image class="menu-image" src="https://i.postimg.cc/Wzhx55vR/brand-menu-img.png" />
+</view>
+
+
+<!-- brand menu model -->
+
+</model>
+
+
+<!-- brand details model end -->

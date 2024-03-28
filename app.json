@@ -1,6 +1,9 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/rewards/rewards",
+    "pages/redeem/redeem",
+    "pages/brands/brands"
   ],
   "window": {
     "defaultTitle": "My App"    

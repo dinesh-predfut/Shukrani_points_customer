@@ -1,25 +1,25 @@
 <view class="bottom-navbar-section">
   <view class="bottom-navbar-section-content">
-    <navigator url="">
+    <view onTap="navigateToRewards">
       <text class="nav-item">
         <image src="/assets/Rewards.svg" onLoad="loadImage" />
         Rewards
       </text>
-    </navigator>
+    </view>
 
-    <navigator url="">
+    <view onTap="navigateToRedeem">
       <text class="nav-item">
         <image src="/assets/redeem.svg" onLoad="loadImage" /> Redeem
       </text>
-    </navigator>
+    </view>
 
-    <navigator url="">
+    <view onTap="navigateToBrands">
       <text class="nav-item">
         <image src="/assets/Brand.svg" onLoad="loadImage" /> Brands
       </text>
-    </navigator>
+    </view>
 
-    <navigator url="">
+    <navigator url="" onTap="">
       <text class="nav-item">
         <image src="/assets/user.svg" onLoad="loadImage" /> Profile
       </text>
