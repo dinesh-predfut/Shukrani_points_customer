@@ -1,0 +1,9 @@
+<view class="loding-section">
+  <view class="loader-img">
+    <image src="/assets/Loader-img.png" />
+  </view>
+  <view class="loader-text">
+    <view class="wait-text">Please wait...</view>
+    <view class="account-text">Tiger is creating your account</view>
+  </view>
+</view>

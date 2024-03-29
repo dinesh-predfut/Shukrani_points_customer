@@ -3,8 +3,9 @@
     "dashboard": "/pages/Dashboard/dashboard",
     "provider-list":"/components/provider-list/provider-list",
     "provider-select":"/pages/provider-select/provider-select",
-    "navbar":"/components/Nav-bar/navbar"
-   
+    "navbar":"/components/Nav-bar/navbar",
+
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "loading": "/components/loading/loading"
   }
-  
-}
+} 

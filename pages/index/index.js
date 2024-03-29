@@ -68,9 +68,27 @@ Page({
     }
      
   },
- 
+  data: {
+    modalOpened: false,
+  },
+  openModal() {
+    this.setData({
+      modalOpened: true,
+    }); 
+  },
+  onModalClick() {
+    this.setData({
+      modalOpened: false,
+    });
+  },
+  onModalClose() {
+    this.setData({
+      modalOpened: false,
+    });
+  }
 })
 
 
 
  
+  

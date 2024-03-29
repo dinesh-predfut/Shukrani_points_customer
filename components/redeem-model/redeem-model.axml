@@ -1,0 +1,9 @@
+<view class="enter-pin-page">
+  <view class="pin-lock-img">
+    <image src="/assets/pin.svg" />
+  </view>
+  <text class="popup-heading payment-model-heading enter-pin-heading">
+    Enter PIN
+  </text>
+  <text class="pin-text">To redeem 15,000 points at LC Waikiki</text>
+</view>

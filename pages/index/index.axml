@@ -1,9 +1,10 @@
 <view>
- <dashboard></dashboard> 
- <provider-list 
- providers="{{ providers }}" 
- isSearch="{{ isSearch }}" 
+  <dashboard></dashboard> 
+  <provider-list 
+  providers="{{ providers }}" 
+  isSearch="{{ isSearch }}" 
+  
+ />
+ <navbar></navbar> 
+ </view>  
  
-/>
-<navbar></navbar> 
-</view>  

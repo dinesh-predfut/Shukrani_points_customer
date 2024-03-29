@@ -7,3 +7,6 @@ App({
     // Reopened by scheme from the background
   }, 
 });
+my.hideTabBar({
+  animation: true
+})
