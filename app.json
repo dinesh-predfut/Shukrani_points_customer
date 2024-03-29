@@ -8,6 +8,6 @@
     "pages/Notification/notification"
   ],
   "window": {
-    "defaultTitle": "My App"    
+    "defaultTitle": "My App"     
   }
 }
