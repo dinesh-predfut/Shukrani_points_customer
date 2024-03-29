@@ -19,10 +19,14 @@
       </text>
     </view>
 
-    <navigator url="" onTap="">
+    <view>
+      
+    <view onTap="navigateToProfile">
       <text class="nav-item">
         <image src="/assets/user.svg" onLoad="loadImage" /> Profile
       </text>
-    </navigator>
+    </view>
+       
+    </view>
   </view>
 </view>

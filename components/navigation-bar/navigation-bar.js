@@ -27,7 +27,7 @@ Component({
       my.navigateTo({ url: '/pages/brands/brands' }); // Adjust the URL based on your project structure
     },
     navigateToProfile() {
-      my.navigateTo({ url: '/pages/profile/profile' }); // Adjust the URL based on your project structure
+      my.navigateTo({ url: '/pages/Settings/setting' }); // Adjust the URL based on your project structure
     }
   }
 });

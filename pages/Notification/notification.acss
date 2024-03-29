@@ -1,0 +1,101 @@
+body {
+  background-color: rgb(102, 51, 151, 1) !important;
+
+}
+
+.title-name {
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+  padding: 10px;
+  font-family: sans-serif;
+  margin: 20px 10px;
+
+}
+
+.section {
+  position: relative;
+}
+
+.bell-icon {
+  position: relative;
+  top: -30px;
+  right: -120px;
+  margin-left: 4rem;
+  margin-top: 5px;
+
+
+}
+
+.bell-icon>image {
+  width: 40px;
+  height: 40px;
+  color: white;
+
+}
+
+.notificationBtn {
+  border-radius: 100px !important;
+  height: 50px !important;
+  width: 100px;
+  background: rgba(202, 24, 24, 1);
+  color: rgba(255, 255, 255, 1);
+  border: rgba(202, 24, 24, 1)
+}
+
+.container {
+  margin-top: 15px;
+  width: 352px;
+  height: auto;
+  top: 162px;
+  left: 19px;
+  gap: 0px;
+  border-radius: 5px 0px 0px 0px;
+  opacity: 0px;
+  background-color: rgba(252, 251, 253, 0.959) !important;
+  border-radius: 6px;
+padding: 10px;
+box-shadow: rgba(41, 40, 40, 0.61) 0px 10px 5px 0px;
+
+
+}
+.notificationTime{
+  /* width: 25px;
+height: 14px; */
+/* top: 104px;
+left: 303px; */
+gap: 0px;
+opacity: 0px;
+font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+line-height: 12.1px;
+text-align: right;
+margin: -20px 10px 60px -20px;
+color: rgb(87, 83, 83);
+
+}
+.notification-title{
+  font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+line-height: 16.94px;
+text-align: left;
+color: rgb(15, 15, 15);
+padding: 6px;
+
+
+
+}
+.notification-massage{
+  text-align: justify;
+  font-family: Inter;
+font-size: 13px;
+font-weight: 300;
+line-height: 14.52px;
+text-align: left;
+margin-top: -50px !important;
+margin: 10px;
+color: black !important;
+
+}
