@@ -32,7 +32,7 @@
 
   </view>
   <view class="f-body d-flex">
-    <f-input placeholder="Search your provider" class="p-20" onInput="onSearchInput">
+    <f-input placeholder="Search your provider" class="p-20" onInput="">
       <image src="/Assets/icons8-search-150.png" slot="iconInnerLeft" />
     </f-input>
 
@@ -44,6 +44,6 @@
         </view>
         </picker>
 
-   
-
-    </view>
+    
+<provider-list></provider-list>
+    </view> 

@@ -21,6 +21,7 @@ Page({
   onReady() {},
   onShow() {
     // Page display
+    console.info(`Page onLoad witsh query QQQQQ`);
   },
   onHide() {
     // Page hidden

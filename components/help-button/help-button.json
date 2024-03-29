@@ -1,6 +1,10 @@
 {
+ 
   "component": true,
   "usingComponents": {
     "f-icon": "/components/fiat/f-icon/f-icon"
+  },
+  "window": {
+    "defaultTitle": "setting"    
   }
 }

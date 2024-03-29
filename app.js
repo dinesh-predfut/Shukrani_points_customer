@@ -5,6 +5,5 @@ App({
   },
   onShow(options) {
     // Reopened by scheme from the background
-  },
+  }, 
 });
-

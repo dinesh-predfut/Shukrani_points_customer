@@ -8,7 +8,9 @@
     "f-cell-label": "/components/fiat/f-cell-label/f-cell-label",
     "f-divider": "/components/fiat/f-divider/f-divider",
     "f-icon": "/components/fiat/f-icon/f-icon",
-     "popup": "mini-antui/es/popup/index",
-     "provider-name": "/components/provider-name/provider-name" 
+     "popup": "mini-antui/es/popup/index" ,
+     "model":"/components/bottom-model/bottom-model",
+     "dashboard": "/pages/Dashboard/dashboard"
+     
   }
 }

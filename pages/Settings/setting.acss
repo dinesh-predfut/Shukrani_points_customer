@@ -1,0 +1,260 @@
+/* required by usingComponents */.profile-container {
+  background-color: black;
+  width: 350px;
+  height: 200px;
+  margin: 20px 0px 20px 30px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.sub-container image {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+}
+
+.sub-container {
+  display: flex;
+  justify-content: center;
+}
+
+.bg-camera {
+  position: absolute;
+  top: 90px;
+  width: 35px;
+  height: 35px;
+  left: 200px;
+}
+
+.camera {
+  position: absolute;
+  top: 90px;
+  left: 200px;
+  width: 20px;
+  height: 20px;
+  margin: 7px;
+
+}
+
+.profil-text {
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+button image {
+  width: 20px;
+  height: 20px;
+  /* padding: 5px 3px 3px 3px; */
+  padding: 3px;
+  margin: 6px 15px 3px 13px !important;
+  color: thistle !important;
+  display: flex;
+  justify-content: left;
+
+}
+
+.setting-btn > button {
+  padding: -10px 0px 20px 10px;
+  background-color: white !important;
+  color: rgba(131, 125, 125, 0.938);
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: left;
+  margin-left: 25px;
+  border-radius: 5px;
+  font-size: 13px;
+
+}
+.title-name-profile{
+  margin-left: 10px;
+  color: white;
+  font-weight: 900;
+  font-size: 20px;
+  margin: 25px;
+
+}
+.language-name-profile{
+  margin-left: 10px;
+  color: rgba(255, 255, 255, 0.568);
+  /* font-weight: 900; */
+  font-size: 14px;
+  margin: 18px;
+}
+.language{
+  color: whitesmoke;
+  position: absolute;
+  /* bottom: 0px; */
+  left: 150px;
+  top: 558px;
+  font-weight: 600;
+} 
+.sigin-out-btn{
+  width: 120px !important;
+  padding: 7px 6px 13px 13px ;
+  position: absolute;
+  right: 20px;
+  top: 580px;
+  height: 60px !important;
+}
+.sigin-out-btn image{
+  width: 10px;
+  height: 10px;
+  margin-top: 15px !important;
+}
+.changePinTitle{
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  margin: 10px;
+  font-size: 18px;
+}
+.changepinBtn{
+  padding: 10px 0px 20px 10px;
+  background-color: white !important;
+  color:black;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: left;
+  /* margin-left: 25px; */
+  border-radius: 5px;
+  font-size: 16px;
+  width: 200px !important;
+  height: 60px !important;
+  font-weight: 900 !important;
+ 
+
+}
+.nextBtn{
+  padding:10px 10px 16px 10px;
+  background-color: white !important;
+  color:black;
+  margin-bottom: 6px;
+   display: flex; 
+ justify-content: left;
+  /* margin-left: 5px; */
+  border-radius: 5px;
+  font-size: 18px;
+  width: 110px !important;
+  height: 60px !important;
+  font-weight: 900 !important;
+  position: absolute;
+  right: 10px;
+  top: 176px;
+  
+}
+.changePinImg{
+  width: 40px;
+  height: 40px;
+  margin: 40px 0px 40px 120px;
+  display: flex;
+  justify-content: center;
+}
+.popup {
+  height: 60%;
+  /* padding-bottom: 80px !important; */
+  overflow-y: scroll !important;
+
+} 
+
+.changepinBtnOTP{
+padding: 10px 0px 20px 10px;
+background-color: white !important;
+color:black;
+margin-bottom: 3px;
+display: flex;
+justify-content: left;
+/* margin-left: 25px; */
+border-radius: 5px;
+font-size: 16px;
+width: 200px !important;
+height: 60px !important;
+font-weight: 900 !important;
+margin-top: 25px;
+}
+.changePinnumber{
+  margin: 30px !important;
+}
+.changePinnumberOTP{
+  margin: 30px 0px 0px 60px!important;
+}
+.phoneNumberchange{
+  margin-left: 15px !important;
+  background-color: white !important;
+  color: black;
+  font-weight: 600;
+  border-radius: 5px !important;
+  border: none !important;
+}
+.profileChoosebtn{
+  margin: 15px !important;
+  background-color: white !important;
+  color: black;
+  font-weight: 600;
+  border-radius: 5px !important;
+  border: none !important;
+}
+.changeprofileBtnSection{
+  margin-top: 100px;
+}
+.f-input__text-box .a-input {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Roboto, sans-serif;
+  color: #313131;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.25;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  padding: 8px 10px;
+  border: solid 1px #e3e3e3;
+  border-radius: 4px;
+  resize: none;
+  /* caret-color: #ce7201; */
+  padding: 10px 28px 10px 12px;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+  box-sizing: border-box;
+  height: 59px;
+  margin-top: 15px;
+  width: 180px !important;
+}
+.f-input__icon-inner-left .a-image, .f-input__icon-inner-left .a-view {
+    max-height: 21px;
+    max-width: 21px;
+    margin-top: 25px;
+}
+.changeProfilepicTitle{
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 18px;
+  margin-top: 30px !important;
+  
+}
+.profilepicture{
+  width: 50px ;
+  height: 50px ;
+  border-radius: 50%;
+}
+.container{
+  color: white;
+  text-align: justify;
+}
+.close-btn .close-icon {
+  font-size: 14px; 
+position: absolute;
+top: -30px;
+right: -10px;
+margin: 0px 0px 20px 20px;
+}
+.close-delect .close-icon-delect{
+  font-size: 14px;
+position: absolute;
+top: 10px;
+right: 10px;
+/* margin: 0px 0px 20px 20px; */
+}

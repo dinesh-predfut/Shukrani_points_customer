@@ -5,8 +5,7 @@
     "list": "mini-antui/es/list/index",
     "list-item": "mini-antui/es/list/list-item/index",
     "provider-list":"/components/provider-list/provider-list" 
-   
-    
+  
     
   }
 }

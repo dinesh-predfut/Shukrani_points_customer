@@ -1,12 +1,10 @@
-<view
-  class="f-title title-12 text-grey-70 px-16 py-8" 
-  a:if="{{ isSearch }}"
->
+
+
+
+<view a:if="{{ isSearch }}" class="f-title title-12 text-grey-70 px-16 py-8">
   SEARCH RESULT
   <view a:if="{{ providers.length === 0}}" class="f-text-center mt-32">
-    <image 
-      class="mx-auto img-search-not-found" 
-      src="https://a.m.dana.id/resource/imgs/miniprogram/search-not-found.svg"/>
+    <image class="mx-auto img-search-not-found" src="https://a.m.dana.id/resource/imgs/miniprogram/search-not-found.svg" />
     <view class="f-title title-18 my-8">
       Oops, search not found.
     </view>
@@ -15,10 +13,10 @@
 </view>
 
 <view a:for="{{providers}}">
- 
+
   <f-cell class="pl-16 pr-4 py-12" onTap="onProviderCellTap" provider="{{ providers[index] }}">
     <f-cell-icon w="30" h="30" class="mr-12">
-      <f-icon name="dana-coin"/>
+      <f-icon name="dana-coin" />
     </f-cell-icon>
     <f-cell-content>
       <f-cell-label>
@@ -26,13 +24,103 @@
       </f-cell-label>
     </f-cell-content>
     <f-cell-action class="f-flex flex-center">
-      
+
     </f-cell-action>
   </f-cell>
-  
+
   <f-divider/>
 </view>
-<popup show="{{showTop}}" position="bottom" onClose="onPopupClose" >
-  <view style="height: 420px; background: rgb(102, 51, 151, 1);color:white; display: flex; justify-content: center; align-items: center;border-top-left-radius:5%;border-top-right-radius:5%"><provider-name class="mt-8 mb-12" providerName="{{ providerName }}"/></view>
-</popup>
+<model show="{{showTop}}"  closePopup="closePopup" >
 
+  <view style="height: 420px;color:white; ">
+    <view onTap="closePopup">
+      <image mode="scaleToFill" oo src="../../Assets/icons8-close-50.png" class="btn-close" />
+
+
+      <view class="{{ element.classAttr('provider-select', className) }}">
+        <view onTap="onReset">
+
+          <f-icon name='dana-coin' class="icons-popup" />
+        </view>
+        <view class='provider-select__name f-body-16'>{{ providerName }}</view>
+        <view class='provider-reward f-body-16'>5000</view>
+        <view class='provider-totel-reward f-body-16'>Totel Reward Point</view>
+        <view class="btn-section">
+          <button size="default" class="pop-up-btn">
+            <image
+              mode="scaleToFill"
+              src="../../Assets/redeemIcon.png"
+              class="btn-img"
+            />Redeem
+          </button>
+
+          <button size="default" class="pop-up-btn" onTap="showshare">
+            <image mode="scaleToFill" src="../../Assets/share.png" class="btn-img-3" />Share
+          </button>
+          <view onTap="showwithdraw" style=" color: red;font-weight:bold;display: flex;font-size:15px; justify-content: center; align-items: center">
+            Withdraw from program
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</model> 
+<model show="{{shareShowtop}}" position="bottom" closePopup="closesharepoint">
+
+  <view style="height: 620px; ">
+    <view onTap="closesharepoint">
+      <image mode="scaleToFill" oo src="../../Assets/icons8-close-50.png" class="btn-close" />
+
+    </view>
+    <view class="{{ element.classAttr('provider-select', className) }}">
+      <view onTap="onReset">
+        <view class='provider-title '>Share Points</view>
+        <view style="margin-top:50px !important">
+          <f-icon name='dana-coin' class="icons-popup-share" />
+        </view>
+        <view class='provider-select__name-share f-body-16'>{{ providerName }}</view>
+        <view class='provider-reward-share f-body-16'>5000</view>
+        <view class='provider-totel-reward-share f-body-16'>Totel Reward Point</view>
+      </view>
+
+      <view class="btn-section">
+        <view class="reward-input pay-number-input">
+          <input placeholder="Enter Reward Point" />
+        </view>
+        <view class="reward-input pay-number-input">
+          <input placeholder="Enter Phonenumber" />
+        </view>
+
+        <button size="default" class="pop-up-btn" onTap="showshare">
+          <image mode="scaleToFill" src="../../Assets/share.png" class="btn-img-3" />Share
+        </button>
+        <view style=" color: red;font-weight:bold;display: flex;font-size:15px; justify-content: center; align-items: center">
+          Withdraw from program
+        </view>
+      </view>
+
+    </view>
+  </view>
+</model>
+<model show="{{showWithdraw}}" position="bottom" closePopup="closewithdraw"> 
+
+  <view style="height: 500px; background: rgb(102, 51, 151, 1);color:white;  display: flex; justify-content: center; align-items: center;">
+    <view onTap="closewithdraw">
+      <image mode="scaleToFill" oo src="../../Assets/icons8-close-50.png" class="btn-close" />
+
+    </view>
+    <view class='withdraw-title '>Withdraw from Pizza Hut Loyalty Program</view>
+    <view class='withdraw-info'>
+      You will lose all the rewards collected from Pizza Hut and your personal data will be deleted from Pizza Hut as customer
+    </view>
+    <view class='withdraw-bold '>Do you want to continue</view>
+    <button size="default" class="pop-up-btn-no" onTap="showshare">  No
+    </button>
+    <button size="default" class="pop-up-btn-yes" onTap="showshare">  Yes
+    </button>
+  </view>
+
+
+</model>
