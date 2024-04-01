@@ -196,7 +196,7 @@ Page({
     my.request({
       url: 'http://52.51.249.84:8080/api/app/getRewardSummary',
       method: 'GET',
-     headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExNjkxNDA4LCJleHAiOjE3MTE3Nzc4MDh9.1-g7-5RgMx17g-k05C7eMBGe_-VGUc8b9bShmlvHyrQ"]},
+     headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g"]},
       dataType: 'json',
       success: function(res) { 
         self.setData({ 
@@ -217,7 +217,7 @@ Page({
     my.request({
       url: 'http://52.51.249.84:8080/api/app/transactions',
       method: 'GET',
-     headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExNjkxNDA4LCJleHAiOjE3MTE3Nzc4MDh9.1-g7-5RgMx17g-k05C7eMBGe_-VGUc8b9bShmlvHyrQ"]},
+     headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g"]},
       dataType: 'json',
       success: function(res) { 
         table.setData({ 
