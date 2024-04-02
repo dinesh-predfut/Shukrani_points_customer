@@ -9,6 +9,7 @@ Page({
     count:[],
     transactionData:[],
     providersSearchResult: [],
+    providerName:[],
     isSearch: false,
   array: ['Saloon', 'Bakery', 'Bar', 'Beauty'],
   objectArray: [
@@ -76,7 +77,7 @@ Page({
     // this.setData({ count:1}
     //   )
     this.RequestrewardPoint();
-    this.transactionAPI();
+    this.transactionAPI(); 
    
   },
   onHide() { 
@@ -101,13 +102,16 @@ Page({
     };
   },
  
-    onProviderCellTap (e, props) {
-      this.setData({
-        showTop: true,
-      });
-      const { provider } = props
-     this.setData({ providerName: provider.name })
-    },
+
+  
+  onProviderCellTap (e, props) {
+    this.setData({
+      showTop: true,
+    });
+    const { provider } = props
+   this.setData({ providerName: provider.name })
+  },
+  
     onTapFiatCell () {
       my.navigateTo({ 
         url: '/pages/fiat/index/index'
@@ -191,47 +195,48 @@ Page({
   },
 
   // API Call
-  RequestrewardPoint(){
-    const self = this; 
-    my.request({
-      url: 'http://52.51.249.84:8080/api/app/getRewardSummary',
-      method: 'GET',
-     headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g"]},
-      dataType: 'json',
-      success: function(res) { 
-        self.setData({ 
-          count: res.data // Set the response value in the 'count' data property
-        });
-        // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
-      },  
-      fail: function(res) {
-        my.alert({content: 'fail'});
-      },
+  // RequestrewardPoint(){
+  //   const self = this; 
+  //   my.request({
+  //     url: 'http://52.51.249.84:8080/api/app/getRewardSummary',
+  //     method: 'GET',
+   
+  //   headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzEyMDM2MDkzLCJleHAiOjE3MTIxMjI0OTN9.UaTJZigp3PLqQcPt2cFbOCdN909LZoFcY8w1x1khbic"]},
+  //     dataType: 'json',
+  //     success: function(res) { 
+  //       self.setData({ 
+  //         count: res.data // Set the response value in the 'count' data property
+  //       });
+  //       // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
+  //     },  
+  //     fail: function(res) {
+  //       my.alert({content: 'fail'});
+  //     },
       
-    });
+  //   });
     
    
-   },
-   transactionAPI(){
-    const table = this; 
-    my.request({
-      url: 'http://52.51.249.84:8080/api/app/transactions',
-      method: 'GET',
-     headers:{"authorization":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g"]},
-      dataType: 'json',
-      success: function(res) { 
-        table.setData({ 
-          transactionData: res.data // Set the response value in the 'count' data property
-        });
-        console.log("12344",table.data.transactionData); // Access 'count' using 'self.data.count'
-      },  
-      fail: function(res) {
-        my.alert({content: 'fail'});
-      },
+  //  },
+  //  transactionAPI(){
+  //   const table = this; 
+  //   my.request({
+  //     url: 'http://52.51.249.84:8080/api/app/transactions',
+  //     method: 'GET',
+  //    headers:{"Token":["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTcyODk3LCJleHAiOjE3MTIwNTkyOTd9.h0zSkW0MgI8v3H2uIzlDON5gLxi6ZGCYRFN6Ekfx_zw"]},
+  //     dataType: 'json', 
+  //     success: function(res) { 
+  //       table.setData({ 
+  //         transactionData: res.data // Set the response value in the 'count' data property
+  //       });
+  //       console.log("12344",table.data); // Access 'count' using 'self.data.count'
+  //     },  
+  //     fail: function(res) {
+  //       my.alert({content: 'transactionfail'});
+  //     },
       
-    });
+  //   });
     
-  }
+  // }
 })
 
 
