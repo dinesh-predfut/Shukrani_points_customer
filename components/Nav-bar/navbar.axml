@@ -8,13 +8,13 @@
       </text>
     </navigator>
 
-    <navigator url="">
+    <navigator url="../../pages/redeem/redeem">
       <text class="nav-item">
         <image src="/Assets/redeem.svg" onLoad="loadImage" /> Redeem
       </text>
     </navigator>
 
-    <navigator url="">
+    <navigator url="../../pages/brands/brands">
       <text class="nav-item">
         <image src="/assets/Brand.svg" onLoad="loadImage" /> Brands
       </text>

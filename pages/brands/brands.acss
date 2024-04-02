@@ -1,5 +1,7 @@
 .brand-model-popup  {
   background-color: #663397;
+  height: auto;
+  
 }
  
  .brand-section-page {
@@ -17,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 18px;  
   font-family: 'Inter';
   font-weight: 900;
   font-style: normal;
@@ -85,7 +87,7 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 24.2px;
-  color: #000;
+  color: white;
 }
 
 .categorie image {
@@ -223,8 +225,8 @@
 
 
 .right-arrow image {
-  width: 22px;
-  height: 22px;
+  width: 10px;
+  height: 10px;
   object-fit: cover;
 }
 
@@ -303,6 +305,12 @@
   gap: 14px;
   justify-content: center;
 }
+
+.brand-rateing-img image {
+  width: 14px;
+  height: 14px;
+}
+
 
 .rateing-star {
   width: 14px;
@@ -560,6 +568,65 @@
 
 
 /* End brand menu model css */
+
+
+/* brand reviews css start */
+
+.review-title {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+
+.brand-review .brand-rateing-img {
+  border-bottom: 1px solid #D9D9D9;
+  padding-bottom: 12px;
+}
+
+
+.author-review-image image {
+  width: 47px;
+  height: 47px;
+}
+
+
+.author-review {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background: rgba(217, 217, 217, 0.12);
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 12px;
+}
+
+
+.author-review-comment {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: justified;
+  color: #808080;
+}
+
+
+.brand-review .brand-rateing-img {
+  margin-bottom: 12px;
+}
+
+.all-icon text {
+  color: #fff;
+}
+
+.category-list-text {
+  color: #fff;
+}
+/* brand reviews css end */
 
 
 
