@@ -4,7 +4,6 @@
     "provider-name": "/components/provider-name/provider-name",
     "customer-number-input": "/components/customer-number-input/customer-number-input",
     "denom-list": "/components/denom-list/denom-list",
-    "popup": "mini-antui/es/popup/index",
     "help-button": "/components/help-button/help-button",
     "help-dialog": "/components/help-dialog/help-dialog", 
     "help-dialog-title": "/components/help-dialog/help-dialog-title/help-dialog-title",

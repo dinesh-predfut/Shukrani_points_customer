@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "model": "/components/bottom-model/bottom-model"
+    "model": "/components/bottom-model/bottom-model",
+    "navbar":"/components/Nav-bar/navbar"
   }
 }

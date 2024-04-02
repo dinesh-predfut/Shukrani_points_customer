@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   padding: 30px 0 36px 0;
+  color: #fff;
 }
 
 .amout-input {
@@ -117,7 +118,7 @@
   font-weight: 400;
   line-height: 14.52px;
   text-align: center;
-  color: rgba(128, 128, 128, 1);
+  color: #fff;
   margin-bottom: 19px;
 }
 
@@ -127,7 +128,7 @@
   font-weight: 700;
   line-height: 30.26px;
   text-align: center;
-  color: rgba(0, 0, 0, 1);
+  color: #fff;
   margin-bottom: 44px;
 }
 
@@ -136,6 +137,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-bottom: 140px;
 }
 
 .content-btn {
@@ -174,13 +176,14 @@
   font-weight: 700;
   line-height: 16.94px;
   text-align: center;
-  color: rgba(0, 0, 0, 1);
+  color: #fff;
   margin-top: 36px;
   margin-bottom: 22px;
 }
 
 .payment-total-value {
   margin-bottom: 3px;
+  text-align: center !important;
 }
 
 .payment-input {
@@ -191,11 +194,16 @@
 .payment-input image {
   width: 22px;
   height: 22px;
+  position: absolute;
+  top: 18px;
+  left: 7px;
 }
 
 .payment-input input {
-  padding: 10px 10px 10px 10px;
+  padding: 17px 10px 17px 35px;
+  width: calc(100% - 45px);
 }
+
 
 .pay-btn {
   height: 53px;
@@ -210,21 +218,18 @@
   align-items: center;
   justify-content: center;
   border-radius: 6px;
+  margin-bottom: 140px;
 }
 
 .payment-model-heading {
   padding: 30px 0 36px 0;
 }
 
-
 .make-payment-img {
   padding-top: 36px;
 }
 
 /* End make payment page css */
-
-
-
 
 
 /* payment successful page css  */
@@ -234,7 +239,7 @@
   align-items: center;
   padding-top: 42px;
   padding-bottom: 56px;
-  gap: 10px;
+  gap: 15px;
   text-align: center;
   width: 178px;
   margin: 0 auto;
@@ -245,6 +250,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: flex-start;
 }
 
 .transaction-reward-figure {
@@ -252,8 +258,8 @@
   font-size: 15px;
   font-weight: 700;
   line-height: 18.15px;
-  text-align: right;
-  color: rgba(128, 128, 128, 1);
+  text-align: left;
+  color: #fff;
 }
 
 
@@ -263,12 +269,17 @@
   font-weight: 400;
   line-height: 14.52px;
   text-align: left;
+  color: #fff;
 
 }
 
 .center-line {
   border-left: 1px solid rgba(0, 0, 0, 1);
   height: 40px;
+}
+
+.value-transaction {
+  align-items: flex-end;
 }
 
 /* End payment successful page css  */
@@ -294,8 +305,7 @@
   font-weight: 300;
   line-height: 14.52px;
   text-align: center;
-  color:
-    rgba(128, 128, 128, 1);
+  color: #fff;
   margin: 0;
   padding: 0;
 }
@@ -363,6 +373,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 140px;
 }
 
 /* End Redeem points */
@@ -370,8 +381,8 @@
 
 /* enter pin page */
 .pin-lock-img image {
-  width: 47px;
-  height: 47px;
+  width: 47px !important;
+  height: 47px !important;
 }
 
 .pin-lock-img {
@@ -389,12 +400,13 @@
   font-weight: 300;
   line-height: 14.52px;
   text-align: center;
-  color: rgba(142, 142, 142, 1);
+  color: #fff;
   margin-bottom: 69px;
 }
 
 .enter-pin-heading {
   padding-bottom: 13px !important;
+  padding-top: 0px !important;
 }
 
 .pin-text {
@@ -403,8 +415,10 @@
   font-weight: 300;
   line-height: 14.52px;
   text-align: center;
-  color: rgba(142, 142, 142, 1);
+  color: #fff;
 }
+
+.brand-section-title image {}
 
 
 /* End enter pin page */
@@ -465,4 +479,51 @@
   width: 113px;
   height: 32px;
   justify-content: center;
+}
+
+.pin-input-box {
+  position: relative;
+}
+
+.pin-input-box image {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.pin-input-box input {
+  width: calc(193px - 50px);
+  height: .53px;
+  border-radius: 6px;
+  border: 1px solid #D9D9D9;
+  padding: 0 0 0 40px;
+}
+
+
+.pin-input button {
+  width: 112px;
+  height: 53px;
+  background: #CFAF4E;
+  color: #000 !important;
+  padding: 0px 0px 0px 0px;
+}
+
+.pin-input {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 70px 0;
+}
+
+
+.pin-input image {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.review-service {
+  margin-bottom: 140px;
 }

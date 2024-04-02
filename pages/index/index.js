@@ -2,76 +2,76 @@ import providers from '/data/providers'
 
 
 Page({
-  
+
   mixins: [],
-   data: {
+  data: {
     providers,
-    count:[],
-    transactionData:[],
+    count: [],
+    transactionData: [],
     providersSearchResult: [],
     providerName:[],
     isSearch: false,
-  array: ['Saloon', 'Bakery', 'Bar', 'Beauty'],
-  objectArray: [
-    {
-      id: 0,
-      name: 'Category',
-    },
-    {
-      id: 1,
-      name: 'Bakery',
-    },
-    {
-      id: 2,
-      name: 'Bar',
-    },
-    {
-      id: 3,
-      name: 'Beauty',
-    },
-    {
-      id: 4,
-      name: 'Book Store',
-    },
-    {
-      id: 5,
-      name: 'Butcheries',
-    },
-    {
-      id: 6,
-      name: 'Doctors',
-    },
-    {
-      id: 7,
-      name: 'Electronics',
-    },
-    {
-      id: 8,
-      name: 'Fast Foods',
-    },
-    {
-      id: 9,
-      name: 'Florists',
-    },
-    {
-      id: 10,
-      name: 'Cosmetrics',
-    },
-  ],
-  arrIndex: 0,
-  index: 0
-},
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
+    array: ['Saloon', 'Bakery', 'Bar', 'Beauty'],
+    objectArray: [
+      {
+        id: 0,
+        name: 'Category',
+      },
+      {
+        id: 1,
+        name: 'Bakery',
+      },
+      {
+        id: 2,
+        name: 'Bar',
+      },
+      {
+        id: 3,
+        name: 'Beauty',
+      },
+      {
+        id: 4,
+        name: 'Book Store',
+      },
+      {
+        id: 5,
+        name: 'Butcheries',
+      },
+      {
+        id: 6,
+        name: 'Doctors',
+      },
+      {
+        id: 7,
+        name: 'Electronics',
+      },
+      {
+        id: 8,
+        name: 'Fast Foods',
+      },
+      {
+        id: 9,
+        name: 'Florists',
+      },
+      {
+        id: 10,
+        name: 'Cosmetrics',
+      },
+    ],
+    arrIndex: 0,
+    index: 0
+  },
+  didMount() { },
+  didUpdate() { },
+  didUnmount() { },
   onLoad(query) {
     // Page load
-    
-    console.info(`Page onLoad witsh query`,providers);
-    this.setData({ providersSearchResult: this.data.providers},
-     )
+
+    console.info(`Page onLoad witsh query`, providers);
+    this.setData({ providersSearchResult: this.data.providers },
+    )
   },
-  onReady() {}, 
+  onReady() { },
   onShow() {
     // Page display
     // this.setData({ count:1}
@@ -80,16 +80,16 @@ Page({
     this.transactionAPI(); 
    
   },
-  onHide() { 
+  onHide() {
     // Page hidden
   },
   onUnload() {
     // Page is closed
-  }, 
+  },
   onTitleClick() {
     // Title clicked
   },
-  onPullDownRefresh() {},
+  onPullDownRefresh() { },
   onReachBottom() {
     // Page is pulled to the bottom
   },
@@ -167,14 +167,14 @@ Page({
    onSearchInput(e)  {
     const searchKey = e.detail.value || '';
     const lowerCaseSearchKey = searchKey.toLowerCase();
-  
+
     const filtered = this.data.transactionData.filter(transactionData => {
       const lowerCaseTransactionName = transactionData.name.toLowerCase();
       return lowerCaseTransactionName.indexOf(lowerCaseSearchKey) !== -1;
     });
-  
+
     if (searchKey) {
-      this.setData({ 
+      this.setData({
         providersSearchResult: filtered,
         isSearch: true,
       });
@@ -185,8 +185,8 @@ Page({
       });
     }
   },
- 
- 
+
+
   bindObjPickerChange(e) {
     // console.log('picker sends selection change, carried value ', CarddataBrands);
     this.setData({
@@ -241,4 +241,3 @@ Page({
 
 
 
- 

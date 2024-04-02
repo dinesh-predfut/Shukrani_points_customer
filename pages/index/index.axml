@@ -191,5 +191,6 @@
 
 
 </model>
-<navigation-bar></navigation-bar>
+<!-- <navigation-bar></navigation-bar> -->
+<navbar></navbar>
 </view>

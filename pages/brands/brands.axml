@@ -4,22 +4,22 @@
   <view class="brand-section">
     <view class="brand-section-title">
       <text class="title">Brands</text>
-      <image mode="scaleToFill" src="https://i.postimg.cc/pX8ZfQY3/bell.png" />
+      <image src="/assets/bell.svg" />
     </view>
     <view class="search-container">
       <view class="search-input-box">
-        <image mode="scaleToFill" src="https://i.postimg.cc/qvTGjt1q/search.png" />
+        <image mode="scaleToFill" src="/assets/search.png" />
         <input class="search-input" placeholder="Search brand/category" />
       </view>
-      <view class="categorie">
+      <view class="categorie" onTap="onCategoryModalClick">
         <text class="categorie-title">Categories</text>
-        <image mode="scaleToFill" src="https://i.postimg.cc/Wz1BDWkR/arrow.png" />
+        <image src="/assets/categorie-arrow.png"/>
       </view>
     </view>
   </view>
-  <view class="product-box">
+  <view class="product-box" a:if="{{ !categoryOn }}"> 
     <view class="product-box-list" onTap="openPopup">
-      <image mode="scaleToFill" src="https://i.postimg.cc/Z5F8bggj/product.png" />
+      <image mode="scaleToFill" src="/assets/pizzahunt.png" />
       <view class="product-box-box">
         <view class="product-title">Pizza Hut</view>
         <view class="product-sub-title">Fast Food</view>
@@ -28,7 +28,7 @@
   
     </view>
     <view class="product-box-list">
-      <image mode="scaleToFill" src="https://i.postimg.cc/QxLTGGsB/gss-logo.png" />
+      <image mode="scaleToFill" src="/assets/Gsmhouses.png" />
       <view class="product-box-box">
         <view class="product-title">GSM Home</view>
         <view class="product-sub-title">Shopping</view>
@@ -37,7 +37,7 @@
   
     </view>
     <view class="product-box-list">
-      <image mode="scaleToFill" src="https://i.postimg.cc/qB27KtVR/Lc-logo.png" />
+      <image mode="scaleToFill" src="/assets/transaction-valu.png" />
       <view class="product-box-box">
         <view class="product-title">LC Waikiki</view>
         <view class="product-sub-title">Clothing</view>
@@ -46,22 +46,130 @@
   
     </view>
     <view class="product-box-list">
-      <image mode="scaleToFill" src="https://i.postimg.cc/fysDCKnb/sam-logo.png" />
+      <image mode="scaleToFill" src="/assets/samki.png" />
       <view class="product-box-box">
         <view class="product-title">Samaki Smaki</view>
         <view class="product-sub-title">Restaurant</view>
       </view>
     </view>
   </view>
+
+  <!-- Caregory list -->
+ <view a:if="{{ categoryOn }}">
+  <view class="all-category-list">
+    <view class="all-icon">
+      <view class="all-icon-img">
+        <image src="/assets/pajamas_stage-all.png" />
+      </view>
+      <text>All</text>
+    </view>
+    <view class="right-tick">
+      <image src="/assets/tick.png" />
+
+    </view>
+  </view>
+  <view class="category-list">
+    <view class="list">
+      <view class="category-list-name">
+        <view class="category-list-icon">
+          <image mode="scaleToFill" src="/assets/shoping.png" />
+        </view>
+        <view class="category-list-text">
+          Shopping
+        </view>
+
+
+      </view>
+      <view class="right-arrow">
+        <image  src="/assets/categorie-arrow.png"/>
+      </view>
+
+
+    </view>
+    <view class="list">
+      <view class="category-list-name">
+        <view class="category-list-icon">
+          <image src="/assets/supermarket.png" />
+        </view>
+        <view class="category-list-text">
+          Supermarket
+        </view>
+
+
+      </view>
+      <view class="right-arrow">
+        <image src="/assets/categorie-arrow.png"/>
+      </view>
+
+
+    </view>
+    <view class="list">
+      <view class="category-list-name">
+        <view class="category-list-icon">
+          <image src="/assets/restaurant.png" />
+        </view>
+        <view class="category-list-text">
+          Restaurant
+        </view>
+
+
+      </view>
+      <view class="right-arrow">
+        <image  src="/assets/categorie-arrow.png"/>
+      </view>
+
+
+    </view>
+    <view class="list">
+      <view class="category-list-name">
+        <view class="category-list-icon">
+          <image src="/assets/spa.png" />
+        </view>
+        <view class="category-list-text">
+          Spa
+        </view>
+
+
+      </view>
+      <view class="right-arrow">
+        <image  src="/assets/categorie-arrow.png"/>
+      </view>
+
+
+    </view>
+    <view class="list">
+      <view class="category-list-name">
+        <view class="category-list-icon">
+          <image src="/assets/salon.png" />
+        </view>
+        <view class="category-list-text">
+          Salon
+        </view>
+
+
+      </view>
+      <view class="right-arrow">
+        <image src="/assets/categorie-arrow.png"/>
+      </view>
+
+
+    </view>
+
+
+  </view>
+</view>
+  <!--  -->
 </view>
 
 
 <!-- end brand section -->
 
 
+
+
 <!-- brand details model start -->
 <model show="{{modalOpened}}">
-<view class="brand-model-popup" a:if="{{!rewardsOn && !menuOn}}">
+<view class="brand-model-popup" a:if="{{!rewardsOn && !menuOn && !reviewOn}}">
   <!-- Close button -->
 
   <view class="close-btn" onTap="closePopup">
@@ -69,8 +177,8 @@
   </view>
 
   <view class="brand-model-img">
-    <image src="https://i.postimg.cc/LXbcw6KW/brand-img.png" />
-    <image class="brand-verified-img" src="https://i.postimg.cc/jqG5JRwv/Brand-verified.png" />
+    <image src="/assets/pizzahunt.png" />
+    <image class="brand-verified-img" src="/assets/verified.png" />
 
   </view>
   <view class="brand-model-details">
@@ -84,26 +192,26 @@
   </view>
   <view class="brand-rateing">
     <view class="brand-rateing-img">
-      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
-      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
-      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
-      <image class="rateing-star" src="https://i.postimg.cc/TwqP84Jm/rateing-star.png" />
-      <image class="rateing-star" src="https://i.postimg.cc/mrWRbSDS/rateing-uncheck-star.png" />
-
+      <image  src="/assets/star.svg" />
+      <image  src="/assets/star.svg" />
+      <image  src="/assets/star.svg" />
+      <image  src="/assets/star.svg" />
+      <image  src="/assets/star.svg" />
+      
     </view>
     <view class="rateing-details">
       <view class="rateing-number">
         <view class="rateing-number-text">
           4.0
         </view>
-        <image class="rateing-image" src="https://i.postimg.cc/YCzGBj2j/rateing-number-star.png" />
+        <image class="rateing-image" src="/assets/orange-star.png" />
 
       </view>
       <view>
         |
       </view>
-      <view class="rateing-comment">
-        <image class="rateing-image" src="https://i.postimg.cc/cC3C9L5x/rateing-comment-star.png" />
+      <view class="rateing-comment" onTap="onReviewModalClick">
+        <image class="rateing-image" src="/assets/comment.png" />
         <view class="rateing-comment-text">
           213
         </view>
@@ -116,7 +224,7 @@
   <view class="minimum-spending-section">
     <view class="minimum-spending-amount">
       <view class="minimum-spending-amount-img">
-        <image src="https://i.postimg.cc/595XDn4b/minimum-spending.png" />
+        <image src="/assets/spending-thumb.png" />
       </view>
       <view class="spending-data">
         <view class="spending-data-amount">
@@ -130,9 +238,9 @@
 
     </view>
     <view class="minimum-spending-section-social">
-      <image src="https://i.postimg.cc/RCc2xnJc/instagram.png" />
-      <image src="https://i.postimg.cc/C1br0W5F/facebook.png" />
-      <image src="https://i.postimg.cc/85kfkvPj/twitter.png" />
+      <image src="/assets/instagram.png" />
+      <image src="/assets/facebook.png" />
+      <image src="/assets/twitter.png" />
     </view>
 
   </view>
@@ -145,7 +253,7 @@
         Select City {{array[index]}}
       </view> -->
       <button> {{array[index]}}
-        <image class="minimum-arrow" src="https://i.postimg.cc/ZYBqS2My/down-arrow.png" />
+        <image class="minimum-arrow" src="/assets/down-arrow.png" />
       </button>
     </picker>
     <button onTap="onRewardsModalClick">Rewards</button>
@@ -156,11 +264,11 @@
   </view>
   <view class="brand-direct-links">
     <button>
-      <image src="https://i.postimg.cc/L6790TT3/location.png" /> Direction</button>
+      <image src="/assets/direction.png" /> Direction</button>
     <button>
-      <image src="https://i.postimg.cc/8CGVqnrM/whatsup.png" /> Whatsapp</button>
+      <image src="/assets/whastsup.png" /> Whatsapp</button>
     <button>
-      <image src="https://i.postimg.cc/3RwzhMr4/call.png" /> Call</button>
+      <image src="/assets/phone.png" /> Call</button>
   </view>
 
 </view>
@@ -218,13 +326,89 @@
   </view>
   
   <view class="menu-title">MENU</view>
-  <image class="menu-image" src="https://i.postimg.cc/Wzhx55vR/brand-menu-img.png" />
+  <image class="menu-image" src="/assets/menu-img.png" />
 </view>
 
 
 <!-- brand menu model -->
 
+<!-- brand Reviews model -->
+
+<view class="brand-review" a:if="{{ reviewOn }}" >
+  <!-- Close button -->
+
+  <view class="close-btn" onTap="closePopup">
+    <icon class="close-icon" type="clear" aria-label="clear" />
+  </view>
+  <view class="review-title">
+    Reviews
+  </view>
+  <view class="brand-rateing-img">
+    <image class="rateing-star" src="/assets/star.svg" />
+    <image class="rateing-star" src="/assets/star.svg" />
+    <image class="rateing-star" src="/assets/star.svg" />
+    <image class="rateing-star" src="/assets/star.svg" />
+    <image class="rateing-star" src="/assets/star.svg" />
+
+
+  </view>
+  <view class="author-review">
+    <view class="author-review-image">
+      <image src="/assets/reviews.png" />
+    </view>
+    <view class="author-review-comment">
+      Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
+    </view>
+
+
+  </view>
+  <view class="author-review">
+    <view class="author-review-image">
+      <image src="/assets/reviews.png" />
+    </view>
+    <view class="author-review-comment">
+      Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
+    </view>
+
+
+  </view>
+  <view class="author-review">
+    <view class="author-review-image">
+      <image src="/assets/reviews.png" />
+    </view>
+    <view class="author-review-comment">
+      Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
+    </view>
+
+
+  </view>
+  <view class="author-review">
+    <view class="author-review-image">
+      <image src="/assets/reviews.png" />
+    </view>
+    <view class="author-review-comment">
+      Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
+    </view>
+
+
+  </view>
+  <view class="author-review">
+    <view class="author-review-image">
+      <image src="/assets/reviews.png" />
+    </view>
+    <view class="author-review-comment">
+      Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
+    </view>
+  </view>
+</view>
+
+
+<!-- End brand Reviews model -->
+
 </model>
 
 
 <!-- brand details model end -->
+
+<!-- nav-bar -->
+<navbar></navbar>
