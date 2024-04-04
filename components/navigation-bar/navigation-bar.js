@@ -14,7 +14,7 @@ Component({
 
     navigateToRewards() {
       console.info('clicked for rewards');
-      my.navigateTo({ url: '/pages/index/index' }); // Adjust the URL based on your project structure
+      my.navigateTo({ url: '/pages/rewards/rewards' }); // Adjust the URL based on your project structure
     },
     navigateToRedeem() {
       console.log('clicked redeem');

@@ -1,9 +1,20 @@
 {
   "component": true,
   "usingComponents": {
-    "f-input":"/components/fiat/f-input/f-input" ,
-    "provider-list":"/components/provider-list/provider-list" 
+    "f-cell": "/components/fiat/f-cell/f-cell",
+    "f-cell-action": "/components/fiat/f-cell-action/f-cell-action",
+    "f-cell-content": "/components/fiat/f-cell-content/f-cell-content",
+    "f-cell-icon": "/components/fiat/f-cell-icon/f-cell-icon",
+    "f-cell-label": "/components/fiat/f-cell-label/f-cell-label",
+    "f-divider": "/components/fiat/f-divider/f-divider",  
+    "f-icon": "/components/fiat/f-icon/f-icon",
+    "model":"/components/bottom-model/bottom-model",
+   
+   "navbar":"/components/Nav-bar/navbar",
+   "f-input":"/components/fiat/f-input/f-input" ,
+   "navigation-bar": "/components/navigation-bar/navigation-bar",
+   "loading": "/components/loading/loading"
+   
+  }   
   
-    
-  }
 }

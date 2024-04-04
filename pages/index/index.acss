@@ -140,7 +140,9 @@ body{
 }
 
 .provider-reward{
-  margin-right: 20px !important;
+  /* margin-right: 20px !important; */
+  display: flex !important;
+  justify-content:cente !important;
 } 
 .provider-totel-reward {
   margin: -5px 0px 20px 0px;
@@ -330,15 +332,15 @@ text-align: justify;
   font-size: 12px;
 } */
 .provider-reward {
-  flex-shrink: 0;
-  flex-grow: 1;
-  margin: 0px 22px 0px 0px;
+  
+  /* margin: 0px 22px 0px 0px; */
   position: absolute;
   top: 100px;
-  right: 110px;
+  right: 50%;
   font-weight: bold;
   font-size: 40px;
   padding: 10px;
+
 
 }
 

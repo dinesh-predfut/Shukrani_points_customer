@@ -1,24 +1,18 @@
 <view class="title-name">
   Notifications
-  <navigator class="bell-icon" url="">
+  <navigator class="bell-icon" url="/pages/Notification/notification">
     <image src="https://img.icons8.com/ios-glyphs/30/FFFFFF/filled-appointment-reminders.png" />
 
   </navigator>
   <button size="default" class="notificationBtn">Clear all</button>
-  <view>
-    <view class="container">
-      <view class="notification-title">
-        20% from your next bill @Pizza Hut
+  <view a:for="{{ title }}">
+    <view class="container" provider="{{ title[index] }}">
+      <view class="notification-title"> 
+      {{item.title}}
       </view>
       <view class="notificationTime">Now</view>
-      <view class="notification-massage"> Lorem ipsum dolor sit amet consectetur. Feugiat libero in nisi luctus nunc tincidunt tempor. Lorem ipsum dolor consectetur. Feugiat libero in nisi luctus nunc tincidunt tempor.</view>
+      <view class="notification-massage"> {{item.description}}</view>
     </view>
-    <view class="container">
-      <view class="notification-title">
-        2000 points received
-      </view>
-      <view class="notificationTime">1 day</view>
-      <view class="notification-massage"> Lorem ipsum dolor sit amet consectetur. Feugiat libero in nisi luctus nunc tincidunt tempor. Lorem ipsum dolor consectetur. Feugiat libero in nisi luctus nunc tincidunt tempor.</view>
-    </view>
-  </view>
+   
+  </view> 
 </view>

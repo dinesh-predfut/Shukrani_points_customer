@@ -4,12 +4,14 @@ body {
 }
 
 .title-name {
+  background-color: rgb(102, 51, 151, 1) !important;
   font-weight: bold;
   font-size: 24px;
   color: white;
   padding: 10px;
   font-family: sans-serif;
-  margin: 20px 10px;
+  width: 100%;
+  /* margin: 10px 10px; */
 
 }
 
@@ -47,7 +49,7 @@ body {
   margin-top: 15px;
   width: 352px;
   height: auto;
-  top: 162px;
+  top: 12px;
   left: 19px;
   gap: 0px;
   border-radius: 5px 0px 0px 0px;

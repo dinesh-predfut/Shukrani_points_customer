@@ -1,4 +1,4 @@
-<view>
+<view class="setting-container">
   <view class="profile-container">
     <view class="sub-container">
       <image src="{{ imageUrl }}" mode="aspectFit" class="profilepicture" />
@@ -8,8 +8,8 @@
       <image class="bg-camera" mode="scaleToFill" src="../../Assets/camera_bg.png" />
       <image class="camera" mode="scaleToFill" src="../../Assets/camera.png" />
     </view>
-    <view class="profil-text">Raj</view>
-    <view class="profil-text">9876543210</view>
+    <view class="profil-text">{{userProfile.firstName}}</view>
+    <view class="profil-text">{{userProfile.phoneNumber}}</view>
   </view>
   <view class="title-name-profile " style="margin-left:30px!important"> Settings
   </view>
@@ -17,7 +17,7 @@
     <button size="default" type="primary" onTap="showPin">
       <image mode="scaleToFill" src="../../Assets/lock-icon.png" />Change Pin
     </button>
-    <button size="default" onTap="ChangePhonenumber" type="primary">
+    <button size="default" onTap="showChangePhonenumber" type="primary">
       <image mode="scaleToFill" src="../../Assets/call-icon.png" />Change Phone number
     </button>
     <button size="default" onTap="termsandconditionBtn" type="primary">
@@ -48,14 +48,19 @@
       <image mode="scaleToFill" src="../../Assets/icons-lock.png" class="changePinImg" />
       <view class="changePinTitle">Change Pin</view>
       <view class="changeBtnSection">
-        <button size="default" type="primary" onTap="" class="changepinBtn">
-          <image mode="scaleToFill" src="../../Assets/setting_3.png" />Change PIN
-        </button>
-        <button size="default" type="primary" onTap="" class="changepinBtn">
-          <image mode="scaleToFill" src="../../Assets/setting_3.png" />Re-enter PIN
-        </button>
-        <button size="default" type="primary" onTap="showPinOTP" class="nextBtn">
-          Next
+        <view>
+        <f-input placeholder="Enter Pin" class="p-20" onInput="enterPin">
+          <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
+        </f-input>
+      </view>
+      <view>
+        <f-input placeholder="Re-Enter Pin" class="p-20" onInput="reenterPin">
+          <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
+        </f-input>
+      </view>
+      
+        <button size="default" type="primary" onTap="chaangePin" class="nextBtn">
+          Next 
           <image
             mode="scaleToFill"
             src="../../Assets/btn_arrow_right.png"
@@ -65,19 +70,21 @@
       </view>
     </view>
   </model>
-  <model show="{{changePinOTP}}" position="bottom" closePopup="closewithdraw">
+  <!-- <model show="{{changePinOTP}}" position="bottom" closePopup="closewithdraw">
     <view class="close-btn" onTap="closewithdrawOTP">
       <icon class="close-icon" type="clear" aria-label="clear" />
     </view>
     <view style="margin:3%" class="changepin">
       <image mode="scaleToFill" src="../../Assets/icons-lock.png" class="changePinImg" />
-      <view class="changePinTitle">Change Pin</view>
+      <view class="changePinTitle">Enter OTP</view>
 
       <view class="changeBtnSection">
         <view class="changePinnumber">Enter OTP sent to *****34</view>
-        <button size="default" type="primary" onTap="" class="changepinBtnOTP">
-          <image mode="scaleToFill" src="../../Assets/setting_3.png" />Re-enter PIN
-        </button>
+        <view class="OTPenterbox">
+          <f-input placeholder="Enter the OTP" class="p-20" onInput="enterOTP">
+            <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
+          </f-input>
+        </view>
         <button size="default" type="primary" onTap="SuccessNext" class="nextBtn">
           Next
           <image
@@ -88,7 +95,7 @@
         </button>
       </view>
     </view>
-  </model>
+  </model> -->
   <!-- CHANGE PASSWORD SECTION -->
   <model show="{{ShowchangePNumber}}" position="bottom" closePopup="closewithdraw">
     <view class="close-btn" onTap="closePhoneNumberchange">
@@ -99,14 +106,14 @@
       <view class="changePinTitle">Change Phone Number</view>
 
       <view class="changeBtnSection">
-        <view class="changePinnumber">Change *****23 as your number</view>
+        <view class="changePinnumber">Change ***** {{(userProfile.phoneNumber).slice(-3)}} as your number</view>
         <view class="reward-input pay-number-input">
-          <input placeholder="New Phone Number" />
+          <input placeholder="New Phone Number" onInput="changenumber"/>
         </view>
         <button
           size="default"
           type="primary"
-          onTap="openChangenumberOTP"
+          onTap="changePhonenumber"
           class="phoneNumberchange"
         >
           Change
@@ -123,14 +130,14 @@
       <view class="changePinTitle">Authentication</view>
 
       <view class="changeBtnSection">
-        <view class="changePinnumberOTP">Enter OTP sent to *****34</view>
-        <f-input placeholder="Enter OTP " class="p-20" onInput="onSearchInput">
+        <view class="changePinnumberOTP">Enter OTP sent to ***** {{(userProfile.phoneNumber).slice(-3)}}</view>
+        <f-input placeholder="Enter OTP " class="p-10 " onInput="changenumbrtOTP">
           <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
         </f-input>
         <button
           size="default"
           type="primary"
-          onTap="phoneNumberSavebtn"
+          onTap="OTPvalidate"
           class="nextBtn"
         >
           Save

@@ -6,7 +6,11 @@
   border-radius: 10px;
   position: relative;
 }
-
+.setting-container{
+  background-color: #663397 !important;
+  padding: 10px 50px 10px 0px;
+  margin-left: -8px !important;
+}
 .sub-container image {
   width: 100px;
   height: 100px;
@@ -87,21 +91,25 @@ button image {
   position: absolute;
   /* bottom: 0px; */
   left: 150px;
-  top: 558px;
+  top: 568px;
   font-weight: 600;
 } 
 .sigin-out-btn{
   width: 120px !important;
-  padding: 7px 6px 13px 13px ;
+  padding: 7px 30px 3px 0px ;
   position: absolute;
-  right: 20px;
+  right: 30px;
   top: 580px;
   height: 60px !important;
+  border-radius: 10px;
 }
 .sigin-out-btn image{
   width: 10px;
   height: 10px;
-  margin-top: 15px !important;
+  margin-top: -10px !important;
+  position: absolute;
+  right: 0px;
+  top: 33px;
 }
 .changePinTitle{
   display: flex;
@@ -131,7 +139,7 @@ button image {
   padding:10px 10px 16px 10px;
   background-color: white !important;
   color:black;
-  margin-bottom: 10px;
+  margin-bottom: -10px;
    display: flex; 
  justify-content: left;
   /* margin-left: 5px; */
@@ -142,7 +150,7 @@ button image {
   font-weight: 900 !important;
   position: absolute;
   right: 10px;
-  top: 180px;
+  top: 210px;
   
 }
 .changePinImg{
@@ -178,7 +186,7 @@ margin-top: 15px;
   margin: 30px !important;
 }
 .changePinnumberOTP{
-  margin: 30px 0px 0px 60px!important;
+  margin: 30px 0px 40px 60px!important;
 }
 .phoneNumberchange{
   margin-left: 15px !important;
@@ -243,6 +251,8 @@ margin-top: 15px;
 .container{
   color: white;
   text-align: justify;
+  position: relative;
+  display: inline-block;
 }
 .close-btn .close-icon {
   font-size: 14px; 
@@ -262,3 +272,34 @@ right: 10px;
   padding: 0 0px;
   position: relative;
 } 
+
+
+.changepinBtn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px; /* Adjust this value according to your layout */
+  width: 20px; /* Adjust the width of the image */
+  height: auto; /* Maintain aspect ratio */
+}
+.f-input__clear-button .a-image {
+  display: none !important;
+}
+.OTPenterbox{
+  position: relative;
+  top: 10px;
+}
+.p-10{
+  margin-bottom: -30px !important;
+  position: relative;
+  top: 60%;
+}

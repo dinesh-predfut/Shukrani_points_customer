@@ -8,8 +8,9 @@
     "f-cell-label": "/components/fiat/f-cell-label/f-cell-label",
     "f-divider": "/components/fiat/f-divider/f-divider",
     "f-icon": "/components/fiat/f-icon/f-icon",
-     "model":"/components/bottom-model/bottom-model",
-     "dashboard": "/pages/Dashboard/dashboard"
+     "model":"/components/bottom-model/bottom-model" 
+     
+    
      
   }
 }
