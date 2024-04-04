@@ -7,17 +7,20 @@
       <image src="/assets/bell.svg" />
     </view>
     <view class="search-container">
-      <view class="search-input-box">
+      <!-- <view class="search-input-box">
         <image mode="scaleToFill" src="/assets/search.png" />
         <input class="search-input" placeholder="Search brand/category" />
-      </view>
+      </view> -->
+      <f-input placeholder="Search brand/category" class="p-20" onInput="onSearchInput">
+        <image src="/Assets/icons8-search-150.png" slot="iconInnerLeft" />
+      </f-input>
       <view class="categorie" onTap="onCategoryModalClick">
         <text class="categorie-title">Categories</text>
         <image src="/assets/categorie-arrow.png"/>
       </view>
     </view>
   </view>
-  <view class="product-box" a:if="{{ !categoryOn }}"> 
+  <!-- <view class="product-box" a:if="{{ !categoryOn }}"> 
     <view class="product-box-list" onTap="openPopup">
       <image mode="scaleToFill" src="/assets/pizzahunt.png" />
       <view class="product-box-box">
@@ -52,6 +55,44 @@
         <view class="product-sub-title">Restaurant</view>
       </view>
     </view>
+  </view> -->
+  
+  <!-- List of brands searching -->
+  <view a:if="{{ isSearch }}" class="f-title title-12 text-grey-70 px-16 py-8">
+    SEARCH RESULT
+    <view a:if="{{ brandsSearchResult.length === 0}}" class="f-text-center mt-32">
+      <image class="mx-auto img-search-not-found" src="../../Assets/Search.jpg" />
+      <view class="f-title title-18 my-8">
+        Oops, search not found.
+      </view>
+      <!-- <text>Seems like we can’t find the provider you’re looking for. Please check your spelling and try again.</text> -->
+    </view>
+  </view>
+
+  <!-- List of brands  -->  
+  <!-- <view a:for="{{ brandsData }}"> -->
+  <view a:for="{{ isSearch ? brandsSearchResult : brandsData }}" a:if="{{ !categoryOn }}"> 
+    <f-cell class="pl-16 pr-4 py-12 brand-list-categorie" onTap="onProviderCellTap" provider="{{ brandsData[index] }}">
+      <f-cell-icon w="30" h="30" class="mr-12">
+        <image mode="scaleToFill" src="{{item.image ? item.image :'/assets/no-img.png'}}" class="transactionIMG"/> 
+      </f-cell-icon>
+      <f-cell-content>
+       
+        <f-cell-label>
+          <view class="pointrewardItem">
+            <!-- {{'transactionData[0].points'}} -->
+            {{item.merchantName}}
+          </view>
+          <!-- {{'transactionData[0].merchantName'}} -->
+          {{item.category}}
+        </f-cell-label>
+      </f-cell-content>
+      <f-cell-action class="f-flex flex-center">
+  
+      </f-cell-action>
+    </f-cell>
+  
+    <f-divider/>
   </view>
 
   <!-- Caregory list -->
