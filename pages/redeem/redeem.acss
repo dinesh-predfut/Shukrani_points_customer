@@ -78,6 +78,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 /* End QR Scanner CSS */
@@ -495,20 +496,19 @@
 
 .pin-input-box input {
   width: calc(193px - 50px);
-  height: .53px;
+  height: 53px;
   border-radius: 6px;
   border: 1px solid #D9D9D9;
   padding: 0 0 0 40px;
 }
 
-
-.pin-input button {
+/* .pin-input button {
   width: 112px;
   height: 53px;
   background: #CFAF4E;
   color: #000 !important;
   padding: 0px 0px 0px 0px;
-}
+} */
 
 .pin-input {
   display: flex;
@@ -526,4 +526,24 @@
 
 .review-service {
   margin-bottom: 140px;
+}
+
+.pin-submit-btn {
+  background: #CFAF4E;
+  width: 100px;
+  color: #000000 !important;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 53px;
+  gap: 5px;
+}
+
+.pin-submit-btn image {
+  width: 14px;
+  height: 14px;
 }

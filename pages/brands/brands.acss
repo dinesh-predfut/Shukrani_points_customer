@@ -62,6 +62,12 @@
   left: 10px;
 }
 
+.transactionIMG{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 
 .categorie {
   display: flex;
@@ -628,7 +634,8 @@
 }
 /* brand reviews css end */
 
-
-
-
-
+.brand-list-categorie {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

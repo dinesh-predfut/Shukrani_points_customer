@@ -13,15 +13,17 @@
 
     <!-- QR Scanner -->
 
-    <view a:if="{{ !nextPage && !makePayment }}">
+<view a:if="{{ !nextPage && !makePayment }}">
   <view>
     <text class="popup-heading">
       Scan to
     </text>
     <view class="amout-input">
-      <input placeholder="Amount" /></view>
+      <input placeholder="Amount" />
+    </view>
     <view class="qr-container">
-      <text>Bar Code</text></view>
+      <text>Bar Code</text>
+    </view>
     <view class="or-line">
       <text class="line-one"></text>
       <text class="or-text">OR</text>
@@ -31,8 +33,10 @@
       <input placeholder="Enter Lipa namba" />
     </view>
     <view class="nxt-btn">
-      <button onTap="nextScreen">Next</button></view>
-    <button onTap="closePopup">Close</button></view>
+      <button onTap="nextScreen">Next</button>
+    </view>
+    <!-- <button onTap="closePopup">Close</button> -->
+  </view>
 </view>
 
     <!-- QR Scanner end here -->
@@ -280,7 +284,13 @@
           <image class="" src="/assets/pin.svg" />
           <input placeholder="PIN"/>
         </view>
-        <button class="pin-submit" onTap="paymentSuccessModalClick">Submit<image src="/assets/rigtharrow.png"/> </button>
+
+        <view class="pin-submit-btn" onTap="paymentSuccessModalClick">
+          Submit
+          <image src="/assets/rigtharrow.png"/>
+        </view>
+
+        <!-- <button class="pin-submit" onTap="paymentSuccessModalClick">Submit<image src="/assets/rigtharrow.png"/> </button> -->
       </view>
       
       <!-- <view class="brand-section">
