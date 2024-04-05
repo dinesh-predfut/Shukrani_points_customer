@@ -58,16 +58,16 @@
 
 <view a:if="{{ isSearch }}" class="f-title title-12 text-grey-70 px-16 py-8">
   SEARCH RESULT
-  <view a:if="{{ providers.length === 0}}" class="f-text-center mt-32">
-    <image class="mx-auto img-search-not-found" src="../../Assets/Search.jpg" />
-    <view class="f-title title-18 my-8">
+  <view a:if="{{ providersSearchResult.length === 0 }}" class="f-text-center mt-32">
+    <image class="mx-auto img-search-not-found" src="../../Assets/search.png" />
+    <view class="f-title title-18 my-8 oops-text" >
       Oops, search not found.
     </view>
     <!-- <text>Seems like we can’t find the provider you’re looking for. Please check your spelling and try again.</text> -->
   </view>
 </view>
 
-  <view a:for="{{ transactionData }}">
+  <view a:for="{{isSearch ? providersSearchResult : transactionData}}">
 
     <f-cell class="pl-16 pr-4 py-12" onTap="onProviderCellTap"  provider="{{ transactionData[index] }}">
       <f-cell-icon w="30" h="30" class="mr-12">

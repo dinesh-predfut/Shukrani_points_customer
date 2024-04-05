@@ -260,7 +260,7 @@ Page({
       }],
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -295,7 +295,7 @@ Page({
       },
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -329,7 +329,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -413,12 +413,7 @@ Page({
         });
        this.finalChangenumber() 
 
-        my.showToast({
-          type: 'success',
-          content: 'Successfully change Phone Number',
-          duration: 3000,
-    
-        });
+        
         // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {
@@ -447,7 +442,7 @@ Page({
 
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
   
       success: function (res) {

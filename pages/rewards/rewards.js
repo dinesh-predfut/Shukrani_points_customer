@@ -173,9 +173,10 @@ Page({
     const lowerCaseSearchKey = searchKey.toLowerCase();
 
     const filtered = this.data.transactionData.filter(transactionData => {
-      const lowerCaseTransactionName = transactionData.name.toLowerCase();
+      const lowerCaseTransactionName = transactionData.merchantName.toLowerCase();
       return lowerCaseTransactionName.indexOf(lowerCaseSearchKey) !== -1;
     });
+    console.log('filtered data ----> ', filtered);
 
     if (searchKey) {
       this.setData({
@@ -206,7 +207,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -231,7 +232,7 @@ Page({
       url: 'http://52.51.249.84:8080/api/app/transactions',
       method: 'GET',
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -278,13 +279,19 @@ Page({
         merchantId: merchantId
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {
         self.setData({
           count: res.data,
         
+        });
+        my.showToast({
+          type: 'success',
+          content: 'Successfully Shared your Point',
+          duration: 3000,
+    
         });
         my.navigateTo({
           url: '/pages/index/index'
@@ -341,7 +348,7 @@ deleteMercentreward() {
       method: 'GET',
      
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
       },
       dataType: 'json',
       success: function (res) {

@@ -350,4 +350,22 @@ text-align: justify;
   left: 10px;
  
 }
-
+.img-search-not-found{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+  /* margin-left: 25%; */
+}
+.text-grey-70{
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.oops-text{
+  padding-top: 60px;
+  padding-right: 90px;
+}
