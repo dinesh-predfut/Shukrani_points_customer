@@ -1,7 +1,7 @@
 Page({
   onLoad(query) {
     // Page load
-    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);     
   },
   onReady() {
     // Page loading is complete
@@ -44,6 +44,8 @@ Page({
     brandsData:[],
     brandsSearchResult:[],
     isSearch: false,
+    getMerchantDetails:[],
+    pickerSelectedLocation:null
   },
   openPopup() {
     console.log('open clicked')
@@ -94,17 +96,21 @@ Page({
   },
   bindPickerChange(e) {
     console.log('picker sends selection change, carried value ', e.detail.value);
+    const index = e.detail.value;
+    const selectedLocation = this.data.getMerchantDetails.locations[index]
+    console.log('selectedLocation -=-=-=->>> ', selectedLocation);
     this.setData({
-      index: e.detail.value,
+      pickerSelectedLocation: selectedLocation,
     });
   },
   onProviderCellTap(e, props) {
     console.log('e on select -=-=>>> ', e);
     console.log('props on select -=-=>>> ', props);
-    this.setData({
-      // showTop: true,
-      modalOpened: true,
-    });
+    this.getMerchantDetailsAPI(props.provider.merchantId)
+    // this.setData({
+    //   // showTop: true,
+    //   modalOpened: true,
+    // });
     // const { provider } = props
     // this.setData({ providerName: provider.name })
   },
@@ -132,6 +138,21 @@ Page({
     }
   },
 
+  // open Direction in the MAP
+  openLocation(){
+    console.log('checking alrady selected location ---->>> ', this.data.pickerSelectedLocation);
+    console.log('final location ---->>> ', this.data.pickerSelectedLocation.location);
+    if(this.data.pickerSelectedLocation){
+      my.openLocation({
+        name: 'Selected Location',
+        address: this.data.pickerSelectedLocation.location,
+        scale: 18
+      });      
+    }else{
+      my.alert('Please select any location first!')
+    }
+  },
+
   // API CALL
 
   brandsListDataAPI() {
@@ -140,7 +161,7 @@ Page({
       url: 'http://52.51.249.84:8080/api/app/getRewardDataByBrand',
       method: 'GET',
       // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0MzQyLCJleHAiOjE3MTIyMjA3NDJ9.wDn9zNfxvEaeD9yh8uUqNL5cM5Bkjxf75M9w6sre9FA" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyMjkzMjc3LCJleHAiOjE3MTIzNzk2Nzd9.ISdlTfDKelEeQt0Pj3omEuYgoMklP-xlqdzTLSJohHU" },
       dataType: 'json',
       success: function (res) {
         table.setData({
@@ -151,8 +172,30 @@ Page({
       fail: function (res) {
         my.alert({ content: 'fail...!' });
       },
-
     });
-
+  },
+  
+  getMerchantDetailsAPI(merchantId) {
+    console.log('merchantId in API -=-=-=->>'  , merchantId);
+    const table = this;
+    my.request({
+      // url: 'http://52.51.249.84:8080/api/app/getRewardDataByBrand', -- http://52.51.249.84:8080/api/auth/getMerchantDetail?merchantId=654d39af67b2c15399e0a0d8
+      url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?merchantId=${merchantId}`,
+      method: 'GET',
+      // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyMjkzMjc3LCJleHAiOjE3MTIzNzk2Nzd9.ISdlTfDKelEeQt0Pj3omEuYgoMklP-xlqdzTLSJohHU" },
+      dataType: 'json',
+      success: function (res) {        
+        table.setData({
+          getMerchantDetails: res.data, // Set the response value in the 'count' data property
+          modalOpened: true,          
+          pickerSelectedLocation: res.data.locations[0] // Set the default selected location to the first item in the locations array
+        });
+        console.log("getMerchantDetails checking ", table.data.getMerchantDetails); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        my.alert({ content: 'fail...!' });
+      },
+    });
   }
 });

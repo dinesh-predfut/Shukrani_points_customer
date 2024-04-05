@@ -218,13 +218,15 @@
   </view>
 
   <view class="brand-model-img">
-    <image src="/assets/pizzahunt.png" />
+    <!-- <image src="/assets/pizzahunt.png" /> -->
+    <image src={{getMerchantDetails.image}} />
     <image class="brand-verified-img" src="/assets/verified.png" />
 
   </view>
   <view class="brand-model-details">
     <view class="brand-model-title">
-      Pizza Hut
+      <!-- Pizza Hut -->
+      {{getMerchantDetails.merchantName}}
     </view>
     <view class="brand-model-sub-title">
       Fast Food
@@ -243,7 +245,8 @@
     <view class="rateing-details">
       <view class="rateing-number">
         <view class="rateing-number-text">
-          4.0
+          <!-- 4.0 -->
+          {{getMerchantDetails.averageRating === 0 ?'0':getMerchantDetails.averageRating.toFixed(1)}}
         </view>
         <image class="rateing-image" src="/assets/orange-star.png" />
 
@@ -254,7 +257,8 @@
       <view class="rateing-comment" onTap="onReviewModalClick">
         <image class="rateing-image" src="/assets/comment.png" />
         <view class="rateing-comment-text">
-          213
+          <!-- 213 -->
+          {{getMerchantDetails.numberOfReviews}}
         </view>
 
       </view>
@@ -269,7 +273,8 @@
       </view>
       <view class="spending-data">
         <view class="spending-data-amount">
-          TZS 10,000
+          <!-- TZS 10,000 -->
+          TZS {{getMerchantDetails.userInformation.rewardTable[0].min}}
         </view>
         <view class="spending-data-text">
           Minimum spending
@@ -289,11 +294,12 @@
     <!-- <button> Mlimani City
       <image class="minimum-arrow" src="https://i.postimg.cc/ZYBqS2My/down-arrow.png" />
     </button> -->
-    <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <picker onChange="bindPickerChange" value="{{pickerSelectedLocation}}" range="{{getMerchantDetails.locations}}" range-key="location">
       <!-- <view class="picker">
         Select City {{array[index]}}
       </view> -->
-      <button> {{array[index]}}
+      <!-- <button> {{getMerchantDetails.locations[index].location}} -->
+      <button> {{pickerSelectedLocation.location ? pickerSelectedLocation.location : "Select location"}}
         <image class="minimum-arrow" src="/assets/down-arrow.png" />
       </button>
     </picker>
@@ -301,10 +307,11 @@
     <button onTap="onMenuModalClick">Menu</button>
   </view>
   <view class="button-model-text">
-    Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa
+    <!-- Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa -->    
+      {{getMerchantDetails.description}}    
   </view>
   <view class="brand-direct-links">
-    <button>
+    <button onTap="openLocation">
       <image src="/assets/direction.png" /> Direction</button>
     <button>
       <image src="/assets/whastsup.png" /> Whatsapp</button>
@@ -331,12 +338,17 @@
       <text class="header-title">Max</text>
       <text class="header-title">Reward%</text>
     </view>
-    <view class="table-row">
+    <view class="table-row" a:for="{{ getMerchantDetails.userInformation.rewardTable }}">
+      <text class="table-cell">{{item.min}}</text>
+      <text class="table-cell">{{item.max}}</text>
+      <text class="table-cell">{{item.reward}}%</text>
+    </view>
+    <!-- <view class="table-row">
       <text class="table-cell">10,000</text>
       <text class="table-cell">100,000</text>
       <text class="table-cell">1%</text>
-    </view>
-    <view class="table-row">
+    </view> -->
+    <!-- <view class="table-row">
       <text class="table-cell">100,001</text>
       <text class="table-cell">1,000,000</text>
       <text class="table-cell">2%</text>
@@ -350,7 +362,7 @@
       <text class="table-cell">5,000,0001</text>
       <text class="table-cell">10,000,000</text>
       <text class="table-cell">4%</text>
-    </view>
+    </view> -->
 
 
   </view>
@@ -367,7 +379,8 @@
   </view>
   
   <view class="menu-title">MENU</view>
-  <image class="menu-image" src="/assets/menu-img.png" />
+  <!-- <image class="menu-image" src="/assets/menu-img.png" /> -->
+  <web-view src="https://www.google.com" />
 </view>
 
 
@@ -375,7 +388,7 @@
 
 <!-- brand Reviews model -->
 
-<view class="brand-review" a:if="{{ reviewOn }}" >
+<view class="brand-review" a:if="{{ reviewOn }}" style="height: 600px;">
   <!-- Close button -->
 
   <view class="close-btn" onTap="closePopup">
@@ -393,7 +406,19 @@
 
 
   </view>
-  <view class="author-review">
+  <view class="author-review" a:for="{{ getMerchantDetails.reviews }}">
+    <view class="author-review-image">
+      <!-- <image src="/assets/reviews.png" /> -->
+      <image src="{{item.image ? item.image :'/assets/no-img.png'}}" />
+    </view>
+    <view class="author-review-comment">
+      <!-- Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. -->
+      {{item.comment ? item.comment :"No Comment"}}
+    </view>
+
+
+  </view>
+  <!-- <view class="author-review">
     <view class="author-review-image">
       <image src="/assets/reviews.png" />
     </view>
@@ -430,17 +455,7 @@
     <view class="author-review-comment">
       Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
     </view>
-
-
-  </view>
-  <view class="author-review">
-    <view class="author-review-image">
-      <image src="/assets/reviews.png" />
-    </view>
-    <view class="author-review-comment">
-      Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa.
-    </view>
-  </view>
+  </view> -->
 </view>
 
 
