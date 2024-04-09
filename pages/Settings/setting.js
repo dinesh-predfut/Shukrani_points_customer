@@ -8,7 +8,7 @@ Page({
   ShowTermsandconditoins: false,
   ShowPrivacyandPolicy: false,
   Showabout: false,
- 
+
   reenderpin: "",
   mixins: [],
   data: {
@@ -17,17 +17,15 @@ Page({
     isSearch: false,
     imageUrl: "",
     userProfile: [],
-    phoneNumber:[],
-    changenumberOTP:[]
+    phoneNumber: [],
+    changenumberOTP: []
   },
 
   didMount() {},
   didUpdate() {},
   didUnmount() {},
   onLoad(query) {
-    if (this.data.imageUrl) {
-      UploadProfilePic()
-    }
+  
     // Page load
     console.info(`Page onLoad witsh query`, providers);
     this.setData({
@@ -40,6 +38,7 @@ Page({
     // Page display
     console.log("12344", this.data);
     this.userinfo();
+    this.UploadProfilePic()
   },
   onHide() {
     // Page hidden
@@ -111,8 +110,8 @@ Page({
 
     })
   },
- 
- 
+
+
   closeChangeNumberOTP() {
     this.setData({
       ShowchangePNumberOTP: false
@@ -134,17 +133,11 @@ Page({
     my.chooseImage({
       count: 1,
       success: (res) => {
-        const tempFilePaths = res.apFilePaths;
-        // Assume you want to upload only one image
-        const tempFilePath = tempFilePaths[0];
-        // Display the chosen image 
-        this.setData({
-          imageUrl: tempFilePath,
-          Showchangeprofilepicture: false,
-
-        });
-        console.log("12344", this.data);
-        this.UploadProfilePic()
+        success: (res) => {
+          const imagePath = res.apFilePaths[0];
+          UploadProfilePic(imagePath);
+        }
+      
       },
       fail: (error) => {
         console.error('Failed to choose image', error);
@@ -215,7 +208,7 @@ Page({
   changenumber(e) {
     this.setData({
       phoneNumber: parseInt(e.detail.value),
-      
+
 
     })
     console.log("e value", e);
@@ -223,8 +216,8 @@ Page({
   },
   changenumbrtOTP(e) {
     this.setData({
-      changenumberOTP:  parseInt(e.detail.value),
-      
+      changenumberOTP: parseInt(e.detail.value),
+
 
     })
     console.log("e value", e);
@@ -243,42 +236,55 @@ Page({
     console.log("e value", e);
   },
 
-  UploadProfilePic() {
-    const self = this;
-    const pointsdata = this.data.imageUrl;
+   UploadProfilePic( imagePath) {
+  //   const imageFilePath = "/C:/Users/Arun/Downloads/menphoto.jpg";
+  //   const self = this;
+  //   const pointsdata = this.data.imageUrl;
+  //   const formData = {
+  //     uri: pointsdata,
+  //     type: 'image/jpeg',
+  //     name: 'photo.jpg'
+  //   }
+    
+  //   // console.log("e value", pointsdata);
+  //   my.request({
+  //     url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
+  //     method: 'post',
 
-    console.log("e value", pointsdata);
-    my.request({
-      url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
-      method: 'post',
 
+  //     body: formData,
 
-      data: [{
-        key: "image",
-        type: "file",
-        src: pointsdata
-      }],
+  //     headers: {
+  //       "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+  //     },
+  //     dataType: 'json',
+  //     success: function (res) {
+  //      console.log('Image uploaded successfully');
 
-      headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
-      },
-      dataType: 'json',
-      success: function (res) {
-        self.setData({
-          count: res.data,
+  //       // Access 'count' using 'self.data.count'
+  //     },
+  //     fail: function (res) {
+  //       my.alert({
+  //         content: 'fail'
+  //       });
+  //     },
 
-        });
-
-        // Access 'count' using 'self.data.count'
-      },
-      fail: function (res) {
-        my.alert({
-          content: 'fail'
-        });
-      },
-
-    });
-
+  //   });
+  my.uploadFile({
+    url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
+    fileType: 'image',
+    fileName: 'image',
+    filePath: imagePath,
+    header: {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk',
+    },
+    success: (res) => {
+      console.log('Image uploaded successfully');
+    },
+    fail: (error) => {
+      console.error('Failed to upload image:', error);
+    },
+  });
 
   },
 
@@ -295,7 +301,7 @@ Page({
       },
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
       dataType: 'json',
       success: function (res) {
@@ -329,7 +335,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
       dataType: 'json',
       success: function (res) {
@@ -350,28 +356,28 @@ Page({
 
 
   },
-  changePhonenumber() { 
+  changePhonenumber() {
 
     const self = this;
     const changenumber = this.data.phoneNumber;
-    const username= this.data.userProfile.userName
+    const username = this.data.userProfile.userName
 
-   console.log("12344", this.data);
-    
+    console.log("12344", this.data);
+
 
     my.request({
       url: `http://52.51.249.84:8080/api/auth/generateOtp`,
       method: 'post',
       data: {
         phoneNumber: changenumber,
-        userName:username
+        userName: username
 
       },
-  
+
       success: function (res) {
         self.setData({
           ShowchangePNumber: false,
-          ShowchangePNumberOTP:true
+          ShowchangePNumberOTP: true
 
         });
 
@@ -380,7 +386,7 @@ Page({
       fail: function (res) {
         self.setData({
           ShowchangePNumber: false,
-          ShowchangePNumberOTP:true
+          ShowchangePNumberOTP: true
 
         });
       },
@@ -388,32 +394,32 @@ Page({
     });
 
   },
-  finalChangenumber() { 
+  finalChangenumber() {
     const self = this;
     const changenumberOTP = this.data.changenumberOTP;
-    const username= this.data.userProfile.userName
+    const username = this.data.userProfile.userName
 
-    
-    
+
+
 
     my.request({
       url: `http://52.51.249.84:8080/api/auth/validateOtp`,
       method: 'post',
       data: {
         otp: changenumberOTP,
-        userName:username
- 
+        userName: username
+
       },
-  
+
       success: function (res) {
         self.setData({
           ShowchangePNumberOTP: false,
           ShowchangePNumber: false
 
         });
-       this.finalChangenumber() 
+        this.finalChangenumber()
 
-        
+
         // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {
@@ -427,24 +433,24 @@ Page({
     });
 
   },
-  OTPvalidate() { 
+  OTPvalidate() {
     const self = this;
     const changenumber = this.data.phoneNumber;
 
-    
-    
+
+
 
     my.request({
       url: `http://52.51.249.84:8080/api/app/userProfile/changePhoneNumber`,
       method: 'post',
       data: {
-        phoneNumber:changenumber
+        phoneNumber: changenumber
 
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
-  
+
       success: function (res) {
         self.setData({
           ShowchangePNumberOTP: false,
@@ -455,7 +461,7 @@ Page({
           type: 'success',
           content: 'Successfully change Phone Number',
           duration: 3000,
-    
+
         });
         // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
       },

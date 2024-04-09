@@ -11,51 +11,58 @@ Page({
     providersSearchResult: [],
     providerName: [],
     userProfile:[],
+    CategoryFilter:[],
+    selectedCategory:[],
+    categoryrespon:[],
     isSearch: false,
     sharepointsvalue: [],
-    array: ['Saloon', 'Bakery', 'Bar', 'Beauty'],
+    array: ['Category', 'Bakery', 'Bar', 'Beauty'],
     objectArray: [{
-        id: 0,
+        id:0,
         name: 'Category',
       },
       {
-        id: 1,
-        name: 'Bakery',
+        id:1,
+        name: 'Park',
       },
       {
         id: 2,
-        name: 'Bar',
+        name: 'Bakery',
       },
       {
         id: 3,
-        name: 'Beauty',
+        name: 'Bar',
       },
       {
         id: 4,
-        name: 'Book Store',
+        name: 'Beauty',
       },
       {
         id: 5,
-        name: 'Butcheries',
+        name: 'Book Store',
       },
       {
         id: 6,
-        name: 'Doctors',
+        name: 'Butcheries',
       },
       {
         id: 7,
-        name: 'Electronics',
+        name: 'Doctors',
       },
       {
         id: 8,
-        name: 'Fast Foods',
+        name: 'Electronics',
       },
       {
         id: 9,
-        name: 'Florists',
+        name: 'Fast Foods',
       },
       {
         id: 10,
+        name: 'Florists',
+      },
+      {
+        id: 11,
         name: 'Cosmetrics',
       },
     ],
@@ -104,7 +111,20 @@ Page({
       path: 'pages/index/index',
     };
   },
-
+  makePhoneCall() {
+    my.choosePhoneContact({
+      success: (res) => {
+        my.alert({
+          content: 'choosePhoneContact response: ' + JSON.stringify(res)
+        });
+      },
+      fail: (res) => {
+        my.alert({
+          content: 'choosePhoneContact response: ' + JSON.stringify(res)
+        });
+      },
+    });
+  },
   onProviderCellTap(e, props) {
     this.setData({
       showTop: true,
@@ -156,16 +176,46 @@ Page({
     })
   },
   bindPickerChange(e) {
+    const table = this
     console.log('picker sends selection change, carried value ', e.detail.value);
     this.setData({
       index: e.detail.value,
     });
   },
   bindObjPickerChange(e) {
-    console.log('picker sends selection change, carried value ', e.detail.value);
+    
+    console.log('picker sends selection change, carried value ', this.data);
+    const array=this.data.objectArray
+    const arrayIndex=this.data.arrIndex
+    const finalvalue=array[arrayIndex]
+  
+
     this.setData({
       arrIndex: e.detail.value,
+      selectedCategory:finalvalue
     });
+    my.request({
+      url: `http://52.51.249.84:8080/api/app/getRewardDataByCategory?category=${finalvalue.name}`,
+      method: 'GET',
+      headers: {
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+      },
+      dataType: 'json',
+      success: function (res) {
+        this.setData({
+          categoryrespon: res.data // Set the response value in the 'count' data property
+        });
+        console.log("12344", table.data); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        my.alert({
+          content: 'transactionfail'
+        });
+      },
+
+    });
+
+
   },
 
   onSearchInput(e) {
@@ -192,12 +242,6 @@ Page({
   },
 
 
-  bindObjPickerChange(e) {
-    // console.log('picker sends selection change, carried value ', CarddataBrands);
-    this.setData({
-      arrIndex: e.detail.value,
-    });
-  },
 
   // API Call
   RequestrewardPoint() {
@@ -207,7 +251,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
       dataType: 'json',
       success: function (res) {
@@ -228,27 +272,34 @@ Page({
   },
   transactionAPI() {
     const table = this;
-    my.request({
-      url: 'http://52.51.249.84:8080/api/app/transactions',
-      method: 'GET',
-      headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
-      },
-      dataType: 'json',
-      success: function (res) {
-        table.setData({
-          transactionData: res.data // Set the response value in the 'count' data property
-        });
-        console.log("12344", table.data); // Access 'count' using 'self.data.count'
-      },
-      fail: function (res) {
-        my.alert({
-          content: 'transactionfail'
-        });
-      },
-
-    });
-
+    const selectedcategory=this.dataselectedcategory
+    if(!selectedcategory){
+      my.request({
+        url: 'http://52.51.249.84:8080/api/app/transactions',
+        method: 'GET',
+        headers: {
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+        },
+        dataType: 'json',
+        success: function (res) {
+          table.setData({
+            transactionData: res.data // Set the response value in the 'count' data property
+          });
+          console.log("12344", table.data); // Access 'count' using 'self.data.count'
+        },
+        fail: function (res) {
+          my.alert({
+            content: 'transactionfail'
+          });
+        },
+  
+      });
+  
+    }
+    else{
+      this.onProviderCellTap()
+    }
+   
   },
   sharePoints(e) {
     this.setData({
@@ -279,7 +330,7 @@ Page({
         merchantId: merchantId
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
       dataType: 'json',
       success: function (res) {
@@ -348,7 +399,7 @@ deleteMercentreward() {
       method: 'GET',
      
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMjIxMjk4LCJleHAiOjE3MTIzMDc2OTh9.MRl772LxMYDQTxbcwUge6cNciP46SS6yUWah6WoUGXw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
       dataType: 'json',
       success: function (res) {
