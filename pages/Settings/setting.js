@@ -133,11 +133,8 @@ Page({
     my.chooseImage({
       count: 1,
       success: (res) => {
-        success: (res) => {
-          const imagePath = res.apFilePaths[0];
-          UploadProfilePic(imagePath);
-        }
-      
+        const imagePath = res.apFilePaths[0];
+        this.uploadProfilePic(imagePath);
       },
       fail: (error) => {
         console.error('Failed to choose image', error);
@@ -236,56 +233,46 @@ Page({
     console.log("e value", e);
   },
 
-   UploadProfilePic( imagePath) {
-  //   const imageFilePath = "/C:/Users/Arun/Downloads/menphoto.jpg";
-  //   const self = this;
-  //   const pointsdata = this.data.imageUrl;
-  //   const formData = {
-  //     uri: pointsdata,
-  //     type: 'image/jpeg',
-  //     name: 'photo.jpg'
-  //   }
-    
-  //   // console.log("e value", pointsdata);
-  //   my.request({
-  //     url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
-  //     method: 'post',
+  async uploadProfilePic(imagePath) {
+    try {
+      my.showLoading({
+        content: 'Uploading...',
+      });
 
+      const uploadResponse = await my.uploadFile({
+        url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
+        fileType: 'image',
+        fileName: 'image',
+        filePath: imagePath,
+        headers: {
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+        },
+      });
 
-  //     body: formData,
+      if (uploadResponse.statusCode === 200) {
+        const decodeData = await my.httpResponse({
+          url: uploadResponse.apFilePath,
+        });
 
-  //     headers: {
-  //       "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
-  //     },
-  //     dataType: 'json',
-  //     success: function (res) {
-  //      console.log('Image uploaded successfully');
+        const result = JSON.parse(decodeData.data);
+        console.log("upload profile image response ==> ", result);
 
-  //       // Access 'count' using 'self.data.count'
-  //     },
-  //     fail: function (res) {
-  //       my.alert({
-  //         content: 'fail'
-  //       });
-  //     },
+        // Update UI or perform other actions as needed
 
-  //   });
-  my.uploadFile({
-    url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
-    fileType: 'image',
-    fileName: 'image',
-    filePath: imagePath,
-    header: {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk',
-    },
-    success: (res) => {
-      console.log('Image uploaded successfully');
-    },
-    fail: (error) => {
-      console.error('Failed to upload image:', error);
-    },
-  });
-
+        my.hideLoading();
+      } else {
+        console.error('Failed to upload image. Status code: ', uploadResponse.statusCode);
+        my.hideLoading();
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      my.hideLoading();
+      my.showToast({
+        content: 'Error uploading image',
+        type: 'fail',
+      });
+      throw error;
+    }
   },
 
   chaangePin() {

@@ -9,7 +9,8 @@
     "f-icon": "/components/fiat/f-icon/f-icon",
     "popup": "mini-antui/es/popup/index" ,
     "model":"/components/bottom-model/bottom-model",
-   
+    "filter": "mini-antui/es/filter/index",
+    "filter-item": "mini-antui/es/filter/filter-item/index",
    "navbar":"/components/Nav-bar/navbar",
    "f-input":"/components/fiat/f-input/f-input" ,
    "navigation-bar": "/components/navigation-bar/navigation-bar",

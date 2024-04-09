@@ -5,6 +5,7 @@ Page({
   
   mixins: [],
   data: {
+      
     providers,
     count: [],
     transactionData: [],
@@ -183,40 +184,40 @@ Page({
     });
   },
   bindObjPickerChange(e) {
-    
-    console.log('picker sends selection change, carried value ', this.data);
-    const array=this.data.objectArray
-    const arrayIndex=this.data.arrIndex
-    const finalvalue=array[arrayIndex]
+    const self = this;
+    const array = this.data.objectArray;
+    const arrayIndex = e.detail.value;
+    const finalValue = array[arrayIndex];
+    const categoryFilter = finalValue.name;
+    const data = this.data.transactionData;
+    const filteredData = data.filter(item => item.category === categoryFilter);
+    console.log('picker sends selection change, carried value ', arrayIndex);
   
-
-    this.setData({
-      arrIndex: e.detail.value,
-      selectedCategory:finalvalue
-    });
     my.request({
-      url: `http://52.51.249.84:8080/api/app/getRewardDataByCategory?category=${finalvalue.name}`,
+      url: `http://52.51.249.84:8080/api/app/getRewardDataByCategory?category=${finalValue.name}`,
       method: 'GET',
       headers: {
         "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
       },
       dataType: 'json',
       success: function (res) {
-        this.setData({
-          categoryrespon: res.data // Set the response value in the 'count' data property
+        self.setData({
+          arrIndex: arrayIndex,
+          selectedCategory: finalValue,
+          providersSearchResult: filteredData,
+          isSearch: true,
+          categoryrespon: res.data
         });
-        console.log("12344", table.data); // Access 'count' using 'self.data.count'
+        console.log("12344", self.data.categoryrespon);
       },
       fail: function (res) {
         my.alert({
           content: 'transactionfail'
         });
-      },
-
+      }
     });
-
-
   },
+  
 
   onSearchInput(e) {
     const searchKey = e.detail.value || '';
