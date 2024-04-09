@@ -19,7 +19,7 @@
       Scan to
     </text>
     <view class="amout-input">
-      <input placeholder="Amount" />
+      <input id="amountInput" placeholder="Amount" onInput="onAmountInput" type="number" />
     </view>
     <view class="qr-container">
       <text>Bar Code</text>
@@ -30,10 +30,12 @@
       <text class="line-two"></text>
     </view>
     <view class="amout-input pay-number-input">
-      <input placeholder="Enter Lipa namba" />
+      <input id="lipaNambaInput" placeholder="Enter Lipa namba" onInput="onLipaNambaInput" type="number" />
     </view>
     <view class="nxt-btn">
-      <button onTap="nextScreen">Next</button>
+      <!-- <button onTap="nextScreen">Next</button> -->
+      <!-- <button onTap="validateInputs">Next</button> -->
+      <button onTap="reviewModalClick">Next</button>
     </view>
     <!-- <button onTap="closePopup">Close</button> -->
   </view>
@@ -48,16 +50,19 @@
    <view a:if="{{ nextPage && !makePayment && !redeemPoint && !payCash && !payPin }}">
   <view class="waikiki-section">
     <view class="waikiki-popup-img">
-      <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" />
+      <!-- <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" /> -->
+      <image mode="scaleToFill" src="{{getRedeemMerchantDetails.image}}" />
     </view>
     <view class="lc-waikki-title">
-      LC Waikiki
+      <!-- LC Waikiki -->
+      {{getRedeemMerchantDetails.merchantName}}
     </view>
     <view class="value-title">
       Transaction value
     </view>
     <view class="value-total-amount">
-      150,000
+      <!-- 150,000 -->
+      {{amountInput}}
     </view>
     <view class="check-btn">
       <button class="content-btn" size="default" onTap="makePaymentModalClick">Redeem your earned points</button>
@@ -98,13 +103,16 @@
     Make payment to
   </text>
   <view class="waikiki-popup-img make-payment-img">
-    <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" />
+    <!-- <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" /> -->
+    <image mode="scaleToFill" src="{{getRedeemMerchantDetails.image}}" />
   </view>
   <view class="lc-waikki-title">
-    LC Waikiki
+    <!-- LC Waikiki -->
+    {{getRedeemMerchantDetails.merchantName}}
   </view>
   <view class="value-total-amount payment-total-value">
-    150,000
+    <!-- 150,000 -->
+    {{amountInput}}
   </view>
   <view class="amount-pay">
     Amount to pay
@@ -121,7 +129,9 @@
 
   <view class="amout-input pay-number-input payment-input">
     <image src="/assets/ion_keypad.png" />
-    <input placeholder="Phone number" />
+    <!-- <input id="phoneNumberInput" placeholder="Phone number" type="number" /> -->
+    <input id="phoneNumberInput" placeholder="Phone number" type="number" value="{{ phoneNumberInput }}" onInput="phoneNumberInputInput" />
+
   </view>
   <button class="pay-btn" onTap="redeemPointModalClick">Pay</button>
 </view>
@@ -136,13 +146,16 @@
     Payment successful
   </text>
   <view class="waikiki-popup-img make-payment-img">
-    <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" />
+    <!-- <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" /> -->
+    <image mode="scaleToFill" src="{{getRedeemMerchantDetails.image}}" />
   </view>
   <view class="lc-waikki-title">
-    LC Waikiki
+    <!-- LC Waikiki -->
+    {{getRedeemMerchantDetails.merchantName}}
   </view>
   <view class="value-total-amount payment-total-value">
-    15,000
+    <!-- 15,000 -->
+    {{paymentSuccessDetails.rewardPoints}}
   </view>
   <view class="amount-pay">
     Bonus reward points
@@ -150,7 +163,8 @@
   <view class="transaction-reward-box">
     <view class="transaction-reward-value value-transaction">
       <view class="transaction-reward-figure">
-        150,000
+        <!-- 150,000 -->
+        {{paymentSuccessDetails.amount}}
       </view>
       <view class="transaction-reward-text">
         Transaction value
@@ -160,7 +174,8 @@
     <view class="center-line"></view>
     <view class="transaction-reward-value">
       <view class="transaction-reward-figure">
-        10%
+        <!-- 10% -->
+        {{paymentSuccessDetails.percentage}}%
       </view>
       <view class="transaction-reward-text">
         Reward
@@ -182,22 +197,24 @@
     Review
   </text>
   <view class="waikiki-popup-img make-payment-img">
-    <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" />
+    <!-- <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" /> -->
+    <image mode="scaleToFill" src="{{getRedeemMerchantDetails.image}}" />
   </view>
   <view class="lc-waikki-title">
-    LC Waikiki
+    <!-- LC Waikiki -->
+    {{getRedeemMerchantDetails.merchantName}}
   </view>
   <view class="horizontal-bottom-line"></view>
   <view class="rateing-section">
     <view class="section-title">
       Please rate your experience
     </view>
-    <view class="rateing-star">
-      <image src="/assets/star.svg" />
-      <image src="/assets/star.svg" />
-      <image src="/assets/star.svg" />
-      <image src="/assets/star.svg" />
-      <image src="/assets/star.svg" />
+    <view class="rateing-star" onTap="handleRating">
+      <image id="star0" src="/assets/star.svg" data-index="0" />
+      <image id="star1" src="/assets/star.svg" data-index="1" />
+      <image id="star2" src="/assets/star.svg" data-index="2" />
+      <image id="star3" src="/assets/star.svg" data-index="3" />
+      <image id="star4" src="/assets/star.svg" data-index="4" />
     </view>
 
   </view>
@@ -282,7 +299,7 @@
       <view class="pin-input">
         <view class="pin-input-box">
           <image class="" src="/assets/pin.svg" />
-          <input placeholder="PIN"/>
+          <input id="pinInput" placeholder="PIN" onInput="validatePin" />
         </view>
 
         <view class="pin-submit-btn" onTap="paymentSuccessModalClick">

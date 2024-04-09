@@ -1,3 +1,5 @@
+import brandCategoryList from '/data/brandCategoryList'
+
 Page({
   onLoad(query) {
     // Page load
@@ -35,6 +37,7 @@ Page({
   },
 
   data: {
+    brandCategoryList,
     modalOpened: false,
     rewardsOn:false,
     menuOn:false,
@@ -45,7 +48,9 @@ Page({
     brandsSearchResult:[],
     isSearch: false,
     getMerchantDetails:[],
-    pickerSelectedLocation:null
+    pickerSelectedLocation:null,
+    selectedCategory:'All',
+    filteredBrandsData:[]
   },
   openPopup() {
     console.log('open clicked')
@@ -137,19 +142,59 @@ Page({
       });
     }
   },
+  // category filter
+  onSelectedCategory(e){
+    const index = e.currentTarget.dataset.index;
+    const selectedCategory = this.data.brandCategoryList[index];
+    console.log('Selected Category:', selectedCategory);
+    this.setData({
+      selectedCategory: selectedCategory.name
+    });
+
+    // Filter brandsData based on selectedCategory.name
+    const filteredBrandsData = this.data.brandsData.filter(brand => brand.category === selectedCategory.name);
+    console.log('Filtered Brands Data:', filteredBrandsData);
+    if(filteredBrandsData.length > 0){
+      this.setData({
+        filteredBrandsData:filteredBrandsData,
+        categoryOn:!this.data.categoryOn
+      })
+    }else{
+      my.alert({content: 'No data found...!'})
+      this.setData({
+        categoryOn:!this.data.categoryOn
+      })
+    }
+  },
+
+  onSelectAllCategory(){
+    this.setData({
+      selectedCategory:'All',
+      categoryOn:!this.data.categoryOn,
+      filteredBrandsData:[]
+    })
+  },
 
   // open Direction in the MAP
-  openLocation(){
-    console.log('checking alrady selected location ---->>> ', this.data.pickerSelectedLocation);
-    console.log('final location ---->>> ', this.data.pickerSelectedLocation.location);
+  openLocation(){    
     if(this.data.pickerSelectedLocation){
       my.openLocation({
         name: 'Selected Location',
         address: this.data.pickerSelectedLocation.location,
-        scale: 18
+        scale: 18        
       });      
     }else{
-      my.alert('Please select any location first!')
+      my.alert({ content: 'Please select any location first!' });
+    }
+  },
+
+  // makePhoneCall on Call Click
+  makePhoneCall() {
+    console.log('checking phone number ---->>> ', this.data.getMerchantDetails.userInformation.phoneNumber);
+    if(this.data.getMerchantDetails.userInformation.phoneNumber){
+      my.makePhoneCall({ number: this.data.getMerchantDetails.userInformation.phoneNumber });
+    }else{
+      my.alert({ content: 'Unable to make a phone call...!' });
     }
   },
 

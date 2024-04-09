@@ -214,6 +214,7 @@
 .category-list {
   margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   gap: 18px;

@@ -71,7 +71,7 @@
 
   <!-- List of brands  -->  
   <!-- <view a:for="{{ brandsData }}"> -->
-  <view a:for="{{ isSearch ? brandsSearchResult : brandsData }}" a:if="{{ !categoryOn }}"> 
+  <view a:for="{{ isSearch ? brandsSearchResult : filteredBrandsData.length > 0 ? filteredBrandsData : brandsData }}" a:if="{{ !categoryOn }}"> 
     <f-cell class="pl-16 pr-4 py-12 brand-list-categorie" onTap="onProviderCellTap" provider="{{ brandsData[index] }}">
       <f-cell-icon w="30" h="30" class="mr-12">
         <image mode="scaleToFill" src="{{item.image ? item.image :'/assets/no-img.png'}}" class="transactionIMG"/> 
@@ -98,36 +98,35 @@
   <!-- Caregory list -->
  <view a:if="{{ categoryOn }}">
   <view class="all-category-list">
-    <view class="all-icon">
+    <view class="all-icon" onTap="onSelectAllCategory">
       <view class="all-icon-img">
         <image src="/assets/pajamas_stage-all.png" />
       </view>
       <text>All</text>
     </view>
-    <view class="right-tick">
+    
+    <view class="right-tick" a:if="{{ selectedCategory === 'All' }}">
       <image src="/assets/tick.png" />
-
     </view>
+    
   </view>
   <view class="category-list">
-    <view class="list">
+    <view class="list" a:for="{{brandCategoryList}}" onTap="onSelectedCategory" data-index="{{index}}">
       <view class="category-list-name">
         <view class="category-list-icon">
-          <image mode="scaleToFill" src="/assets/shoping.png" />
+          <!-- <image mode="scaleToFill" src="/assets/shoping.png" /> -->
+          <image mode="scaleToFill" src="{{item.img}}" />
         </view>
         <view class="category-list-text">
-          Shopping
+          <!-- Shopping -->
+          {{item.name}}
         </view>
-
-
       </view>
       <view class="right-arrow">
-        <image  src="/assets/categorie-arrow.png"/>
+        <image  src="{{ selectedCategory === item.name ? '/assets/tick.png' : '/assets/categorie-arrow.png' }}" />        
       </view>
-
-
     </view>
-    <view class="list">
+    <!-- <view class="list">
       <view class="category-list-name">
         <view class="category-list-icon">
           <image src="/assets/supermarket.png" />
@@ -194,7 +193,7 @@
       </view>
 
 
-    </view>
+    </view> -->
 
 
   </view>
@@ -310,14 +309,17 @@
     <!-- Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa Lorem ipsum dolor sit amet consectetur. Urna pharetra congue et nibh nulla libero massa. Mauris rhoncus quam porttitor massa -->    
       {{getMerchantDetails.description}}    
   </view>
-  <view class="brand-direct-links">
-    <button onTap="openLocation">
-      <image src="/assets/direction.png" /> Direction</button>
-    <button>
-      <image src="/assets/whastsup.png" /> Whatsapp</button>
-    <button>
-      <image src="/assets/phone.png" /> Call</button>
-  </view>
+ <view class="brand-direct-links">
+  <button onTap="openLocation">
+    <image src="/assets/direction.png" /> Direction
+  </button>
+  <button>
+    <image src="/assets/whastsup.png" /> Whatsapp
+  </button>
+  <button onTap="makePhoneCall">
+    <image src="/assets/phone.png" /> Call
+  </button>
+</view>
 
 </view>
 
@@ -371,7 +373,7 @@
 
 
 <!-- brand menu model -->
-<view a:if="{{ menuOn}}"> 
+<view a:if="{{ menuOn}}" style="height: 300px;"> 
   <!-- Close button -->
 
   <view class="close-btn" onTap="closePopup">
@@ -380,7 +382,8 @@
   
   <view class="menu-title">MENU</view>
   <!-- <image class="menu-image" src="/assets/menu-img.png" /> -->
-  <web-view src="https://www.google.com" />
+  <!-- <web-view src="https://www.google.com" /> -->
+  <web-view src="{{getMerchantDetails.menu}}" />
 </view>
 
 
