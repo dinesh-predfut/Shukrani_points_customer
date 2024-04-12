@@ -35,14 +35,15 @@ Page({
 
   data: {
     modalOpened: true,
-    nextPage : false,
+    nextPage: false,
     makePayment: false,
-    paymentSuccess:false,
-    reviewOn:false,
-    redeemPoint:false,
-    redeemPin:false,
-    payCash:false,
-    payPin:false,
+    paymentSuccess: false,
+    reviewOn: false,
+    redeemPoint: false,
+    redeemPin: false,
+    payCash: false,
+    payPin: false,
+    allPointsRedeemed: false,
     array: ['Mlimani city1', 'Mlimani city2', 'Mlimani city3', 'Mlimani city4'],
     objectArray: [
       {
@@ -66,18 +67,19 @@ Page({
     index: 0,
     amountInput: '',
     lipaNambaInput: '',
-    getRedeemMerchantDetails:[],
+    getRedeemMerchantDetails: [],
     phoneNumberInput: '',
-    pinInput:'',
-    paymentSuccessDetails:[],
-    rating:0,
-    stars: [
+    pinInput: '',
+    paymentSuccessDetails: [],
+    rating: 0,
+    starStatus: [
       "/assets/star.svg",
       "/assets/star.svg",
       "/assets/star.svg",
       "/assets/star.svg",
       "/assets/star.svg"
-    ]
+    ],
+    reviewComment: ''
   },
   openModal() {
     this.setData({
@@ -95,26 +97,40 @@ Page({
     });
   },
   openPopup() {
-  console.log('open clicked')
-  this.setData({
-    modalOpened: true,
-  });
+    console.log('open clicked')
+    this.setData({
+      modalOpened: true,
+    });
   },
   closePopup() {
-  console.log('close clicked from redeem file ---')
-  this.setData({
-    modalOpened: false,
-    nextPage:false,
-    makePayment:false,
-    paymentSuccess:false,
-    reviewOn:false,
-    redeemPoint:false,
-    redeemPin:false,
-    payCash:false,
-    payPin:false,
-    amountInput:'',
-    lipaNambaInput:''
-  });
+    console.log('close clicked from redeem file ---')
+    this.setData({
+      modalOpened: false,
+      nextPage: false,
+      makePayment: false,
+      paymentSuccess: false,
+      reviewOn: false,
+      redeemPoint: false,
+      redeemPin: false,
+      payCash: false,
+      payPin: false,
+      amountInput: '',
+      lipaNambaInput: '',
+      getRedeemMerchantDetails: [],
+      phoneNumberInput: '',
+      pinInput: '',
+      paymentSuccessDetails: [],
+      rating: 0,
+      allPointsRedeemed: false,
+      starStatus: [
+        "/assets/star.svg",
+        "/assets/star.svg",
+        "/assets/star.svg",
+        "/assets/star.svg",
+        "/assets/star.svg"
+      ],
+      reviewComment: ''
+    });
   },
   nextScreen(lipaNambaInput) {
     console.log('open clicked ---- ', lipaNambaInput)
@@ -126,7 +142,7 @@ Page({
     my.request({
       url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?rewardNumber=${lipaNambaInput}`,
       method: 'GET',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNTUxNjI5LCJleHAiOjE3MTI2MzgwMjl9.nNSUnganz3sYdTmc79eCs4TZTDo2b9lAXgWPxrbQ92c" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
       dataType: 'json',
       success: function (res) {
         table.setData({
@@ -142,25 +158,25 @@ Page({
     });
   },
   makePaymentModalClick() {
-  console.log('open clicked')
-  this.setData({
-    makePayment: true,
-  });
+    console.log('open clicked')
+    this.setData({
+      makePayment: true,
+    });
   },
   payCashModalClick() {
-  console.log('open clicked')
-  this.setData({
-    payCash: true,
-  });
+    console.log('open clicked')
+    this.setData({
+      payCash: true,
+    });
   },
   payPinModalClick() {
-  console.log('open clicked')
-  this.setData({
-    payPin: true,
-  });
+    console.log('open clicked')
+    this.setData({
+      payPin: true,
+    });
   },
   validatePin(e) {
-    const pinInput = e.detail.value;    
+    const pinInput = e.detail.value;
 
     // Regular expression to match only digits
     const digitRegex = /^\d+$/;
@@ -175,7 +191,7 @@ Page({
       this.setData({ pinInput: pinInput });
     }
   },
-  // Verify PIN API & MAKE PAYMENT API CALL
+  // VERIFY PIN API & MAKE PAYMENT API CALL
   paymentSuccessModalClick() {
     const pinInput = this.data.pinInput;
     console.log('pinInput --- >> ', pinInput);
@@ -193,26 +209,50 @@ Page({
       my.request({
         url: 'http://52.51.249.84:8080/api/app/verifyPin',
         method: 'POST',
-        headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNjM5MDA1LCJleHAiOjE3MTI3MjU0MDV9.zBBSUfIzVmxaWHj06b2CN7pQJoPhvk2dzGcztXIW7W4" },
+        headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
         dataType: 'json',
-        data:{
-          pin:pinInput
+        data: {
+          pin: pinInput
         },
-        success: function (res) {          
+        success: function (res) {
           console.log("Success pin ", res); // Access 'count' using 'self.data.count'
-          table.makePaymentAPICall();
+          console.log("check redeemPoint ", table.data.redeemPoint);
+          if (table.data.redeemPoint) {
+            console.log("table.data.redeemPoint", table.data.redeemPoint)
+            if (table.data.amountInput < table.data.getRedeemMerchantDetails.availablePoints) {
+              console.log("above api call");
+              table.redeemPointsAPI(table.data.amountInput, true);
+            } else {
+              let remainingAmmount =
+                table.data.amountInput - table.data.getRedeemMerchantDetails.availablePoints;
+
+              table.redeemPointsAPI(table.data.getRedeemMerchantDetails.availablePoints, false)
+              table.setData({
+                amountInput: remainingAmmount,
+                redeemPin: false,
+                redeemPoint: false,
+                nextPage: true,
+                makePayment: false,
+                allPointsRedeemed: true
+              })
+
+
+              console.log("inside else of condition");
+            }
+          } else table.makePaymentAPICall();
         },
         fail: function (res) {
-          my.alert({ content: 'fail...!' });
+          console.log("error verify pin ", res);
+          my.alert({ content: "fail verify pin" });
         },
       });
     }
-  // this.setData({
-  //   paymentSuccess: true,
-  // });
-   
+    // this.setData({
+    //   paymentSuccess: true,
+    // });
+
   },
-  makePaymentAPICall(){
+  makePaymentAPICall() {
     console.log('merchantID --- ', this.data.getRedeemMerchantDetails.merchantId);
     console.log('amount --- ', this.data.amountInput);
     console.log('phone number --- ', this.data.phoneNumberInput);
@@ -220,14 +260,14 @@ Page({
     my.request({
       url: 'http://52.51.249.84:8080/api/app/makePayment',
       method: 'POST',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNjM5MDA1LCJleHAiOjE3MTI3MjU0MDV9.zBBSUfIzVmxaWHj06b2CN7pQJoPhvk2dzGcztXIW7W4" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
       dataType: 'json',
       data: {
         merchantId: table.data.getRedeemMerchantDetails.merchantId,
         amount: table.data.amountInput,
         phoneNumber: table.data.phoneNumberInput
       },
-      success: function (res) {        
+      success: function (res) {
         console.log("Success makePyament ", res); // Access 'count' using 'self.data.count'
         table.setData({
           paymentSuccess: true,
@@ -241,16 +281,16 @@ Page({
   },
 
   reviewModalClick() {
-  console.log('open clicked')
-  this.setData({
-    reviewOn: true,
-  });
-  },  
+    console.log('open review clicked -- ', this.data)
+    this.setData({
+      reviewOn: true,
+    });
+  },
   redeemPinModalClick() {
-  console.log('open clicked')
-  this.setData({
-    redeemPin: true,
-  });
+    console.log('open clicked')
+    this.setData({
+      redeemPin: true,
+    });
   },
   bindPickerChange(e) {
     console.log('picker sends selection change, carried value ', e.detail.value);
@@ -294,14 +334,14 @@ Page({
   },
 
   // Phone number modal and validation
-    phoneNumberInputInput(e) {
-      this.setData({
-        phoneNumberInput: e.detail.value
-      });
-    },
+  phoneNumberInputInput(e) {
+    this.setData({
+      phoneNumberInput: e.detail.value
+    });
+  },
   redeemPointModalClick() {
     console.log('open clicked -- ', this.data)
-    
+
     const phoneNumber = this.data.phoneNumberInput.trim()
     console.log('phone number checking on click -=-=->>> ', phoneNumber);
 
@@ -338,17 +378,176 @@ Page({
 
   // Review Rating star
   handleRating(e) {
-    const index = e.target.dataset.index; // Get the index of the clicked star
-    console.log('checking index --- ', index);
+    const index = e.target.dataset.index;
+    console.log('Clicked star index:', index);
 
-    // Update the rating in the component's data
-    this.setData({ rating: parseInt(index) + 1 });
-
-    // Update the star images based on the rating
-    const updatedStars = this.data.stars.map((star, i) => {
-      return i <= index ? "/assets/star_filled.svg" : "/assets/star.svg";
+    const newStarStatus = this.data.starStatus.map((_, i) => {
+      return i <= index ? '/assets/star_filled.svg' : '/assets/star.svg';
     });
 
-    this.setData({ stars: updatedStars });
-  }
+    this.setData({ starStatus: newStarStatus });
+  },
+
+  // SUBMIT POST REVIEW AND API CALL
+
+  handleReviewCommentInput(e) {
+    this.setData({ reviewComment: e.detail.value });
+  },
+  postReview() {
+    // Perform validation
+    const filledStars = this.data.starStatus.filter(src => src === '/assets/star_filled.svg').length;
+
+    if (filledStars === 0) {
+      // No stars are filled
+      my.showToast({
+        content: 'Please rate your experience',
+        type: 'none'
+      });
+      return;
+    }
+
+    if (!this.data.reviewComment.trim()) {
+      // Review comment is empty
+      my.showToast({
+        content: 'Please drop a comment',
+        type: 'none'
+      });
+      return;
+    }
+
+    // Validation passed, proceed with posting the review
+    // You can perform the post request or any other action here
+    console.log('Review posted');
+    console.log('filled start value ---- ', filledStars);
+    console.log('comment value ---- ', this.data.reviewComment);
+    console.log('merchant id value ---- ', this.data.getRedeemMerchantDetails.merchantId);
+    // return
+
+    const merchantId = this.data.getRedeemMerchantDetails.merchantId;
+    const table = this;
+    my.request({
+      url: `http://52.51.249.84:8080/api/app/${merchantId}/reviews`,
+      method: 'POST',
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
+      dataType: 'json',
+      data: {
+        rating: filledStars,
+        comment: table.data.reviewComment
+      },
+      success: function (res) {
+        console.log("Success POST ", res); // Access 'count' using 'self.data.count'
+        table.setData({
+          reviewOn: false,
+          paymentSuccess: false,
+          redeemPin: false,
+          redeemPoint: false,
+          makePayment: false,
+          nextPage: false,
+          modalOpened: false
+        });
+        // Navigate to the home screen after posting the review
+        // my.redirectTo({
+        //   url: '/pages/index/index' // Replace this with the path to your home screen
+        // });
+        my.navigateBack();
+      },
+      fail: function (res) {
+        my.alert({ content: 'Payment fail...!' });
+      },
+    });
+  },
+
+  // REDEEM  YOUR POINTS
+
+  redeemYourPointsAPI() {
+    console.log('merchantID --- ', this.data.getRedeemMerchantDetails.merchantId);
+    console.log('amount --- ', this.data.amountInput);
+    console.log('phone number --- ', this.data.phoneNumberInput);
+    const { amountInput, lipaNambaInput } = this.data;
+    const table = this;
+
+    my.request({
+      url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?rewardNumber=${lipaNambaInput}&amount=${amountInput}&customerPhoneNumber=1111166666`,
+      method: 'GET',
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
+      dataType: 'json',
+      success: function (res) {
+        table.setData({
+          getRedeemMerchantDetails: res.data, // Set the response value in the 'count' data property
+          redeemPoint: true,
+          makePayment: true,
+          // pickerSelectedLocation: res.data.locations[0] // Set the default selected location to the first item in the locations array
+        });
+        console.log("getRedeemMerchantDetails checking ", table.data.getRedeemMerchantDetails); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        my.alert({ content: 'fail...!' });
+      },
+    });
+
+  },
+
+  // PAY CASH GET REWARDS API
+
+  payCashGetRewardsAPI() {
+    console.log('merchantID --- ', this.data.getRedeemMerchantDetails.merchantId);
+    console.log('amount --- ', this.data.amountInput);
+    console.log('phone number --- ', this.data.phoneNumberInput);
+    const table = this;
+    my.request({
+      url: 'http://52.51.249.84:8080/api/auth/collectRewadsPoints',
+      method: 'POST',
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
+      dataType: 'json',
+      data: {
+        merchantId: table.data.getRedeemMerchantDetails.merchantId,
+        amount: table.data.amountInput,
+        phoneNumber: '1111166666' // table.data.phoneNumberInput
+      },
+      success: function (res) {
+        console.log("Success makePyament ", res); // Access 'count' using 'self.data.count'
+        table.setData({
+          reviewOn: true
+          // paymentSuccess: true,
+          // paymentSuccessDetails: res.data
+        });
+      },
+      fail: function (res) {
+        my.alert({ content: 'Payment fail...!' });
+      },
+    });
+  },
+
+  // PAY CASH GET REWARDS API
+
+  redeemPointsAPI(points, showReview) {
+    console.log('merchantID --- ', this.data.getRedeemMerchantDetails.merchantId);
+    console.log('amount --- ', this.data.amountInput);
+    const table = this;
+    my.request({
+      url: 'http://52.51.249.84:8080/api/app/redeemPoints',
+      method: 'POST',
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjBmODU1OTZkZWQzZTA2ZjMyNDY4ZjUiLCJzdWIiOiIxMTExMTY2NjY2IiwiaWF0IjoxNzEyNzI5ODIwLCJleHAiOjE3MTI4MTYyMjB9.VU0fB0uhJsce4j2zLIYwLaJqCYYw0_SN11B-J284jC4" },
+      dataType: 'json',
+      data: {
+        merchantId: table.data.getRedeemMerchantDetails.merchantId,
+        points: points,
+      },
+      success: function (res) {
+        console.log("Success redeemPointsAPI ", res); // Access 'count' using 'self.data.count'
+        if (showReview) {
+          table.setData({
+            reviewOn: true,
+            redeemPin: false,
+            makePayment: false,
+          });
+        }
+      },
+      fail: function (res) {
+        console.log("redeemPointsAPI fail", res)
+        my.alert({ content: 'redeemPointsAPI fail...!' });
+      },
+    });
+  },
+
 });

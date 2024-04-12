@@ -13,7 +13,7 @@
 
     <!-- QR Scanner -->
 
-<view a:if="{{ !nextPage && !makePayment }}">
+<view a:if="{{ !nextPage && !makePayment  }}">
   <view>
     <text class="popup-heading">
       Scan to
@@ -34,8 +34,8 @@
     </view>
     <view class="nxt-btn">
       <!-- <button onTap="nextScreen">Next</button> -->
-      <!-- <button onTap="validateInputs">Next</button> -->
-      <button onTap="reviewModalClick">Next</button>
+      <button onTap="validateInputs">Next</button>
+      <!-- <button onTap="reviewModalClick">Next</button> -->
     </view>
     <!-- <button onTap="closePopup">Close</button> -->
   </view>
@@ -47,7 +47,7 @@
 
     <!-- Chooes redeem option -->
 
-   <view a:if="{{ nextPage && !makePayment && !redeemPoint && !payCash && !payPin }}">
+   <view a:if="{{ nextPage && !makePayment && !redeemPoint && !payCash && !payPin && !reviewOn  }}">
   <view class="waikiki-section">
     <view class="waikiki-popup-img">
       <!-- <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" /> -->
@@ -65,39 +65,17 @@
       {{amountInput}}
     </view>
     <view class="check-btn">
-      <button class="content-btn" size="default" onTap="makePaymentModalClick">Redeem your earned points</button>
-      <button class="content-btn" size="default" onTap="payCashModalClick">Pay cash, get reward</button>
+      <button a:if="{{ !allPointsRedeemed }}" class="content-btn" size="default" onTap="redeemYourPointsAPI">Redeem your earned points</button>
+      <!-- <button class="content-btn" size="default" onTap="payCashModalClick">Pay cash, get reward</button> -->
+      <button class="content-btn" size="default" onTap="payCashGetRewardsAPI">Pay cash, get reward</button>
       <button class="content-btn" size="default" onTap="payPinModalClick">Pay and collect reward</button>
     </view>
 
   </view>
 </view>
-
     <!-- Chooes redeem option end here -->
 
-        <!-- picker Design -->
-
-        <!-- <view class="section">
-          <view class="section-title"> region picker</view>
-          <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
-            <view class="picker">
-              Select City {{array[index]}}
-            </view>
-          </picker>
-          
-          <picker onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
-            <view class="row">
-              <view class="row-title">ObjectArray</view>
-              <view class="row-extra">Current selection:{{objectArray[arrIndex].name}}</view>
-              <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
-            </view>
-          </picker>
-        </view> -->
-        <!-- picker Design end -->
-
-    
     <!-- make payment page -->
-
   <view a:if="{{ makePayment && !redeemPoint || payCash && !paymentSuccess || payPin && !redeemPin }}">
   <text class="popup-heading payment-model-heading">
     Make payment to
@@ -192,7 +170,7 @@
 
     <!-- Review page start here -->
 
-  <view a:if="{{ reviewOn }}">
+  <view a:if="{{ reviewOn }}">    
   <text class="popup-heading payment-model-heading">
     Review
   </text>
@@ -209,12 +187,12 @@
     <view class="section-title">
       Please rate your experience
     </view>
-    <view class="rateing-star" onTap="handleRating">
-      <image id="star0" src="/assets/star.svg" data-index="0" />
-      <image id="star1" src="/assets/star.svg" data-index="1" />
-      <image id="star2" src="/assets/star.svg" data-index="2" />
-      <image id="star3" src="/assets/star.svg" data-index="3" />
-      <image id="star4" src="/assets/star.svg" data-index="4" />
+    <view class="rateing-star">
+      <image src="{{ starStatus[0] }}" onTap="handleRating" data-index="0" />
+      <image src="{{ starStatus[1] }}" onTap="handleRating" data-index="1" />
+      <image src="{{ starStatus[2] }}" onTap="handleRating" data-index="2" />
+      <image src="{{ starStatus[3] }}" onTap="handleRating" data-index="3" />
+      <image src="{{ starStatus[4] }}" onTap="handleRating" data-index="4" />
     </view>
 
   </view>
@@ -223,10 +201,11 @@
       Have something to say? Please drop a comment
     </view>
     <view class="text-box">
-      <textarea class="textarea"></textarea>
+      <!-- <textarea class="textarea"></textarea> -->
+      <textarea class="textarea" value="{{ reviewComment }}" onInput="handleReviewCommentInput"></textarea>
     </view>
   </view>
-  <button class="content-btn">Post</button>
+  <button class="content-btn" onTap="postReview">Post</button>
   <view class="share-receipt-box">
     <image src="/assets/share.svg" />
     <view class="share-receipt-text">
@@ -241,18 +220,18 @@
 
     <!-- Redeem points page start here -->
 
-  <view a:if="{{ redeemPoint && !redeemPin }}">
+  <view a:if="{{ redeemPoint && !redeemPin && makePayment }}">
   <text class="popup-heading payment-model-heading">
     Redeem points
   </text>
   <view class="waikiki-popup-img make-payment-img">
-    <image mode="scaleToFill" src="https://i.postimg.cc/5yDLn2Kq/Group-82.png" />
+    <image mode="scaleToFill" src={{getRedeemMerchantDetails.image}} />
   </view>
   <view class="lc-waikki-title">
-    LC Waikiki
+    {{getRedeemMerchantDetails.merchantName}}
   </view>
   <view class="value-total-amount payment-total-value">
-    135,000
+    {{getRedeemMerchantDetails.availablePoints}}
   </view>
   <view class="amount-pay">
     New transaction value
@@ -260,7 +239,7 @@
   <view class="transaction-reward-box">
     <view class="transaction-reward-value">
       <view class="transaction-reward-figure">
-        150,000
+        {{amountInput}}
       </view>
       <view class="transaction-reward-text">
         Transaction value
@@ -270,7 +249,7 @@
     <view class="center-line"></view>
     <view class="transaction-reward-value">
       <view class="transaction-reward-figure">
-        15,000
+        {{getRedeemMerchantDetails.percentage}} %
       </view>
       <view class="transaction-reward-text">
         Your points
@@ -294,7 +273,7 @@
         <text class="popup-heading payment-model-heading enter-pin-heading">
           Enter PIN
         </text>
-        <text class="pin-text">To redeem 15,000 points at LC Waikiki</text>
+        <text class="pin-text">To redeem {{amountInput}} points at {{getRedeemMerchantDetails.merchantName}}</text>
       </view>
       <view class="pin-input">
         <view class="pin-input-box">
