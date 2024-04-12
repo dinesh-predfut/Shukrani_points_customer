@@ -1,8 +1,7 @@
 <view class="setting-container">
   <view class="profile-container">
-    <view class="sub-container">
-      <image src="{{ imageUrl }}" mode="aspectFit" class="profilepicture" />
-
+    <view class="sub-container" style="background-image: url({{ imageUrl }})">
+      
     </view>
     <view class="camera-btn" onTap="openprofilepicturechange">
       <image class="bg-camera" mode="scaleToFill" src="../../Assets/camera_bg.png" />

@@ -36,9 +36,21 @@ Page({
   onReady() {},
   onShow() {
     // Page display
-    console.log("12344", this.data);
+   
+    
     this.userinfo();
-    this.UploadProfilePic()
+   
+    this.UploadProfilePic();
+     
+    console.log("12344", this.data);
+  },
+  onLoad: function(options) {
+    setTimeout(() => {
+ 
+   this.downloadimg()
+  
+    
+  }, 2000);
   },
   onHide() {
     // Page hidden
@@ -66,7 +78,7 @@ Page({
       changePin: true
 
     })
-
+    console.log("12344ssss", this.data);
   },
 
 
@@ -245,7 +257,7 @@ Page({
         fileName: 'image',
         filePath: imagePath,
         headers: {
-          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyODk3NDg1LCJleHAiOjE3MTI5ODM4ODV9.bKrKYDkV1BWyfv6hglNoZ0EKy6jqg1AdMoY22FyA6i4"]
         },
       });
 
@@ -253,15 +265,19 @@ Page({
         const decodeData = await my.httpResponse({
           url: uploadResponse.apFilePath,
         });
-
+        my.navigateTo({
+          url: '/pages/Settings/setting'
+        })
         const result = JSON.parse(decodeData.data);
-        console.log("upload profile image response ==> ", result);
-
+        console.log("upload profile image response ==> ", decodeData);
+        this.setData({
+          imageUrl: result.imageUrl // Assuming 'imageUrl' is the property in the response containing the image URL
+        });
         // Update UI or perform other actions as needed
 
-        my.hideLoading();
+       
       } else {
-        console.error('Failed to upload image. Status code: ', uploadResponse.statusCode);
+        // console.error('Failed to upload image. Status code: ', uploadResponse.statusCode);
         my.hideLoading();
       }
     } catch (error) {
@@ -288,7 +304,7 @@ Page({
       },
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyODk3NDg1LCJleHAiOjE3MTI5ODM4ODV9.bKrKYDkV1BWyfv6hglNoZ0EKy6jqg1AdMoY22FyA6i4"]
       },
       dataType: 'json',
       success: function (res) {
@@ -316,13 +332,15 @@ Page({
 
   },
   userinfo() {
+  
     const self = this;
+    
     my.request({
       url: `http://52.51.249.84:8080/api/app/userProfile`,
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyODk3NDg1LCJleHAiOjE3MTI5ODM4ODV9.bKrKYDkV1BWyfv6hglNoZ0EKy6jqg1AdMoY22FyA6i4"]
       },
       dataType: 'json',
       success: function (res) {
@@ -330,7 +348,7 @@ Page({
           userProfile: res.data,
 
         });
-
+      // downloadimg()
         // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {
@@ -340,9 +358,38 @@ Page({
       },
 
     });
-
+  
 
   },
+  downloadimg() {
+    const imageDataId = this.data.userProfile.image;
+    console.log("imageDataId", imageDataId);
+    
+    my.request({
+      url: `http://52.51.249.84:8080/api/app/downloaduserimage/${imageDataId}`,
+      method: 'get',
+      headers: {
+        'authorization': ['Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyODk3NDg1LCJleHAiOjE3MTI5ODM4ODV9.bKrKYDkV1BWyfv6hglNoZ0EKy6jqg1AdMoY22FyA6i4']
+      },
+      dataType: 'json',
+     
+      fail: function (res) {
+        my.alert({
+          content: 'fail'
+        });
+      },
+      success: (res) => {
+        // Assuming the response contains the image URL
+        const imageUrl = res.data;
+        // console.log("12344wwwww", this.data);
+        // Set the image URL to the data
+        this.setData({
+          imageUrl: imageUrl
+        });
+      },
+    });
+  },
+  
   changePhonenumber() {
 
     const self = this;
@@ -435,7 +482,7 @@ Page({
 
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyNjM1ODY3LCJleHAiOjE3MTI3MjIyNjd9.AKnJjYkN4f8ZVcSnFVghjS_ieBHo_g94HTIvdTK8obk"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyODk3NDg1LCJleHAiOjE3MTI5ODM4ODV9.bKrKYDkV1BWyfv6hglNoZ0EKy6jqg1AdMoY22FyA6i4"]
       },
 
       success: function (res) {
