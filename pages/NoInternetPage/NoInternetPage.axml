@@ -1,0 +1,12 @@
+<view class="failde-section">
+  <view class="failde-section-img-title">
+      <view class="failde-error-img">
+        <image src="/assets/wifi-warning-filled.svg" />
+      </view>
+      <view class="failed-title">FAILED</view>
+  </view>
+  <view class="failde-btn">
+    <view>No internet connection</view>
+      <button>Connect</button>
+  </view>
+</view>

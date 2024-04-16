@@ -2,12 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/rewards/rewards",
-    "pages/redeem/redeem", 
+    "pages/redeem/redeem",
     "pages/brands/brands",
     "pages/Settings/setting",
-    "pages/Notification/notification"
+    "pages/Notification/notification",
+    "pages/NoInternetPage/NoInternetPage",
+    "pages/FailPage/FailPage"
   ],
   "window": {
-    "defaultTitle": "My App"     
+    "defaultTitle": "My App"
   }
 }

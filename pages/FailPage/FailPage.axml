@@ -1,0 +1,12 @@
+<view class="warning-section">
+  <view class="warning-section-img-title">
+      <view class="warning-error-img">
+        <image src="/assets/warning.svg" />
+      </view>
+      <view class="failed-title">FAILED</view>
+  </view>
+  <view class="warning-btn">
+    <view>You transaction has failed</view>
+      <button>Try again</button>
+  </view>
+</view>
