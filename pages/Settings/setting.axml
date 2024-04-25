@@ -28,12 +28,15 @@
     <button size="default" type="primary" onTap="aboutinfoBtn">
       <image mode="scaleToFill" src="../../Assets/about-50.png" />About Shukarani
     </button>
+    <button size="default" type="primary" onTap="faqBtn">
+      <image id="faq" mode="scaleToFill" src="../../Assets/faq-48.png" />FAQs 
+    </button> 
 
   </view >
-  <view class="language-name-profile">Change language ?</view>
+  <view class="language-name-profile2">Change language ?</view>
   <view class="language">KSW</view>
   <view class="language-name-profile" onTap="opendelect">Delect my account</view>
-  <view class="language-name-profile">About Shukarani V.2</view>
+  <view class="language-name-profile3">About Shukarani V.2</view>
   <button size="default" class="sigin-out-btn" type="primary">
     Sign Out
     <image mode="scaleToFill" src="../../Assets/btn_arrow_right.png" />
@@ -267,6 +270,74 @@
 
     </view>
   </view>
+</model>
+<model show="{{showfaq}}" position="bottom" closePopup="closewithdraw"> 
+<view class="faqTitle">FAQs</view>
+  <view style="height: 400px; background: rgb(102, 51, 151, 1);color:white;  display: flex; ">
+    <view class="close-delect" onTap="closedelectpopup">
+      <icon class="close-icon-delect" type="clear" aria-label="clear" />
+    </view>
+    <collapse
+    className="demo-collapse"
+    collapseKey="collapse1"
+    activeKey="{{['item-11', 'item-13']}}"
+    onChange="onChange"
+  >
+    <collapse-item header="How to get the Rewards point" itemKey="item-11" collapseKey="collapse1">
+      <view class="item-content content1">
+        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+      </view>                
+    </collapse-item>
+    <collapse-item header="How to send the Rewards" itemKey="item-12" collapseKey="collapse1">
+      <view class="item-content content2">
+        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+      </view>
+    </collapse-item>
+    <collapse-item header="how to get the more rewards" itemKey="item-13" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="how to claim the Rewards" itemKey="item-14" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="what happen when payment is failed" itemKey="item-15" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Content region</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="how to refund the unsuccessfull payment" itemKey="item-16" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Content region</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="how to reset the pin" itemKey="item-17" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Content region</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="where i can get the rewards eligibility table" itemKey="item-18" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Content region</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="where i can get the rewards calculation" itemKey="item-19" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Content region</view>         
+      </view>
+    </collapse-item>
+    <collapse-item header="how to deactivate the my account" itemKey="item-20" collapseKey="collapse1">
+      <view class="item-content content3">
+        <view>Content region</view>         
+      </view>
+    </collapse-item>
+  </collapse>
+  </view>
+
+
+
 </model>
 </view>
 

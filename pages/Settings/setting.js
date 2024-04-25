@@ -8,6 +8,7 @@ Page({
   ShowTermsandconditoins: false,
   ShowPrivacyandPolicy: false,
   Showabout: false,
+  showfaq:"false",
 
   reenderpin: "",
   mixins: [],
@@ -162,6 +163,12 @@ Page({
   termsandconditionBtn() {
     this.setData({
       ShowTermsandconditoins: true,
+
+    })
+  },
+  faqBtn() {
+    this.setData({
+      showfaq: true,
 
     })
   },
