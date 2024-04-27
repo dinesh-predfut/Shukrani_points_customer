@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "cryptr": "^6.3.0",
+    "i18n": "^0.15.1",
+    "mini-antui": "^0.5.2",
+    "secure-encrypt": "^1.0.12"
+  }
+}

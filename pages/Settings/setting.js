@@ -11,7 +11,7 @@ Page({
   showfaq:"false",
 
   reenderpin: "",
-  mixins: [],
+  mixins: [], 
   data: {
     providers,
     providersSearchResult: [],
@@ -81,8 +81,8 @@ Page({
     })
     console.log("12344ssss", this.data);
   },
-
-
+ 
+  
   closewithdraw() {
     this.setData({
       changePin: false
