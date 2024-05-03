@@ -1,46 +1,53 @@
 import providers from '/data/providers'
+import {
+  getLanguage,
+  translate
+} from "../translation"
 
+const app = getApp();
 
 Page({
-  
+
   mixins: [],
   data: {
-      
+    hello: '',
+    brands: '',
+    currentLanguage: '',
     providers,
     count: [],
     transactionData: [],
     providersSearchResult: [],
     providerName: [],
-    userProfile:[],
-    CategoryFilter:[],
-    selectedCategory:[],
-    categoryrespon:[],
+    userProfile: [],
+    CategoryFilter: [],
+    selectedCategory: [],
+    categoryrespon: [],
     isSearch: false,
     sharepointsvalue: [],
     array: ['Category', 'Bakery', 'Bar', 'Beauty'],
     objectArray: [{
-        id:0,
-        name: 'Category',
+        id: 0,
+        name: "category",
       },
       {
-        id:1,
-        name: 'Park',
-      },
-      {
-        id: 2,
+        id: 1,
         name: 'Bakery',
       },
       {
-        id: 3,
+        id: 2,
         name: 'Bar',
       },
       {
-        id: 4,
+        id: 3,
         name: 'Beauty',
       },
       {
+        id: 4,
+        name: 'Bookstore',
+      },
+      {
         id: 5,
-        name: 'Book Store',
+        name: 'Business_category',
       },
       {
         id: 6,
@@ -48,24 +55,203 @@ Page({
       },
       {
         id: 7,
-        name: 'Doctors',
+        name: 'Coffee Shops',
       },
       {
         id: 8,
-        name: 'Electronics',
+        name: 'Cosmetics',
       },
       {
         id: 9,
-        name: 'Fast Foods',
+        name: 'Decor',
       },
       {
         id: 10,
-        name: 'Florists',
+        name: 'Electronics',
       },
       {
         id: 11,
-        name: 'Cosmetrics',
+        name: 'fashion',
       },
+      {
+        id: 12,
+        name: 'Fast Food',
+      },
+      {
+        id: 13,
+        name: 'Florists',
+      },
+      {
+        id: 14,
+        name: 'Groceries',
+      }, {
+        id: 15,
+        name: 'Gym',
+      },
+      {
+        id: 16,
+        name: 'Hotel',
+      },
+      {
+        id: 17,
+        name: 'Laundry',
+      },
+      {
+        id: 18,
+        name: 'Liquor_stores',
+      },
+      {
+        id: 19,
+        name: 'Pets',
+      },
+      {
+        id: 20,
+        name: 'Resort',
+      },
+      {
+        id: 21,
+        name: 'Restaurant',
+      },
+      {
+        id: 22,
+        name: 'Saloon',
+      },
+      {
+        id: 23,
+        name: 'Shopping',
+      }, {
+        id: 24,
+        name: 'Spa',
+      },
+      {
+        id: 25,
+        name: 'Supermarkets',
+      },
+      {
+        id: 26,
+        name: 'Travel',
+      },
+      {
+        id: 27,
+        name: 'Yoga',
+      },
+      {
+        id: 28,
+        name: 'business_category',
+      },
+
+    ],
+    spanishOptions: [{
+      id: 0,
+      name: "category",
+    },
+    {
+      id: 1,
+      name: 'Bakery',
+    },
+    {
+      id: 2,
+      name: 'Bar',
+    },
+    {
+      id: 3,
+      name: 'Urembo',
+    },
+    {
+      id: 4,
+      name: 'Duka la vitabu',
+    },
+    {
+      id: 5,
+      name: 'Aina ya Biashara',
+    },
+    {
+      id: 6,
+      name: 'Maduka ya nyama',
+    },
+    {
+      id: 7,
+      name: 'Coffee Shops',
+    },
+    {
+      id: 8,
+      name: 'Vipodozi',
+    },
+    {
+      id: 9,
+      name: 'Samani',
+    },
+    {
+      id: 10,
+      name: 'Vifaa vya umeme',
+    },
+    {
+      id: 11,
+      name: 'Mitindo',
+    },
+    {
+      id: 12,
+      name: 'Wauza maua',
+    },
+    {
+      id: 13,
+      name: 'Florists',
+    },
+    {
+      id: 14,
+      name: 'Groceries',
+    }, {
+      id: 15,
+      name: 'Gym',
+    },
+    {
+      id: 16,
+      name: 'Hoteli',
+    },
+    {
+      id: 17,
+      name: 'Dobi',
+    },
+    {
+      id: 18,
+      name: 'Maduka ya pombe',
+    },
+    {
+      id: 19,
+      name: 'Pets',
+    },
+    {
+      id: 20,
+      name: 'Mapumziko',
+    },
+    {
+      id: 21,
+      name: 'Mgahawa',
+    },
+    {
+      id: 22,
+      name: 'Saluni',
+    },
+    {
+      id: 23,
+      name: 'Manunuzi',
+    }, {
+      id: 24,
+      name: 'Spa',
+    },
+    {
+      id: 25,
+      name: 'Maduka makubwa',
+    },
+    {
+      id: 26,
+      name: 'Usafiri',
+    },
+    {
+      id: 27,
+      name: 'Yoga',
+    },
+    
     ],
     arrIndex: 0,
     index: 0
@@ -74,11 +260,19 @@ Page({
   didUpdate() {},
   didUnmount() {},
   onLoad(query) {
-    // Page load
-
-    console.info(`Page onLoad witsh query`, providers);
     this.setData({
-      providersSearchResult: this.data.providers
+      hello: app.translate("hello"),
+      brands: app.translate("brands") 
+    });
+    const language = app.globalData.language
+    this.setData({
+      currentLanguage: language
+    })
+    console.info(`Page onLoad witsh query`, language);
+    this.userinfo()
+    this.setData({
+      providersSearchResult: this.data.providers,
+      // currentLanguage:language  
     }, )
   },
   onReady() {},
@@ -103,6 +297,14 @@ Page({
   onPullDownRefresh() {},
   onReachBottom() {
     // Page is pulled to the bottom
+  },
+  
+  setLanguage(language) {
+    this.setData({
+      currentLanguage: language,
+      greeting: translate("greeting", language),
+      farewell: translate("farewell", language)
+    });
   },
   onShareAppMessage() {
     // Back to custom sharing information
@@ -192,12 +394,12 @@ Page({
     const data = this.data.transactionData;
     const filteredData = data.filter(item => item.category === categoryFilter);
     console.log('picker sends selection change, carried value ', arrayIndex);
-  
+
     my.request({
       url: `http://52.51.249.84:8080/api/app/getRewardDataByCategory?category=${finalValue.name}`,
       method: 'GET',
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -217,7 +419,7 @@ Page({
       }
     });
   },
-  
+
 
   onSearchInput(e) {
     const searchKey = e.detail.value || '';
@@ -252,7 +454,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -273,13 +475,13 @@ Page({
   },
   transactionAPI() {
     const table = this;
-    const selectedcategory=this.dataselectedcategory 
-    if(!selectedcategory){
+    const selectedcategory = this.dataselectedcategory
+    if (!selectedcategory) {
       my.request({
         url: 'http://52.51.249.84:8080/api/app/transactions',
         method: 'GET',
         headers: {
-          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
         },
         dataType: 'json',
         success: function (res) {
@@ -293,14 +495,13 @@ Page({
             content: 'transactionfail'
           });
         },
-  
+
       });
-  
-    }
-    else{
+
+    } else {
       this.onProviderCellTap()
     }
-   
+
   },
   sharePoints(e) {
     this.setData({
@@ -331,19 +532,19 @@ Page({
         merchantId: merchantId
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
       dataType: 'json',
       success: function (res) {
         self.setData({
           count: res.data,
-        
+
         });
         my.showToast({
           type: 'success',
           content: 'Successfully Shared your Point',
           duration: 3000,
-    
+
         });
         my.navigateTo({
           url: '/pages/index/index'
@@ -360,15 +561,15 @@ Page({
 
 
   },
-deleteMercentreward() {
+  deleteMercentreward() {
     const self = this;
-  
+
     const merchantId = this.data.transactionData[0].merchantId;
     console.log("e value", merchantId);
     my.request({
       url: `http://52.51.249.84:8080/api/app/reward/${merchantId}`,
       method: 'delete',
-     
+
       headers: {
         "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0Njc2LCJleHAiOjE3MTIyMjEwNzZ9.PZMEJD1XwsacezBE-noy_0GGJYpZXgcbVHaIVlnDUgk"]
       },
@@ -376,7 +577,7 @@ deleteMercentreward() {
       success: function (res) {
         self.setData({
           count: res.data,
-        
+
         });
         my.navigateTo({
           url: '/pages/index/index'
@@ -398,17 +599,17 @@ deleteMercentreward() {
     my.request({
       url: `http://52.51.249.84:8080/api/app/userProfile`,
       method: 'GET',
-     
+
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
       dataType: 'json',
       success: function (res) {
         self.setData({
           userProfile: res.data,
-        
+
         });
-      
+
         // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {

@@ -1,7 +1,13 @@
 <view class="setting-container">
   <view class="profile-container">
-    <view class="sub-container" style="background-image: url({{ imageUrl }})">
-      
+    <view class="sub-container">
+      <image
+        src="data:image/jpeg;base64,660d309a6ded3e06f324686f"
+        mode="aspectFit"
+        class="profilepicture"
+        id="profile-image"
+      />
+
     </view>
     <view class="camera-btn" onTap="openprofilepicturechange">
       <image class="bg-camera" mode="scaleToFill" src="../../Assets/camera_bg.png" />
@@ -10,7 +16,7 @@
     <view class="profil-text">{{userProfile.firstName}}</view>
     <view class="profil-text">{{userProfile.phoneNumber}}</view>
   </view>
-  <view class="title-name-profile " style="margin-left:30px!important"> Settings
+  <view class="title-name-profile " style="margin-left:30px!important"> Settings {{greeting}}
   </view>
   <view class="setting-btn">
     <button size="default" type="primary" onTap="showPin">
@@ -20,7 +26,7 @@
       <image mode="scaleToFill" src="../../Assets/call-icon.png" />Change Phone number
     </button>
     <button size="default" onTap="termsandconditionBtn" type="primary">
-      <image mode="scaleToFill" src="../../Assets/term-condition.png" />Terms and conditons
+      <image mode="scaleToFill" src="../../Assets/term-condition.png" />{{ terms_condition}}
     </button>
     <button size="default" type="primary" onTap="privacyandpolicybtn">
       <image mode="scaleToFill" src="../../Assets/term-condition.png" />Privacy and Policy
@@ -29,12 +35,12 @@
       <image mode="scaleToFill" src="../../Assets/about-50.png" />About Shukarani
     </button>
     <button size="default" type="primary" onTap="faqBtn">
-      <image id="faq" mode="scaleToFill" src="../../Assets/faq-48.png" />FAQs 
-    </button> 
+      <image id="faq" mode="scaleToFill" src="../../Assets/faq-48.png" />FAQs
+    </button>
 
   </view >
   <view class="language-name-profile2">Change language ?</view>
-  <view class="language">KSW</view>
+  <view class="language" onTap="changelanguagebtn">KSW</view>
   <view class="language-name-profile" onTap="opendelect">Delect my account</view>
   <view class="language-name-profile3">About Shukarani V.2</view>
   <button size="default" class="sigin-out-btn" type="primary">
@@ -51,43 +57,17 @@
       <view class="changePinTitle">Change Pin</view>
       <view class="changeBtnSection">
         <view>
-        <f-input placeholder="Enter Pin" class="p-20" onInput="enterPin">
-          <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
-        </f-input>
-      </view>
-      <view>
-        <f-input placeholder="Re-Enter Pin" class="p-20" onInput="reenterPin">
-          <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
-        </f-input>
-      </view>
-      
-        <button size="default" type="primary" onTap="chaangePin" class="nextBtn">
-          Next 
-          <image
-            mode="scaleToFill"
-            src="../../Assets/btn_arrow_right.png"
-            class="changePinImg"
-          />
-        </button>
-      </view>
-    </view>
-  </model>
-  <!-- <model show="{{changePinOTP}}" position="bottom" closePopup="closewithdraw">
-    <view class="close-btn" onTap="closewithdrawOTP">
-      <icon class="close-icon" type="clear" aria-label="clear" />
-    </view>
-    <view style="margin:3%" class="changepin">
-      <image mode="scaleToFill" src="../../Assets/icons-lock.png" class="changePinImg" />
-      <view class="changePinTitle">Enter OTP</view>
-
-      <view class="changeBtnSection">
-        <view class="changePinnumber">Enter OTP sent to *****34</view>
-        <view class="OTPenterbox">
-          <f-input placeholder="Enter the OTP" class="p-20" onInput="enterOTP">
+          <f-input placeholder="Enter Pin" class="p-20" onInput="enterPin">
             <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
           </f-input>
         </view>
-        <button size="default" type="primary" onTap="SuccessNext" class="nextBtn">
+        <view>
+          <f-input placeholder="Re-Enter Pin" class="p-20" onInput="reenterPin">
+            <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
+          </f-input>
+        </view>
+
+        <button size="default" type="primary" onTap="chaangePin" class="nextBtn">
           Next
           <image
             mode="scaleToFill"
@@ -97,7 +77,14 @@
         </button>
       </view>
     </view>
-  </model> -->
+  </model>
+  <!--<model show="{{changePinOTP}}" position="bottom" closePopup="closewithdraw"><view class="close-btn" onTap="closewithdrawOTP"><icon class="close-icon" type="clear" aria-label="clear" /></view><view style="margin:3%" class="changepin"><image mode="scaleToFill" src="../../Assets/icons-lock.png" class="changePinImg" /><view class="changePinTitle">Enter OTP</view>
+<view class="changeBtnSection"><view class="changePinnumber">Enter OTP sent to *****34</view><view class="OTPenterbox"><f-input placeholder="Enter the OTP" class="p-20" onInput="enterOTP"><image src="/Assets/lock-icon.png" slot="iconInnerLeft" /></f-input></view><button size="default" type="primary" onTap="SuccessNext" class="nextBtn">
+          Next<image
+            mode="scaleToFill"
+            src="../../Assets/btn_arrow_right.png"
+            class="changePinImg"
+          /></button></view></view></model> -->
   <!-- CHANGE PASSWORD SECTION -->
   <model show="{{ShowchangePNumber}}" position="bottom" closePopup="closewithdraw">
     <view class="close-btn" onTap="closePhoneNumberchange">
@@ -108,16 +95,13 @@
       <view class="changePinTitle">Change Phone Number</view>
 
       <view class="changeBtnSection">
-        <view class="changePinnumber">Change ***** {{(userProfile.phoneNumber).slice(-3)}} as your number</view>
-        <view class="reward-input pay-number-input">
-          <input placeholder="New Phone Number" onInput="changenumber"/>
+        <view class="changePinnumber">
+          Change ***** {{(userProfile.phoneNumber).slice(-3)}} as your number
         </view>
-        <button
-          size="default"
-          type="primary"
-          onTap="changePhonenumber"
-          class="phoneNumberchange"
-        >
+        <view class="reward-input pay-number-input">
+          <input placeholder="New Phone Number" onInput="changenumber" />
+        </view>
+        <button size="default" type="primary" onTap="changePhonenumber" class="phoneNumberchange">
           Change
         </button>
       </view>
@@ -132,16 +116,13 @@
       <view class="changePinTitle">Authentication</view>
 
       <view class="changeBtnSection">
-        <view class="changePinnumberOTP">Enter OTP sent to ***** {{(userProfile.phoneNumber).slice(-3)}}</view>
+        <view class="changePinnumberOTP">
+          Enter OTP sent to ***** {{(userProfile.phoneNumber).slice(-3)}}
+        </view>
         <f-input placeholder="Enter OTP " class="p-10 " onInput="changenumbrtOTP">
           <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
         </f-input>
-        <button
-          size="default"
-          type="primary"
-          onTap="OTPvalidate"
-          class="nextBtn"
-        >
+        <button size="default" type="primary" onTap="OTPvalidate" class="nextBtn">
           Save
           <image
             mode="scaleToFill"
@@ -235,113 +216,165 @@
     </view>
   </model>
   <!-- About Popup -->
-  <model show="{{showDelect}}" position="bottom" closePopup="closewithdraw"> 
+  <model show="{{showDelect}}" position="bottom" closePopup="closewithdraw">
 
     <view style="height: 400px; background: rgb(102, 51, 151, 1);color:white;  display: flex; justify-content: center; align-items: center;">
       <view class="close-delect" onTap="closedelectpopup">
         <icon class="close-icon-delect" type="clear" aria-label="clear" />
       </view>
-     
-      
-      <view class='withdraw-bold ' style="margin-top:-150px">Delete account and all personal data?</view>
+
+
+      <view class='withdraw-bold ' style="margin-top:-150px">
+        Delete account and all personal data?
+      </view>
       <button size="default" class="pop-up-btn-no" onTap="showshare">  No
       </button>
       <button size="default" class="pop-up-btn-yes" onTap="showshare">  Yes
       </button>
     </view>
-  
-  
+
+
   </model>
-  <model
-  show="{{Showabout}}"
-  position="bottom"
-  closePopup="closewithdraw"
-  id="changeprofilesection"
->
-  <view class="popup-23" catchtap="closewithdraw">
-    <view class="close-btn" onTap="closeabout">
-      <icon class="close-icon" type="clear" aria-label="clear" />
+  <!-- About Popup -->
+  <model show="{{showlanguageoption}}" position="bottom" closePopup="closelanguagepopup">
+
+    <view style="height: 400px; background: rgb(102, 51, 151, 1);color:white;  display: flex; justify-content: center; align-items: center;">
+      <view class="close-delect" onTap="closelanguagepopup">
+        <icon class="close-icon-delect" type="clear" aria-label="clear" />
+      </view>
+
+
+      <view class='withdraw-bold ' style="margin-top:-150px">
+        Select the Language
+      </view>
+      <button size="default" class="pop-up-btn-no" onTap ="changeLanguageToenglish">  English
+      </button>
+      <button size="default" class="pop-up-btn-yes" onTap="changetoswahili">  Swahili
+      </button>
     </view>
-    <view class="changeProfilepicTitle">About Shukrani</view>
-    <view class="container">
-      Welcome to shukurani! SHUKURANI COMPANY(shukurani) provides Application and website features and other products and services to you when you visit www.shukurani.co.tz (the "website" )or download shukurani Mobile Application, use shukurani devices, products, or services, use shukurani applications for mobile, or use the software provided by Shukurani company in connection with any of the foregoing (collectively "shukurani Services"). Please see our privacy notice to understand how we collect and process your personal information. shukuraniadvertise and sells deals to you subject to the conditions set out on this page. CONDITIONS OF USE Please read these conditions carefully before using shukurani Services. By using shukurani Services, you signify your agreement to be bound by these conditions. PRIVACY shukurani shall follow the privacy policy posted on its website at www.shukurani,co.tz/privacypolicy when collecting and using information from you. shukurani may amend the privacy policy at any time by posting the amended privacy policy on its website. By using the App, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Use. ELECTRONIC COMMUNICATIONS When you use any shukurani Service, you are communicating with us electronically. We will communicate with you electronically in a variety of ways, such as by email, text message, call, in-app push notices or by posting e-mail messages or communications on the App. For contractual purposes, you agree that all agreements, notices, disclosures and other communications that we provide you electronically satisfy any legal requirement that such communications be in writing, unless mandatory applicable laws specifically require a different form of communication. RECOMMENDATIONS AND PERSONALISATION As part of the shukurani Services, we may recommend features, products, and services, including third-party ads that might be of interest to you, identify your preferences, and personalise your experience. COPYRIGHT, AUTHORS' RIGHTS AND DATABASE RIGHTS All content included in or made available through any shukurani Service, such as text, graphics, logos, button icons, images, audio clips, digital downloads and data compilations is the property of shukurani or its content suppliers and is protected by applicable Copyright laws. The compilation of all content included in or made available through any shukurani Service is the exclusive property of shukurani and is protected by Tanzanian Copyright laws. You may not extract and/or re-utilise parts of the content of any shukurani Service without our express written consent. In particular, you may not utilise any data mining, robots, or similar data gathering and extraction tools to extract (whether once or many times) for re-utilisation of any substantial parts of the content of any shukurani Service, without our express written consent. You may also not create and/or publish your own database that features substantial parts of any shukurani Service (e.g. our prices and product listings) without our express written consent. TRADEMARK In addition, graphics, logos, page headers, button icons, scripts, and service names included in or made available through any shukurani Service are trademarks or trade dress of shukurani. shukurani's trademarks and trade dress may not be used in connection with any product or service that is not shukurani’s, in any manner that is likely to cause confusion among customers or in any manner that disparages or discredits shukurani. All other trademarks not owned by shukurani that appear in any shukurani Service are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by shukurani. LICENCE AND ACCESS Subject to your compliance with these Conditions of Use and applicable Service Terms and your payment of any applicable fees, shukurani or its content providers may grant you a limited, non-exclusive, non-transferable, non-sublicensable licence to access and make personal and non-commercial use of the shukurani Services. This license does not include any resale or commercial use of any shukurani Service or its contents; any collection and use of any product listings, descriptions, or prices; any derivative use of any shukurani Service or its contents; any downloading or copying of account information for the benefit of another merchant; or any use of data mining, robots, or similar data gathering and extraction tools. All rights not expressly granted to you in these Conditions of Use or any Service Terms are reserved and retained by shukurani or its licensors, suppliers, publishers, rights holders, or other content providers. No shukurani Service, nor any part of any shukurani Service, may be reproduced, duplicated, copied, sold, resold, visited, or otherwise exploited for any commercial purpose without our express written consent. You may not frame or use framing techniques to enclose any trademark, logo or other proprietary information (including images, text, page layout, or form) of shukurani without our express written consent. You may not use any meta tags or any other "hidden text" utilising shukurani's names or trademarks without our express written consent. You may not misuse the shukurani Services. You may use the shukurani Services only as permitted by law. The licences granted by shukurani terminate if you do not comply with these Conditions of Use or any Service Terms. YOUR ACCOUNT You may need your own shukurani account to use certain shukurani Services, and you may be required to be logged into the account with a valid registered phone number. If you use any shukurani Service you are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer and smartphone, and to the extent permitted by applicable law you agree to accept responsibility for all activities that occur under your account or password. You should take all necessary steps to ensure that the password is kept confidential and secure and should inform us immediately if you have any reason to believe that your password has become known to anyone else, or if the password is being, or is likely to be used in an unauthorised manner. You are responsible for ensuring that the details you provide us with are correct and complete, and for informing us of any changes to the information you have provided. You can access your information in the Account section of the App. You must not use any shukurani Service: (i) in any way that causes, or is likely to cause, any shukurani Service, or any access to it to be interrupted, damaged or impaired in any way, or (ii) for fraudulent purposes, or in connection with a criminal offence or other unlawful activity, or (iii) to cause annoyance, inconvenience or anxiety. We reserve the right to use your Data, refuse service, suspend or terminate accounts or remove or edit content if you are in breach of applicable laws, these Conditions of Use or any other applicable terms and conditions, guidelines or policies. REVIEWS, COMMENTS, COMMUNICATIONS AND OTHER CONTENT Visitors may post reviews, comments and other content; send e-cards and other communications; and submit suggestions, ideas, comments, questions or other information, as long as the content is not illegal, obscene, abusive, threatening, defamatory, invasive of privacy, infringing of intellectual property rights, or otherwise injurious to third parties or objectionable and does not consist of or contain software viruses, political campaigning, commercial solicitation, chain letters, mass mailings or any form of "spam". You may not use a false e-mail address, impersonate any person or entity, or otherwise mislead as to the origin of a card or other content. We reserve the right to remove or edit such content. If you believe that any content on or advertised for sale on any shukurani Service contains a defamatory statement, or that your intellectual property rights are being infringed by an item or information on any shukurani Service, please notify us by completing and submitting the appropriate notice form and we will respond. If you post customer reviews, comments, customer questions or answers, or other content generated by you for display on the App (including any images, video or audio, all together "content", you grant shukurani (a) a non-exclusive, royalty-free licence to use, reproduce, publish, make available, translate and modify such content throughout the world (including the right to sublicense these rights to third parties) and (b) the right to use the name that you submit in connection with such content. No moral rights are transferred by this provision. You may delete your content from public view or, where such functionality is offered, change settings so that it is only shown to people to whom you grant access. You represent and warrant that you own or otherwise control all of the rights to the content that you post; that, as at the date that the content or material is posted: (i) the content and material is accurate; and (ii) use of the content and material you supply does not breach any applicable policies or guidelines and will not cause injury to any person or entity (including that the content or material is not defamatory). You agree to indemnify shukurani for all claims brought by a third party against shukurani arising out of or in connection with the content and material you supply except to the extent that any liability arises from our failure to properly remove the content when it is notified of the illegal nature of the content arising out of or on the grounds of, or originating from the content that you have communicated to us. By deleting content from public view, you withdraw your license for shukurani to publish and make available that content publicly. INTELLECTUAL PROPERTY CLAIMS shukurani respects the intellectual property of others. If you believe that your intellectual property rights have been used in a way that gives rise to concerns of infringement, please contact us on support@shukurani.co.tz Upon receipt of a complaint we may take certain actions, including removing information or an item, and termination of repeat infringers in appropriate circumstances. All such actions are taken without any admission as to liability and without prejudice to any rights, remedies or defences, all of which are expressly reserved. This includes forwarding the complaint to the parties involved in the provision of the allegedly infringing content. You agree to indemnify shukurani for all claims brought by a third party against shukurani arising out of or in connection with the submission of a complaint. 10. NOTICE AND PROCEDURE FOR NOTIFYING shukurani OF DEFAMATORY CONTENT Because millions of products are listed, and many thousands of customer reviews and comments are hosted on shukurani. It is not possible for us to be aware of the contents of each product listed for sale, or each customer review or comment that is displayed. Accordingly, we operate on a "notice and action" basis. If you believe that any content on, or within a product advertised for sale on, the shukurani website or App contains a defamatory statement, please notify shukurani immediately by sending an email to support@shukurani.co.tzwith the subject line " Defamation Notice [insert your name]" Important Warning: giving false, misleading, or inaccurate information in the email to shukurani, or shukurani WhatsApp or any other communication channels of Defamatory Content on shukurani website may result in civil and criminal liability. shukurani SOFTWARE TERMS In addition to these Conditions of Use, the terms found here apply to any software (including any updates or upgrades to the software and any related documentation) that we make available to you from time to time for your use in connection with shukurani Services (the shukurani Application and Website"). OTHER BUSINESSES Parties other than shukurani operate stores, provide services, or sell product lines on this App. In addition, we provide links, and location to the sites of affiliated companies and certain other businesses. We are not responsible for examining or evaluating, and we do not warrant the offerings of, any of these businesses or individuals or the content of their websites. shukurani does not assume any responsibility or liability for the actions, product, and content of all of these or any other third parties. You can tell when a third party is involved in your transactions, and we may share your information related to those transactions with that third party. You should carefully review their privacy statements and other conditions of use. shukurani’S ROLE shukurani allows third party sellers to list and sell their products deals at shukurani App and websitewww.shukurani.co.tz. In each such case this is indicated on the respective product detail page. While shukurani as a service provider helps facilitate transactions that are carried out on the shukuraniApp, shukurani is neither the manufacturer, importer, representative, buyer nor the seller of the seller's items and services. shukurani provides a service for deal owners /sellers and deal seekers/buyers to complete transactions. Accordingly, the contract formed at the completion of a sale for these third-party products and services is solely between deal seekers/buyer and deal owners/seller. shukurani is not a party to this contract nor assumes any responsibility arising out of or in connection with it. The seller is responsible for the sale of the products/service and for dealing with any buyer claims or any other issue arising out of or in connection with the contract between the deal seeker/buyer and deal owner/seller. OUR LIABILITY (DISCLAIMER) shukurani will do our utmost to ensure that availability of the shukurani Services will be uninterrupted and that transmissions will be error-free. However, due to the nature of the internet, this cannot be guaranteed. Also, your access to shukurani Services may also be occasionally suspended or restricted to allow for repairs, maintenance, or the introduction of new facilities or services. shukurani will attempt to limit the frequency and duration of any such suspension or restriction. shukurani will not be responsible for (i) losses that were not caused by any breach on our part, or (ii) any business loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure), or (iii) any loss caused by Fraud or misrepresentation, or (iv) any indirect or consequential losses that were not foreseeable to both you and us when you commenced using the shukurani Services. Each product and description displayed on the platform is according to information received from the Marchant. The sole responsibility of shukurani is to facilitate the contractual process between buyer/deal seekers and deal owners/Marchant. shukurani stands as an agent and therefore does not provide warrant, guarantee, or any kind of assurance on its services provided on the platform. DISPUTE SETTLEMENT Any dispute arising from the formation, validity, binding effect, interpretation of or the performance of the terms and conditions hereunder shall be resolved amicably by mediation. If mediation fails, the said dispute will be referred to Arbitration in the presence of an Arbitrator agreed by both parties and pursuant to the current arbitration rules. For the purpose of avoiding doubt, the place of mediation shall be within the United Republic of Tanzania, and the language for arbitration will be in English or Kiswahili upon the client’s choosing. The arbitration award shall be accepted as final and binding upon the Parties, and in any case where the complainant claims for damages, it should be limited to the value of the customer’s exposure to the transaction on the platform. APPLICABLE LAW These conditions are governed by and construed in accordance with the laws of the United Republic of Tanzania. We both agree to submit to the jurisdiction of the courts of Tanzania, which means that you may bring a claim to enforce your rights in connection with these Conditions of Sale in Tanzania. ALTERATIONS TO SERVICE OR AMENDMENTS TO THE CONDITIONS OF USE shukurani reserves the right to make changes to any shukurani Services, policies, terms and conditions including these Conditions of Use, and Service Terms at any time. You will be subject to the terms and conditions, policies and Conditions of Use in force at the time that you use the shukurani Services. If any of these Conditions of Use is deemed invalid, void, or for any reason unenforceable, that condition will be deemed severable and will not affect the validity and enforceability of any remaining condition. WAIVER If you breach these Conditions of Use and we take no action, shukurani will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use. shukurani’S CONTACT DETAILS This App and website is owned and maintained by Pannecia Consulting Services Limited. Off-Kimweri Road, Makangira Street, Plot number 503/1, Block number G, P. O. Box 38556, Msasani, Dar es salaam, Tanzania. E-mail: business@shukurani.co.tz Phone: +255 758 559 000 WhatsApp: +255 758 559 000 ADDITIONAL shukurani SOFTWARE TERMS 1.      Use of the shukurani Software. You may use shukurani Application solely for purposes of enabling you to use and enjoy the shukurani Services as provided by shukurani, and as permitted by the Conditions of Use, these Software Terms and any Service Terms. You may not incorporate any portion of the shukurani Source Codes into your own programs or compile any portion of it in combination with your own programs, transfer it for use with another service, or sell, rent, lease, lend, loan, distribute or sub-license the shukurani Software or otherwise assign any rights to the shukurani Software in whole or in part. You may not use the shukurani Software for any illegal purpose. We may cease providing any shukurani Software and we may terminate your right to use any shukurani Software at any time. Your rights to use the shukurani Software will automatically terminate without notice from us if you fail to comply with any of these Software Terms, the Conditions of Use or any other Service Terms. Additional third-party terms contained within or distributed with certain shukurani Software that are specifically identified in related documentation may apply to that shukurani Software (or software incorporated with the shukurani Software) and will govern the use of such software in the event of a conflict with these Conditions of Use. All software used in any shukurani Service is the property of shukurani or its software suppliers and protected by law. 2.      Use of Third-Party Services. When you use the shukurani Software, you may also be using the services of one or more third parties, such as a wireless carrier or a mobile platform provider. Your use of these third-party services may be subject to the separate policies, terms of use, and fees of these third parties. 3.      No Reverse Engineering. Unless explicitly permitted under applicable mandatory law, you may not, and you will not encourage, assist or authorise any other person to copy, modify, reverse engineer, decompile or disassemble, or otherwise tamper with, the shukurani Software, whether in whole or in part, or create any derivative works from or of the shukurani Software. 4.      Updates. In order to keep the shukurani Software up to date, we may offer automatic or manual updates at any time and without notice to you. PURCHASING TERMS shukurani’S CONTRACT We stand to be the agent between Deal Seekers (Customers) who is interested in buying deals on our Platform and the Deal Owners Marchant who has displayed the products on our Platform. We assist the customer to buy products displayed on our Platform by directing the location and deals time frame. Subject to the provisions of these terms and conditions, Until the Customer are allowed to buy tokens to be future spent at Merchant’s by scanning customer’s QR code at the merchant’s shop. shukurani then makes settlement to the merchant’s account which is equivalent to fiat currency of the shukurani token for that product or service. RIGHT OF CANCELLATION, EXCEPTIONS TO CANCELLATION The Customer may decide to cancel the shukurani tokens purchased but not utilized any time. The cancellation request is done directly on the platform and we will communicate an acknowledgement of receipt by notification soon after the Deal seeker (Customer) has applied for cancellation. EFFECT OF CANCELLATION Subject to deduction of 10%% of all payments made by a customer as cancellation charges. shukurani will not be responsible for payment reimbursement or refund after the customer has utilized the tokens at merchant. EXCEPTIONS TO THE RIGHT OF CANCELLATION The right of cancellation does not apply to the services made to your specifications or clearly personalized. PRICING AND AVAILABILITY All prices are subject to legally applicable VAT. shukurani lists availability information for products displayed on the website and Mobile App including on each product information page. Beyond what we say on that page or otherwise on the website, we cannot be more specific about availability. Please note that unless otherwise stated on the App and website, shukurani is not responsible for deliveries of the products and services deals sold on the website and mobile App. Despite shukurani best efforts, a small number of the items in our catalogue may be mispriced. shukurani will verify pricing before make payment. PAYMENTS AND ITS USE shukurani only accepts the payment methods which are provided on our website and Mobile App. We will not be responsible for any payment which is done out of the payment methods as provided by us. The payments are made in accordance with price as shown on an item displayed. Further, the payment made can only be used to spent on deals advertised. Our platform allows you to buy deals in advance. PROHIBITED ACTIVITIES You may not access or use the website and Mobile App for any purpose other than that for which we make the Platform available. The website and Mobile App may not be used in connection with any commercial endeavours except those that are specifically endorsed or approved by us.As a user of the website and Mobile App, you agree not to (i) Systematically retrieve data or other content from the website and Mobile App to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us, (ii) Make any unauthorized use of the website and Mobile App, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretences, (iii) Circumvent, disable, or otherwise interfere with security-related features of the website and Mobile App, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the website and Mobile App and/or the Content contained therein, (iv) engage in unauthorized framing of link or publicly distribution of website and Mobile App link to people other than social connection, (v) attempt to impersonate another user or person or use the username of another user, (vi) use any product information obtained from the website and Mobile App in order to harass, abuse, or harm another person economically or in any other way, (vii) attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site, or (viii)use the Site in a manner inconsistent with any applicable laws or regulations.''',
+
+
+  </model>
+  <model show="{{Showabout}}" position="bottom" closePopup="closewithdraw" id="changeprofilesection">
+    <view class="popup-23" catchtap="closewithdraw">
+      <view class="close-btn" onTap="closeabout">
+        <icon class="close-icon" type="clear" aria-label="clear" />
+      </view>
+      <view class="changeProfilepicTitle">About Shukrani</view>
+      <view class="container">
+        Welcome to shukurani! SHUKURANI COMPANY(shukurani) provides Application and website features and other products and services to you when you visit www.shukurani.co.tz (the "website" )or download shukurani Mobile Application, use shukurani devices, products, or services, use shukurani applications for mobile, or use the software provided by Shukurani company in connection with any of the foregoing (collectively "shukurani Services"). Please see our privacy notice to understand how we collect and process your personal information. shukuraniadvertise and sells deals to you subject to the conditions set out on this page. CONDITIONS OF USE Please read these conditions carefully before using shukurani Services. By using shukurani Services, you signify your agreement to be bound by these conditions. PRIVACY shukurani shall follow the privacy policy posted on its website at www.shukurani,co.tz/privacypolicy when collecting and using information from you. shukurani may amend the privacy policy at any time by posting the amended privacy policy on its website. By using the App, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Use. ELECTRONIC COMMUNICATIONS When you use any shukurani Service, you are communicating with us electronically. We will communicate with you electronically in a variety of ways, such as by email, text message, call, in-app push notices or by posting e-mail messages or communications on the App. For contractual purposes, you agree that all agreements, notices, disclosures and other communications that we provide you electronically satisfy any legal requirement that such communications be in writing, unless mandatory applicable laws specifically require a different form of communication. RECOMMENDATIONS AND PERSONALISATION As part of the shukurani Services, we may recommend features, products, and services, including third-party ads that might be of interest to you, identify your preferences, and personalise your experience. COPYRIGHT, AUTHORS' RIGHTS AND DATABASE RIGHTS All content included in or made available through any shukurani Service, such as text, graphics, logos, button icons, images, audio clips, digital downloads and data compilations is the property of shukurani or its content suppliers and is protected by applicable Copyright laws. The compilation of all content included in or made available through any shukurani Service is the exclusive property of shukurani and is protected by Tanzanian Copyright laws. You may not extract and/or re-utilise parts of the content of any shukurani Service without our express written consent. In particular, you may not utilise any data mining, robots, or similar data gathering and extraction tools to extract (whether once or many times) for re-utilisation of any substantial parts of the content of any shukurani Service, without our express written consent. You may also not create and/or publish your own database that features substantial parts of any shukurani Service (e.g. our prices and product listings) without our express written consent. TRADEMARK In addition, graphics, logos, page headers, button icons, scripts, and service names included in or made available through any shukurani Service are trademarks or trade dress of shukurani. shukurani's trademarks and trade dress may not be used in connection with any product or service that is not shukurani’s, in any manner that is likely to cause confusion among customers or in any manner that disparages or discredits shukurani. All other trademarks not owned by shukurani that appear in any shukurani Service are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by shukurani. LICENCE AND ACCESS Subject to your compliance with these Conditions of Use and applicable Service Terms and your payment of any applicable fees, shukurani or its content providers may grant you a limited, non-exclusive, non-transferable, non-sublicensable licence to access and make personal and non-commercial use of the shukurani Services. This license does not include any resale or commercial use of any shukurani Service or its contents; any collection and use of any product listings, descriptions, or prices; any derivative use of any shukurani Service or its contents; any downloading or copying of account information for the benefit of another merchant; or any use of data mining, robots, or similar data gathering and extraction tools. All rights not expressly granted to you in these Conditions of Use or any Service Terms are reserved and retained by shukurani or its licensors, suppliers, publishers, rights holders, or other content providers. No shukurani Service, nor any part of any shukurani Service, may be reproduced, duplicated, copied, sold, resold, visited, or otherwise exploited for any commercial purpose without our express written consent. You may not frame or use framing techniques to enclose any trademark, logo or other proprietary information (including images, text, page layout, or form) of shukurani without our express written consent. You may not use any meta tags or any other "hidden text" utilising shukurani's names or trademarks without our express written consent. You may not misuse the shukurani Services. You may use the shukurani Services only as permitted by law. The licences granted by shukurani terminate if you do not comply with these Conditions of Use or any Service Terms. YOUR ACCOUNT You may need your own shukurani account to use certain shukurani Services, and you may be required to be logged into the account with a valid registered phone number. If you use any shukurani Service you are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer and smartphone, and to the extent permitted by applicable law you agree to accept responsibility for all activities that occur under your account or password. You should take all necessary steps to ensure that the password is kept confidential and secure and should inform us immediately if you have any reason to believe that your password has become known to anyone else, or if the password is being, or is likely to be used in an unauthorised manner. You are responsible for ensuring that the details you provide us with are correct and complete, and for informing us of any changes to the information you have provided. You can access your information in the Account section of the App. You must not use any shukurani Service: (i) in any way that causes, or is likely to cause, any shukurani Service, or any access to it to be interrupted, damaged or impaired in any way, or (ii) for fraudulent purposes, or in connection with a criminal offence or other unlawful activity, or (iii) to cause annoyance, inconvenience or anxiety. We reserve the right to use your Data, refuse service, suspend or terminate accounts or remove or edit content if you are in breach of applicable laws, these Conditions of Use or any other applicable terms and conditions, guidelines or policies. REVIEWS, COMMENTS, COMMUNICATIONS AND OTHER CONTENT Visitors may post reviews, comments and other content; send e-cards and other communications; and submit suggestions, ideas, comments, questions or other information, as long as the content is not illegal, obscene, abusive, threatening, defamatory, invasive of privacy, infringing of intellectual property rights, or otherwise injurious to third parties or objectionable and does not consist of or contain software viruses, political campaigning, commercial solicitation, chain letters, mass mailings or any form of "spam". You may not use a false e-mail address, impersonate any person or entity, or otherwise mislead as to the origin of a card or other content. We reserve the right to remove or edit such content. If you believe that any content on or advertised for sale on any shukurani Service contains a defamatory statement, or that your intellectual property rights are being infringed by an item or information on any shukurani Service, please notify us by completing and submitting the appropriate notice form and we will respond. If you post customer reviews, comments, customer questions or answers, or other content generated by you for display on the App (including any images, video or audio, all together "content", you grant shukurani (a) a non-exclusive, royalty-free licence to use, reproduce, publish, make available, translate and modify such content throughout the world (including the right to sublicense these rights to third parties) and (b) the right to use the name that you submit in connection with such content. No moral rights are transferred by this provision. You may delete your content from public view or, where such functionality is offered, change settings so that it is only shown to people to whom you grant access. You represent and warrant that you own or otherwise control all of the rights to the content that you post; that, as at the date that the content or material is posted: (i) the content and material is accurate; and (ii) use of the content and material you supply does not breach any applicable policies or guidelines and will not cause injury to any person or entity (including that the content or material is not defamatory). You agree to indemnify shukurani for all claims brought by a third party against shukurani arising out of or in connection with the content and material you supply except to the extent that any liability arises from our failure to properly remove the content when it is notified of the illegal nature of the content arising out of or on the grounds of, or originating from the content that you have communicated to us. By deleting content from public view, you withdraw your license for shukurani to publish and make available that content publicly. INTELLECTUAL PROPERTY CLAIMS shukurani respects the intellectual property of others. If you believe that your intellectual property rights have been used in a way that gives rise to concerns of infringement, please contact us on support@shukurani.co.tz Upon receipt of a complaint we may take certain actions, including removing information or an item, and termination of repeat infringers in appropriate circumstances. All such actions are taken without any admission as to liability and without prejudice to any rights, remedies or defences, all of which are expressly reserved. This includes forwarding the complaint to the parties involved in the provision of the allegedly infringing content. You agree to indemnify shukurani for all claims brought by a third party against shukurani arising out of or in connection with the submission of a complaint. 10. NOTICE AND PROCEDURE FOR NOTIFYING shukurani OF DEFAMATORY CONTENT Because millions of products are listed, and many thousands of customer reviews and comments are hosted on shukurani. It is not possible for us to be aware of the contents of each product listed for sale, or each customer review or comment that is displayed. Accordingly, we operate on a "notice and action" basis. If you believe that any content on, or within a product advertised for sale on, the shukurani website or App contains a defamatory statement, please notify shukurani immediately by sending an email to support@shukurani.co.tzwith the subject line " Defamation Notice [insert your name]" Important Warning: giving false, misleading, or inaccurate information in the email to shukurani, or shukurani WhatsApp or any other communication channels of Defamatory Content on shukurani website may result in civil and criminal liability. shukurani SOFTWARE TERMS In addition to these Conditions of Use, the terms found here apply to any software (including any updates or upgrades to the software and any related documentation) that we make available to you from time to time for your use in connection with shukurani Services (the shukurani Application and Website"). OTHER BUSINESSES Parties other than shukurani operate stores, provide services, or sell product lines on this App. In addition, we provide links, and location to the sites of affiliated companies and certain other businesses. We are not responsible for examining or evaluating, and we do not warrant the offerings of, any of these businesses or individuals or the content of their websites. shukurani does not assume any responsibility or liability for the actions, product, and content of all of these or any other third parties. You can tell when a third party is involved in your transactions, and we may share your information related to those transactions with that third party. You should carefully review their privacy statements and other conditions of use. shukurani’S ROLE shukurani allows third party sellers to list and sell their products deals at shukurani App and websitewww.shukurani.co.tz. In each such case this is indicated on the respective product detail page. While shukurani as a service provider helps facilitate transactions that are carried out on the shukuraniApp, shukurani is neither the manufacturer, importer, representative, buyer nor the seller of the seller's items and services. shukurani provides a service for deal owners /sellers and deal seekers/buyers to complete transactions. Accordingly, the contract formed at the completion of a sale for these third-party products and services is solely between deal seekers/buyer and deal owners/seller. shukurani is not a party to this contract nor assumes any responsibility arising out of or in connection with it. The seller is responsible for the sale of the products/service and for dealing with any buyer claims or any other issue arising out of or in connection with the contract between the deal seeker/buyer and deal owner/seller. OUR LIABILITY (DISCLAIMER) shukurani will do our utmost to ensure that availability of the shukurani Services will be uninterrupted and that transmissions will be error-free. However, due to the nature of the internet, this cannot be guaranteed. Also, your access to shukurani Services may also be occasionally suspended or restricted to allow for repairs, maintenance, or the introduction of new facilities or services. shukurani will attempt to limit the frequency and duration of any such suspension or restriction. shukurani will not be responsible for (i) losses that were not caused by any breach on our part, or (ii) any business loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure), or (iii) any loss caused by Fraud or misrepresentation, or (iv) any indirect or consequential losses that were not foreseeable to both you and us when you commenced using the shukurani Services. Each product and description displayed on the platform is according to information received from the Marchant. The sole responsibility of shukurani is to facilitate the contractual process between buyer/deal seekers and deal owners/Marchant. shukurani stands as an agent and therefore does not provide warrant, guarantee, or any kind of assurance on its services provided on the platform. DISPUTE SETTLEMENT Any dispute arising from the formation, validity, binding effect, interpretation of or the performance of the terms and conditions hereunder shall be resolved amicably by mediation. If mediation fails, the said dispute will be referred to Arbitration in the presence of an Arbitrator agreed by both parties and pursuant to the current arbitration rules. For the purpose of avoiding doubt, the place of mediation shall be within the United Republic of Tanzania, and the language for arbitration will be in English or Kiswahili upon the client’s choosing. The arbitration award shall be accepted as final and binding upon the Parties, and in any case where the complainant claims for damages, it should be limited to the value of the customer’s exposure to the transaction on the platform. APPLICABLE LAW These conditions are governed by and construed in accordance with the laws of the United Republic of Tanzania. We both agree to submit to the jurisdiction of the courts of Tanzania, which means that you may bring a claim to enforce your rights in connection with these Conditions of Sale in Tanzania. ALTERATIONS TO SERVICE OR AMENDMENTS TO THE CONDITIONS OF USE shukurani reserves the right to make changes to any shukurani Services, policies, terms and conditions including these Conditions of Use, and Service Terms at any time. You will be subject to the terms and conditions, policies and Conditions of Use in force at the time that you use the shukurani Services. If any of these Conditions of Use is deemed invalid, void, or for any reason unenforceable, that condition will be deemed severable and will not affect the validity and enforceability of any remaining condition. WAIVER If you breach these Conditions of Use and we take no action, shukurani will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use. shukurani’S CONTACT DETAILS This App and website is owned and maintained by Pannecia Consulting Services Limited. Off-Kimweri Road, Makangira Street, Plot number 503/1, Block number G, P. O. Box 38556, Msasani, Dar es salaam, Tanzania. E-mail: business@shukurani.co.tz Phone: +255 758 559 000 WhatsApp: +255 758 559 000 ADDITIONAL shukurani SOFTWARE TERMS 1.      Use of the shukurani Software. You may use shukurani Application solely for purposes of enabling you to use and enjoy the shukurani Services as provided by shukurani, and as permitted by the Conditions of Use, these Software Terms and any Service Terms. You may not incorporate any portion of the shukurani Source Codes into your own programs or compile any portion of it in combination with your own programs, transfer it for use with another service, or sell, rent, lease, lend, loan, distribute or sub-license the shukurani Software or otherwise assign any rights to the shukurani Software in whole or in part. You may not use the shukurani Software for any illegal purpose. We may cease providing any shukurani Software and we may terminate your right to use any shukurani Software at any time. Your rights to use the shukurani Software will automatically terminate without notice from us if you fail to comply with any of these Software Terms, the Conditions of Use or any other Service Terms. Additional third-party terms contained within or distributed with certain shukurani Software that are specifically identified in related documentation may apply to that shukurani Software (or software incorporated with the shukurani Software) and will govern the use of such software in the event of a conflict with these Conditions of Use. All software used in any shukurani Service is the property of shukurani or its software suppliers and protected by law. 2.      Use of Third-Party Services. When you use the shukurani Software, you may also be using the services of one or more third parties, such as a wireless carrier or a mobile platform provider. Your use of these third-party services may be subject to the separate policies, terms of use, and fees of these third parties. 3.      No Reverse Engineering. Unless explicitly permitted under applicable mandatory law, you may not, and you will not encourage, assist or authorise any other person to copy, modify, reverse engineer, decompile or disassemble, or otherwise tamper with, the shukurani Software, whether in whole or in part, or create any derivative works from or of the shukurani Software. 4.      Updates. In order to keep the shukurani Software up to date, we may offer automatic or manual updates at any time and without notice to you. PURCHASING TERMS shukurani’S CONTRACT We stand to be the agent between Deal Seekers (Customers) who is interested in buying deals on our Platform and the Deal Owners Marchant who has displayed the products on our Platform. We assist the customer to buy products displayed on our Platform by directing the location and deals time frame. Subject to the provisions of these terms and conditions, Until the Customer are allowed to buy tokens to be future spent at Merchant’s by scanning customer’s QR code at the merchant’s shop. shukurani then makes settlement to the merchant’s account which is equivalent to fiat currency of the shukurani token for that product or service. RIGHT OF CANCELLATION, EXCEPTIONS TO CANCELLATION The Customer may decide to cancel the shukurani tokens purchased but not utilized any time. The cancellation request is done directly on the platform and we will communicate an acknowledgement of receipt by notification soon after the Deal seeker (Customer) has applied for cancellation. EFFECT OF CANCELLATION Subject to deduction of 10%% of all payments made by a customer as cancellation charges. shukurani will not be responsible for payment reimbursement or refund after the customer has utilized the tokens at merchant. EXCEPTIONS TO THE RIGHT OF CANCELLATION The right of cancellation does not apply to the services made to your specifications or clearly personalized. PRICING AND AVAILABILITY All prices are subject to legally applicable VAT. shukurani lists availability information for products displayed on the website and Mobile App including on each product information page. Beyond what we say on that page or otherwise on the website, we cannot be more specific about availability. Please note that unless otherwise stated on the App and website, shukurani is not responsible for deliveries of the products and services deals sold on the website and mobile App. Despite shukurani best efforts, a small number of the items in our catalogue may be mispriced. shukurani will verify pricing before make payment. PAYMENTS AND ITS USE shukurani only accepts the payment methods which are provided on our website and Mobile App. We will not be responsible for any payment which is done out of the payment methods as provided by us. The payments are made in accordance with price as shown on an item displayed. Further, the payment made can only be used to spent on deals advertised. Our platform allows you to buy deals in advance. PROHIBITED ACTIVITIES You may not access or use the website and Mobile App for any purpose other than that for which we make the Platform available. The website and Mobile App may not be used in connection with any commercial endeavours except those that are specifically endorsed or approved by us.As a user of the website and Mobile App, you agree not to (i) Systematically retrieve data or other content from the website and Mobile App to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us, (ii) Make any unauthorized use of the website and Mobile App, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretences, (iii) Circumvent, disable, or otherwise interfere with security-related features of the website and Mobile App, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the website and Mobile App and/or the Content contained therein, (iv) engage in unauthorized framing of link or publicly distribution of website and Mobile App link to people other than social connection, (v) attempt to impersonate another user or person or use the username of another user, (vi) use any product information obtained from the website and Mobile App in order to harass, abuse, or harm another person economically or in any other way, (vii) attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site, or (viii)use the Site in a manner inconsistent with any applicable laws or regulations.''',
 
 
 
+      </view>
     </view>
-  </view>
-</model>
-<model show="{{showfaq}}" position="bottom" closePopup="closewithdraw"> 
-<view class="faqTitle">FAQs</view>
-  <view style="height: 400px; background: rgb(102, 51, 151, 1);color:white;  display: flex; ">
-    <view class="close-delect" onTap="closedelectpopup">
-      <icon class="close-icon-delect" type="clear" aria-label="clear" />
+  </model>
+  <model show="{{showfaq}}" position="bottom" closePopup="closewithdraw">
+    <view class="faqTitle">FAQs</view>
+    <view style="height: 400px; background: rgb(102, 51, 151, 1);color:white;  display: flex; ">
+      <view class="close-delect" onTap="closedelectpopup">
+        <icon class="close-icon-delect" type="clear" aria-label="clear" />
+      </view>
+      <collapse
+        className="demo-collapse"
+        collapseKey="collapse1"
+        activeKey="{{['item-11', 'item-13']}}"
+        onChange="onChange"
+      >
+        <collapse-item
+          header="How to get the Rewards point"
+          itemKey="item-11"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content1">
+            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="How to send the Rewards"
+          itemKey="item-12"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content2">
+            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="how to get the more rewards"
+          itemKey="item-13"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="how to claim the Rewards"
+          itemKey="item-14"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="what happen when payment is failed"
+          itemKey="item-15"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Content region</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="how to refund the unsuccessfull payment"
+          itemKey="item-16"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Content region</view>
+          </view>
+        </collapse-item>
+        <collapse-item header="how to reset the pin" itemKey="item-17" collapseKey="collapse1">
+          <view class="item-content content3">
+            <view>Content region</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="where i can get the rewards eligibility table"
+          itemKey="item-18"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Content region</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="where i can get the rewards calculation"
+          itemKey="item-19"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Content region</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="how to deactivate the my account"
+          itemKey="item-20"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Content region</view>
+          </view>
+        </collapse-item>
+      </collapse>
     </view>
-    <collapse
-    className="demo-collapse"
-    collapseKey="collapse1"
-    activeKey="{{['item-11', 'item-13']}}"
-    onChange="onChange"
-  >
-    <collapse-item header="How to get the Rewards point" itemKey="item-11" collapseKey="collapse1">
-      <view class="item-content content1">
-        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
-      </view>                
-    </collapse-item>
-    <collapse-item header="How to send the Rewards" itemKey="item-12" collapseKey="collapse1">
-      <view class="item-content content2">
-        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
-      </view>
-    </collapse-item>
-    <collapse-item header="how to get the more rewards" itemKey="item-13" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="how to claim the Rewards" itemKey="item-14" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="what happen when payment is failed" itemKey="item-15" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Content region</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="how to refund the unsuccessfull payment" itemKey="item-16" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Content region</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="how to reset the pin" itemKey="item-17" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Content region</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="where i can get the rewards eligibility table" itemKey="item-18" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Content region</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="where i can get the rewards calculation" itemKey="item-19" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Content region</view>         
-      </view>
-    </collapse-item>
-    <collapse-item header="how to deactivate the my account" itemKey="item-20" collapseKey="collapse1">
-      <view class="item-content content3">
-        <view>Content region</view>         
-      </view>
-    </collapse-item>
-  </collapse>
-  </view>
 
 
 
-</model>
+  </model>
+  <navbar></navbar>
 </view>
 
 
 
-
-<navbar></navbar>

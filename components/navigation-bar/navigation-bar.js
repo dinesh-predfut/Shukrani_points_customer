@@ -1,12 +1,20 @@
 Component({
   mixins: [],
   data: {
-
+    "rewards": "",
+    "redeem": "",
+    "brands": "",
   },
   props: {},
-  didMount() { },
+  onload(){ 
+    this.setData({
+      rewards: app.translate("rewards"),
+      redeem: app.translate("redeem")
+    });
+  },
+  didMount() { }, 
   didUpdate() { },
-  didUnmount() { },
+  didUnmount() { }, 
   methods: {
     loadImage(e) {
       console.info("Image Loaded")
@@ -17,7 +25,7 @@ Component({
       my.navigateTo({ url: '/pages/rewards/rewards' }); // Adjust the URL based on your project structure
     },
     navigateToRedeem() {
-      console.log('clicked redeem');
+      console.log('clicked redeem');  
       my.navigateTo({ url: '/pages/redeem/redeem' }); // Adjust the URL based on your project structure
     },
     navigateToBrands() {

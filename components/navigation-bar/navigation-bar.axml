@@ -3,7 +3,7 @@
     <view onTap="navigateToRewards">
       <text class="nav-item" onTap="navigateToRewards">
         <image src="/assets/Rewards.svg" onLoad="loadImage" />
-        Rewards
+        {{rewards}}
       </text>
     </view>
 

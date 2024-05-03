@@ -1,5 +1,5 @@
 import providers from '/data/providers'
-
+import  { getLanguage, translate }  from "../translation"
 
 Page({
 

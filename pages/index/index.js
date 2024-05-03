@@ -1,6 +1,7 @@
 import providers from '/data/providers'
 import { encrypt, decrypt } from 'secure-encrypt';
 import 'i18n'
+import I18n from 'i18n-js';
 
 Page({
 
@@ -26,6 +27,7 @@ Page({
 
     // this.userinfo()
     this.onApi()
+   
   },
   onReady() {},
   onShow() {
@@ -67,44 +69,120 @@ Page({
       emulator: true // Or false, depending on your setup
     };
   },
+  // onchangelanguage(){
+  //   const translations = {
+  //     en: {
+  //         // English translations
+  //         "bakery": "Bakery",
+  //         "bar": "Bar",
+  //         "beauty": "Beauty",
+  //         "bookstore": "Bookstore",
+  //         "butcheries": "Butcheries",
+  //         "coffee_shops": "Coffee Shops",
+  //         "cosmetics": "Cosmetics",
+  //         "decor": "Decor",
+  //         "electronics": "Electronics",
+  //         "fashion": "Fashion",
+  //         "fast_food": "Fast Food",
+  //         "florists": "Florists",
+  //         "groceries": "Groceries",
+  //         "gym": "Gym",
+  //         "hotel": "Hotel",
+  //         "laundry": "Laundry",
+  //         "liquor_stores": "Liquor Stores",
+  //         "pets": "Pets",
+  //         "pharmacies": "Pharmacies",
+  //         "resort": "Resort",
+  //         "restaurant": "Restaurant",
+  //         "saloon": "Saloon",
+  //         "shopping": "Shopping",
+  //         "spa": "Spa",
+  //         "supermarkets": "Supermarkets",
+  //         "travel": "Travel",
+  //         "yoga": "Yoga",
+  //         "business_category": "Business Category",
+  //     },
+  //     sw: {
+  //         // Swahili translations
+  //         "bakery": "Bakery",
+  //         "bar": "Baa",
+  //         "beauty": "Urembo",
+  //         "bookstore": "Duka la vitabu",
+  //         "butcheries": "Maduka ya nyama",
+  //         "coffee_shops": "Coffee Shops",
+  //         "cosmetics": "Vipodozi",
+  //         "decor": "Samani",
+  //         "electronics": "Vifaa vya umeme",
+  //         "fashion": "Mitindo",
+  //         "fast_food": "Fast Food",
+  //         "florists": "Wauza maua",
+  //         "groceries": "Groceries",
+  //         "gym": "Gym",
+  //         "hotel": "Hoteli",
+  //         "laundry": "Dobi",
+  //         "liquor_stores": "Maduka ya pombe",
+  //         "pets": "Pets",
+  //         "pharmacies": "Maduka ya dawa",
+  //         "resort": "Mapumziko",
+  //         "restaurant": "Mgahawa",
+  //         "saloon": "Saluni",
+  //         "shopping": "Manunuzi",
+  //         "spa": "Spa",
+  //         "supermarkets": "Maduka makubwa",
+  //         "travel": "Usafiri",
+  //         "yoga": "Yoga",
+  //         "business_category": "Aina ya Biashara",
+  //     }
+  // };
+  
+  // // Set up translations
+  // // const i18n = new I18n();
+  // I18n.store(translations)
+  // // Set the default locale
+  // I18n.Locales = 'en'; // Set English as the default language
+  
+  // // Optional: Set the fallbacks in case a translation is missing
+  // I18n.fallbacks = true;
+  // console.log("this one call");
+  // },
   onApi() {
     // change language
-    // 
-      // const languages = {
-      //   en: {
-      //     greeting: "Hello!",
-      //     farewell: "Goodbye!",
-      //   },
-      //   es: {
-      //     greeting: "¡Hola!",
-      //     farewell: "¡Adiós!",
-      //   },
-      //   fr: {
-      //     greeting: "Bonjour!",
-      //     farewell: "Au revoir!",
-      //   },
-      // };
-      // function getLanguage() {
-      //   // You can implement logic here to determine the user's preferred language
-      //   // For simplicity, let's just use English as the default
-      //   const userLanguage = "es"; // Default to English
-      //   return userLanguage;
-      // }
+    
+      const languages = {
+        en: {
+          greeting: "Hello!",
+          farewell: "Goodbye!",
+        },
+        es: {
+          greeting: "¡Hola!",
+          farewell: "¡Adiós!",
+        },
+        fr: {
+          greeting: "Bonjour!",
+          farewell: "Au revoir!",
+        },
+      };
+      function getLanguage() {
+        // You can implement logic here to determine the user's preferred language
+        // For simplicity, let's just use English as the default
+        const userLanguage = "es"; // Default to English
+        return userLanguage;
+      }
       
-      // // Function to translate text based on selected language
-      // function translate(key) {
-      //   const currentLanguage = getLanguage();
-      //   // If the current language is not defined, default to English
-      //   const languageStrings = languages[currentLanguage] || languages.en;
-      //   return languageStrings[key] || ""; // Return the translated string or empty string if not found
-      // }
+      // Function to translate text based on selected language
+      function translate(key) {
+        const currentLanguage = getLanguage();
+        // If the current language is not defined, default to English
+        const languageStrings = languages[currentLanguage] || languages.en;
+        return languageStrings[key] || ""; // Return the translated string or empty string if not found
+      }
       
-      // const greeting = translate("greeting");
-      // const farewell = translate("farewell");
+      const greeting = translate("greeting");
+      const farewell = translate("farewell");
       
-      // console.log(greeting); // Output: Hello! (in English)
-      // console.log(farewell); // Output: Goodbye! (in English)
-// 
+      console.log(greeting); // Output: Hello! (in English)
+      console.log(farewell); // Output: Goodbye! (in English)
+
     const env = this.environment();
     if (!env.emulator) {
       const serviceID = 'C2BNamecheck';

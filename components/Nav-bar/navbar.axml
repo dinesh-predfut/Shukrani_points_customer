@@ -4,19 +4,19 @@
     <navigator url="../../pages/rewards/rewards" hover-class="navigator-hover" >
       <text class="nav-item">
         <image src="/assets/Rewards.svg" onLoad="loadImage" />
-        Rewards
+        {{rewards}}
       </text>
     </navigator>
 
     <navigator url="../../pages/redeem/redeem">
       <text class="nav-item"  onTap="changeIconColor"  id="redeem">
-        <image src="/Assets/redeem.svg" onLoad="loadImage"  class="1233"/> Redeem
+        <image src="/Assets/redeem.svg" onLoad="loadImage"  class="1233"/>{{redeem}}
       </text>
     </navigator>
 
     <navigator url="../../pages/brands/brands">
       <text class="nav-item">
-        <image src="/assets/Brand.svg" onLoad="loadImage" /> Brands
+        <image src="/assets/Brand.svg" onLoad="loadImage" />{{brands}}
       </text>
     </navigator>
 

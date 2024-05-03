@@ -1,32 +1,43 @@
 import providers from '/data/providers'
+import base64Img from 'base64-img'
+import base64url from 'base64-url'
 
+const app = getApp();
 
 Page({
+  currentLanguage:"",
   changePin: false,
   changePinOTP: false,
   ShowchangePNumber: false,
   ShowTermsandconditoins: false,
   ShowPrivacyandPolicy: false,
   Showabout: false,
-  showfaq:"false",
+  showfaq: "false",
 
   reenderpin: "",
-  mixins: [], 
+  mixins: [],
   data: {
+    greeting: "",
     providers,
+    showlanguageoption: false,
     providersSearchResult: [],
     isSearch: false,
     imageUrl: "",
     userProfile: [],
     phoneNumber: [],
-    changenumberOTP: []
+    changenumberOTP: [],
+    terms_condition:""
   },
 
   didMount() {},
   didUpdate() {},
   didUnmount() {},
   onLoad(query) {
-  
+    // this.onLoad()
+    this.setData({ 
+      terms_condition: app.translate("terms_condition"),
+      farewell: app.translate("farewell")
+    });
     // Page load
     console.info(`Page onLoad witsh query`, providers);
     this.setData({
@@ -37,22 +48,15 @@ Page({
   onReady() {},
   onShow() {
     // Page display
-   
-    
+
+
     this.userinfo();
-   
-    this.UploadProfilePic();
-     
+
+    // this.UploadProfilePic();
+
     console.log("12344", this.data);
-  },
-  onLoad: function(options) {
-    setTimeout(() => {
- 
-   this.downloadimg()
+  }, 
   
-    
-  }, 2000);
-  },
   onHide() {
     // Page hidden
   },
@@ -81,8 +85,58 @@ Page({
     })
     console.log("12344ssss", this.data);
   },
+
+  changelanguagebtn() {
+    this.setData({
+      showlanguageoption: true
+    })
+  },
+  changeLanguageToenglish() {
+    const newLanguage = 'en'// Toggle between English and Spanish for demonstration
+    my.setStorage({
+      key: 'language',
+      data: {
+        newLanguage:'en'
+      },
+      success: function() {
+        my.navigateTo({
+          url: '/pages/Settings/setting'
+        })
+      }
+    });
+    app.setLanguage(newLanguage);
+    this.onLoad(); // Reload the current page to reflect the language change
+  },
+  changetoswahili() {
+    const newLanguage = 'es'; // Toggle between English and Spanish for demonstration
+    my.setStorage({
+      key: 'language',
+      data: {
+        newLanguage:'es'
+      },  
+      success: function() {
+        my.navigateTo({
+          url: '/pages/Settings/setting'
+        })
+      }
+    });
+    app.setLanguage(newLanguage);
+    this.onLoad(); // Reload the current page to reflect the language change
+  },
+  setLanguage(language) {
+    // localStorage.setItem("preferredLanguage", language);
  
-  
+    this.setData({
+      currentLanguage: language,
+      terms_condition: translate("terms_condition", language),
+      farewell: translate("farewell", language)
+    });
+  },
+  closelanguagepopup() {
+    this.setData({
+      showlanguageoption: false
+    })
+  },
   closewithdraw() {
     this.setData({
       changePin: false
@@ -264,7 +318,7 @@ Page({
         fileName: 'image',
         filePath: imagePath,
         headers: {
-          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
         },
       });
 
@@ -282,7 +336,7 @@ Page({
         });
         // Update UI or perform other actions as needed
 
-       
+
       } else {
         // console.error('Failed to upload image. Status code: ', uploadResponse.statusCode);
         my.hideLoading();
@@ -311,7 +365,7 @@ Page({
       },
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -339,15 +393,15 @@ Page({
 
   },
   userinfo() {
-  
+
     const self = this;
-    
+
     my.request({
       url: `http://52.51.249.84:8080/api/app/userProfile`,
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
       dataType: 'json',
       success: function (res) {
@@ -355,7 +409,8 @@ Page({
           userProfile: res.data,
 
         });
-      // downloadimg()
+        const imageResponse = res.data;
+        // downloadimg()
         // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {
@@ -365,21 +420,23 @@ Page({
       },
 
     });
-  
+
 
   },
   downloadimg() {
     const imageDataId = this.data.userProfile.image;
-    console.log("imageDataId", imageDataId);
-    
+    const base64urlImage = base64url.fromBase64(imageDataId);
+
+    // Now `base64urlImage` contains the image in base64url format
+    console.log("Base64URL encoded image:", base64urlImage);
     my.request({
       url: `http://52.51.249.84:8080/api/app/downloaduserimage/${imageDataId}`,
       method: 'get',
       headers: {
-        'authorization': ['Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc']
+        'authorization': ['Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw']
       },
       dataType: 'json',
-     
+
       fail: function (res) {
         my.alert({
           content: 'fail'
@@ -396,7 +453,7 @@ Page({
       },
     });
   },
-  
+
   changePhonenumber() {
 
     const self = this;
@@ -489,7 +546,7 @@ Page({
 
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
       },
 
       success: function (res) {
