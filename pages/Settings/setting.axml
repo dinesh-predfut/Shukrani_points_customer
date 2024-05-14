@@ -40,7 +40,8 @@
 
   </view >
   <view class="language-name-profile2">Change language ?</view>
-  <view class="language" onTap="changelanguagebtn">KSW</view>
+  <view  class="language" id="ksw" onTap="changelanguagebtn"> {{ currentLanguage === "es" ? "KSW" : "ENG" }}</view>
+  <!-- <view show={{}} class="language" id="eng" onTap="changelanguagebtn">Eng</view> -->
   <view class="language-name-profile" onTap="opendelect">Delect my account</view>
   <view class="language-name-profile3">About Shukarani V.2</view>
   <button size="default" class="sigin-out-btn" type="primary">
@@ -78,8 +79,7 @@
       </view>
     </view>
   </model>
-  <!--<model show="{{changePinOTP}}" position="bottom" closePopup="closewithdraw"><view class="close-btn" onTap="closewithdrawOTP"><icon class="close-icon" type="clear" aria-label="clear" /></view><view style="margin:3%" class="changepin"><image mode="scaleToFill" src="../../Assets/icons-lock.png" class="changePinImg" /><view class="changePinTitle">Enter OTP</view>
-<view class="changeBtnSection"><view class="changePinnumber">Enter OTP sent to *****34</view><view class="OTPenterbox"><f-input placeholder="Enter the OTP" class="p-20" onInput="enterOTP"><image src="/Assets/lock-icon.png" slot="iconInnerLeft" /></f-input></view><button size="default" type="primary" onTap="SuccessNext" class="nextBtn">
+  <!--<model show="{{changePinOTP}}" position="bottom" closePopup="closewithdraw"><view class="close-btn" onTap="closewithdrawOTP"><icon class="close-icon" type="clear" aria-label="clear" /></view><view style="margin:3%" class="changepin"><image mode="scaleToFill" src="../../Assets/icons-lock.png" class="changePinImg" /><view class="changePinTitle">Enter OTP</view><view class="changeBtnSection"><view class="changePinnumber">Enter OTP sent to *****34</view><view class="OTPenterbox"><f-input placeholder="Enter the OTP" class="p-20" onInput="enterOTP"><image src="/Assets/lock-icon.png" slot="iconInnerLeft" /></f-input></view><button size="default" type="primary" onTap="SuccessNext" class="nextBtn">
           Next<image
             mode="scaleToFill"
             src="../../Assets/btn_arrow_right.png"
@@ -117,9 +117,9 @@
 
       <view class="changeBtnSection">
         <view class="changePinnumberOTP">
-          Enter OTP sent to ***** {{(userProfile.phoneNumber).slice(-3)}}
+          {{ enter_otp }} sent to ***** {{(userProfile.phoneNumber).slice(-3)}}
         </view>
-        <f-input placeholder="Enter OTP " class="p-10 " onInput="changenumbrtOTP">
+        <f-input placeholder={{enter_otp}} class="p-10 " onInput="changenumbrtOTP">
           <image src="/Assets/lock-icon.png" slot="iconInnerLeft" />
         </f-input>
         <button size="default" type="primary" onTap="OTPvalidate" class="nextBtn">
@@ -127,7 +127,7 @@
           <image
             mode="scaleToFill"
             src="../../Assets/btn_arrow_right.png"
-            class="changePinImg"
+            class="changePinImgs"
           />
         </button>
       </view>
@@ -176,22 +176,169 @@
       </view>
       <view class="changeProfilepicTitle">Terms and Conditions</view>
       <view class="container">
-        <text class="heading">Welcome to SHUKURANI!</text>
-        <text class="paragraph">
-          SHUKURANI COMPANY (Shukurani) provides Application and website features and other products and services to you when you visit "https://www.shukurani.co.tz" (the "website") or download Shukurani Mobile Application, use Shukurani devices, products, or services, use Shukurani applications for mobile, or use software provided by Shukurani company in connection with any of the foregoing (collectively "Shukurani Services"). Please see our privacy notice to understand how we collect and process your personal information. Shukurani advertise and sells deals to you subject to the conditions set out on this page.
-        </text>
+        <view class="heading"> Welcome to Shukurani Points by Pannecia Consulting Services Limited
+        </view>
+        <view class="paragraph">
+          PANNECIA CONSULTING SERVICES LIMITED (Shukurani Points) provides Application and website features and other products and services to you when you visit [www.Shukurani.tz] (http://www.Shukurani.tz/) (the "website" ) or download Shukurani Points Mobile Application, or use software provided by Pannecia Consulting Services Limited in connection with any of the foregoing (collectively "Shukurani Points Services"). Please see our privacy notice to understand how we collect and process your personal information. Shukurani Points  advertise and sells deals to you subject to the conditions set out on this page
+        </view>
+        <view class="heading">CONDITIONS OF USE</view>
+        <view class="paragraph">
+          Please read these conditions carefully before using Shukurani Points Services. By using Shukurani Points Services, you signify your agreement to be bound by these conditions.
+        </view>
+        <view class="heading">1.PRIVACY</view>
+        <view class="paragraph">
+          Shukurani Points shall follow the privacy policy posted on its website at [www.Shukurani Points,co.tz/privacypolicy](about:blank) when collecting and using information from you. Shukurani Points may amend the privacy policy at any time by posting and notifying the amended privacy policy on its website. By using the App, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Use.
+        </view>
+        <view class="heading">2.ELECTRONIC COMMUNICATIONS</view>
+        <view class="paragraph">
+          When you use any SHUKURANI POINTS Service, you are communicating with us electronically. We will communicate with you electronically in a variety of ways, such as by email, text message, call, in-app push notices or by posting e-mail messages or communications on the App. For contractual purposes, you agree that all agreements, notices, disclosures and other communications that we provide you electronically satisfy any legal requirement that such communications be in writing, unless mandatory applicable laws specifically require a different form of communication.
+        </view>
+        <view class="heading">3.RECOMMENDATIONS AND PERSONALISATION</view>
+        <view class="paragraph">
+          As part of the Shukurani Points Services, we may recommend features, products, and services, including third party ads that might be of interest to you, identify your preferences, and personalise your experience.
+        </view>
+        <text class="heading">4.COPYRIGHT, AUTHORS' RIGHTS AND DATABASE RIGHTS</text>
+        <view class="paragraph">
+          All content included in or made available through any Shukurani Points Service, such as text, graphics, logos, button icons, images, audio clips, digital downloads and data compilations is the property of SHUKURANI POINTS or its content suppliers and is protected by applicable Copyright laws. The compilation of all content included in or made available through any SHUKURANI POINTS Service is the exclusive property of SHUKURANI POINTS and is protected by Tanzanian Copyright laws.You may not extract and/or re-utilise parts of the content of any SHUKURANI POINTS Service without our express written consent. In particular, you may not utilise any data mining, robots, or similar data gathering and extraction tools to extract (whether once or many times) for re-utilisation of any substantial parts of the content of any SHUKURANI POINTS Service, without our express written consent. You may also not create and/or publish your own database that features substantial parts of any SHUKURANI POINTS Service (e.g. our prices and product listings) without our express written consent.
+        </view>
+        <text class="heading">5.TRADEMARK</text>
+        <view class="paragraph">
+          In addition, graphics, logos, page headers, button icons, scripts, and service names included in or made available through any SHUKURANI POINTS Service are trademarks or trade dress of SHUKURANI POINTS. SHUKURANI POINTS's trademarks and trade dress may not be used in connection with any product or service that is not SHUKURANI POINTS’s, in any manner that is likely to cause confusion among customers or in any manner that disparages or discredits SHUKURANI POINTS. All other trademarks not owned by SHUKURANI POINTS that appear in any SHUKURANI POINTS Service are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by SHUKURANI POINTS
+        </view>
+        <text class="heading">5.TRADEMARK</text>
+        <view class="paragraph">
+          Because millions of products are listed, and many thousands of customer reviews and comments are hosted on SHUKURANI POINTS. It is not possible for us to be aware of the contents of each product listed for sale, or each customer review or comment that is displayed. Accordingly, we operate on a "notice and action" basis. If you believe that any content on, or within a product advertised for sale on, the SHUKURANI POINTS website or App contains a defamatory statement, please notify SHUKURANI POINTS immediately by sending an email to [support@Shukurani Points.co.tz](mailto:support@tafu.co.tz)with the subject line " Defamation Notice \[insert your name\]"
+        </view>
+        <view class="paragraph">
+          Important Warning: giving false, misleading, or inaccurate information in the email to SHUKURANI POINTS, or SHUKURANI POINTS WhatsApp or any other communication channels of Defamatory Content on SHUKURANI POINTS website may result in civil and criminal liability.
+        </view>
+        <text class="heading">6.SHUKURANI POINTS SOFTWARE TERMS</text>
+        <view class="paragraph">
+          In addition to these Conditions of Use, the terms found here apply to any software (including any updates or upgrades to the software and any related documentation) that we make available to you from time to time for your use in connection with SHUKURANI POINTS Services (the SHUKURANI POINTS Application and Website").
+        </view>
+        <text class="heading">7.OTHER BUSINESSES</text>
+        <view class="paragraph">
+          Parties other than SHUKURANI POINTS operate stores, provide services, or sell product lines on this App. In addition, we provide links, and location to the sites of affiliated companies and certain other businesses. We are not responsible for examining or evaluating, and we do not warrant the offerings of, any of these businesses or individuals or the content of their websites. SHUKURANI POINTS does not assume any responsibility or liability for the actions, product, and content of all of these or any other third parties. You can tell when a third party is involved in your transactions, and we may share your information related to those transactions with that third party. You should carefully review their privacy statements and other conditions of use
+        </view>
+        <view class="heading">8.SHUKURANI POINTS’S ROLE</view>
+        <view class="paragraph">
+          SHUKURANI POINTS allows third party sellers to list and sell their products deals at Shukurani Points App and website [www.Shukurani Points.co.tz](http://www.tafu.co.tz/). In each such case this is indicated on the respective product detail page. While SHUKURANI POINTS as a service provider helps facilitate transactions that are carried out on the SHUKURANI POINTS App, SHUKURANI POINTS is neither the manufacturer, importer, representative, buyer nor the seller of the seller's items and services. SHUKURANI POINTS provides a service for deal owners /sellers and deal seekers/buyers to complete transactions. Accordingly, the contract formed at the completion of a sale for these third-party products and services is solely between deal seekers/buyer and deal owners/seller. SHUKURANI POINTS is not a party to this contract nor assumes any responsibility arising out of or in connection with it. The seller is responsible for the sale of the products/service and for dealing with any buyer claims or any other issue arising out of or in connection with the contract between the deal seeker/buyer and deal owner/seller.
+        </view>
+        <view class="heading">9.OUR LIABILITY (DISCLAIMER)</view>
+        <view class="paragraph">
+          SHUKURANI POINTS will do our utmost to ensure that availability of the SHUKURANI POINTS Services will be uninterrupted and that transmissions will be error-free. However, due to the nature of the internet, this cannot be guaranteed. Also, your access to SHUKURANI POINTS Services may also be occasionally suspended or restricted to allow for repairs, maintenance, or the introduction of new facilities or services. Upon notification to its client SHUKURANI POINTS will attempt to limit the frequency and duration of any such suspension or restriction.
+        </view>
+        <view class="paragraph">
+          SHUKURANI POINTS will not be responsible for (i) losses that were not caused by any breach on our part, or (ii) any business loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure), or (iii) any loss caused by Fraud or misrepresentation, or (iv) any indirect or consequential losses that were not foreseeable to both you and us when you commenced using the SHUKURANI POINTS Services.
+        </view>
+        <view class="paragraph">
 
-        <text class="subheading">CONDITIONS OF USE</text>
-        <text class="paragraph">
-          Please read these conditions carefully before using Shukurani Services. By using Shukurani Services, you signify your agreement to be bound by these conditions.
-        </text>
+          Each product and description displayed on the platform is according to information received from the Marchant
+        </view>
+        <view class="paragraph">
+          SHUKURANI POINTS will not be responsible for (i) losses that were not caused by any breach on our part, or (ii) any business loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure), or (iii) any loss caused by Fraud or misrepresentation, or (iv) any indirect or consequential losses that were not foreseeable to both you and us when you commenced using the SHUKURANI POINTS Services.
+        </view>
+        <view class="heading">DISPUTE SETTLEMENT</view>
+        <view class="paragraph">
+          The sole responsibility of SHUKURANI POINTS is to facilitate the contractual process between buyer/deal seekers and deal owners/Marchant. SHUKURANI POINTS stands as an agent and therefore does not provide warrant, guarantee, or any kind of assurance on its services provided on the platform.
+        </view>
+        <view class="heading">10.APPLICABLE LAW</view>
+        <view class="paragraph">
+          These conditions are governed by and construed in accordance with the laws of the United Republic of Tanzania. We both agree to submit to the jurisdiction of the courts of Tanzania, which means that you may bring a claim to enforce your rights in connection with these Conditions of Sale in Tanzania.
+        </view>
+        <view class="heading">
+          11.ALTERATIONS TO SERVICE OR AMENDMENTS TO THE CONDITIONS OF USE
+        </view>
+        <view class="paragraph">
+          SHUKURANI POINTS reserves the right to make changes to any SHUKURANI POINTS Services with notification to our client, policies, terms and conditions including these Conditions of Use, and Service Terms at any time. However we will notify the customers on all the changes that has been made. You will be subject to the terms and conditions, policies and Conditions of Use in force at the time that you use the SHUKURANI POINTS Services. If any of these Conditions of Use is deemed invalid, void, or for any reason unenforceable, that condition will be deemed severable and will not affect the validity and enforceability of any remaining condition
+        </view>
+        <view class="heading">12.WAIVER</view>
+        <view class="paragraph">
+          If you breach these Conditions of Use and we take no action, SHUKURANI POINTS will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use.
+        </view>
+        <view class="heading">13.SHUKURANI POINTS’S CONTACT DETAILS</view>
+        <view class="paragraph">
+          This App and website is owned and maintained by
+          PANNECIA CONSULTING SERVICES LIMITED.
+          Msasani Tower, Off-Kimweri Road, Plot number 503/1, Block G; P. O. Box 38556, Msasani, Dar es Salaam, Tanzania
+          E-mail: [Business@shukurani.tz](mailto:business@shukurani.tz)
+          Phone: +255 748 077 966
+          WhatsApp: +255 753 098 540
+        </view>
+        <view class="heading">ADDITIONAL SHUKURANI POINTS SOFTWARE TERMS</view>
+        <view class="paragraph">
+          1.     **Use of the SHUKURANI POINTS Software.** You may use SHUKURANI POINTS Application solely for purposes of enabling you to use and enjoy the SHUKURANI POINTS Services as provided by SHUKURANI POINTS, and as permitted by the Conditions of Use, these Software Terms and any Service Terms. You may not incorporate any portion of the SHUKURANI POINTS Source Codes into your own programs or compile any portion of it in combination with your own programs, transfer it for use with another service, or sell, rent, lease, lend, loan, distribute or sub-license the SHUKURANI POINTS Software or otherwise assign any rights to the SHUKURANI POINTS Software in whole or in part. You may not use the SHUKURANI POINTS Software for any illegal purpose. We may cease providing any SHUKURANI POINTS Software and we may terminate your right to use any SHUKURANI POINTS Software at any time. Your rights to use the SHUKURANI POINTS Software will automatically terminate without notice from us if you fail to comply with any of these Software Terms, the Conditions of Use or any other Service Terms. Additional third-party terms contained within or distributed with certain SHUKURANI POINTS Software that are specifically identified in related documentation may apply to that SHUKURANI POINTS Software (or software incorporated with the SHUKURANI POINTS Software) and will govern the use of such software in the event of a conflict with these Conditions of Use. All software used in any SHUKURANI POINTS Service is the property of SHUKURANI POINTS or its software suppliers and protected by law.
+        </view>
+        <view class="paragraph">
+          2.     **Use of Third-Party Services.** When you use the SHUKURANI POINTS Software, you may also be using the services of one or more third parties, such as a wireless carrier or a mobile platform provider. Your use of these third-party services may be subject to the separate policies, terms of use, and fees of these third parties.
 
-        <text class="subheading">PRIVACY</text>
-        <text class="paragraph">
-          Shukurani shall follow the privacy policy posted on its website at "https://www.shukurani.co.tz/privacypolicy" www.Shukurani.co.tz/privacypolicy when collecting and using information from you. Shukurani may amend the privacy policy at any time by posting and notifying the amended privacy policy on its website. By using the App, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Use.
-        </text>
+        </view>
+        <view class="paragraph">
+          3.     **No Reverse Engineering.** Unless explicitly permitted under applicable mandatory law, you may not, and you will not encourage, assist or authorise any other person to copy, modify, reverse engineer, decompile or disassemble, or otherwise tamper with, the SHUKURANI POINTS Software, whether in whole or in part, or create any derivative works from or of the SHUKURANI POINTS Software.
+        </view>
+        <view class="paragraph">
+          4.     **Updates.** In order to keep the SHUKURANI POINTS Software up to date, we may offer automatic or manual updates at any time and without notice to you.
 
-        <!-- More text elements for other sections -->
+        </view>
+        <view class="heading">
+          PURCHASING TERMS
+        </view>
+        <view class="heading">
+          SHUKURANI POINTS’S CONTRACT
+        </view>
+        <view class="paragraph">
+          We stand to be the agent between Deal Seekers (Customers) who is interested in buying deals on our Platform and the Deal Owners Marchant who has displayed the products on our Platform. We assist the customer to buy products displayed on our Platform by directing the location and deals time frame. Subject to the provisions of these terms and conditions, Until the Customer are allowed to buy tokens to be future spent at Merchant’s by scanning customer’s QR code at the merchant’s shop. SHUKURANI POINTS then makes settlement to the merchant’s account which is equivalent to fiat currency of the Shukurani Points token for that product or service.
+        </view>
+        <view class="heading">
+          RIGHT OF CANCELLATION, EXCEPTIONS TO CANCELLATION
+        </view>
+        <view class="paragraph">
+          The Customer may decide to cancel the Shukurani Points tokens purchased but not utilized any time. The cancellation request is done directly on the platform and we will communicate an acknowledgement of receipt by notification soon after the Deal seeker (Customer) has applied for cancellation.
+        </view>
+        <view class="heading">
+          EFFECT OF CANCELLATION
+        </view>
+        <view class="paragraph">
+          Subject to deduction of 10% of all payments made by a customer as cancellation charges. Shukurani app will not be responsible for payment reimbursement or refund after the customer has utilized the tokens at merchant.
+        </view>
+        <view class="heading">
+          1.EXCEPTIONS TO THE RIGHT OF CANCELLATION
+        </view>
+        <view class="paragraph">
+          The right of cancellation does not apply to the services made to your specifications or clearly personalized..
+        </view>
+        <view class="heading">
+          2.PRICING AND AVAILABILITY
+        </view>
+        <view class="paragraph">
+          All prices are subject to legally applicable VAT.
+        </view>
+        <view class="paragraph">
+          Shukurani Points lists availability information for products displayed on the website and Mobile App including on each product information page. Beyond what we say on that page or otherwise on the website, we cannot be more specific about availability.
+        </view>
+        <view class="paragraph">
+          Please note that unless otherwise stated on the App and website, SHUKURANI POINTS is not responsible for deliveries of the products and services deals sold on the website and mobile App.
+        </view>
+
+        <view class="paragraph">
+          Despite Shukurani Points best efforts, a small number of the items in our catalogue may be mispriced. SHUKURANI POINTS will verify pricing before make payment.
+        </view>
+
+        <view class="heading">
+          PAYMENTS AND ITS USE
+        </view>
+        <view class="paragraph">
+          Shukurani Points only accepts the payment methods which are provided on our website and Mobile App. We will not be responsible for any payment which is done out of the payment methods as provided by us.
+        </view>
+        <view class="paragraph">
+          The payments are made in accordance with price as shown on an item displayed. Further, the payment made can only be used to spent on deals advertised. Our platform allows you to buy deals in advance.
+        </view> 
+        <view class="heading">
+          PROHIBITED ACTIVITIES
+        <view class="paragraph">
+          You may not access or use the website and Mobile App for any purpose other than that for which we make the Platform available. The website and Mobile App may not be used in connection with any commercial endeavours except those that are specifically endorsed or approved by us. As a user of the website and Mobile App, you agree not to (i) Systematically retrieve data or other content from the website and Mobile App to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us, (ii) Make any unauthorized use of the website and Mobile App, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretences, (iii) Circumvent, disable, or otherwise interfere with security-related features of the website and Mobile App, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the website and Mobile App and/or the Content contained therein, (iv) engage in unauthorized framing of link or publicly distribution of website and Mobile App link to people other than social connection, (v) attempt to impersonate another user or person or use the username of another user, (vi) use any product information obtained from the website and Mobile App in order to harass, abuse, or harm another person economically or in any other way, (vii) attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site, or (viii) use the Site in a manner inconsistent with any applicable laws or regulations.
+        </view>
+      </view>
       </view>
     </view>
   </model>
@@ -247,7 +394,7 @@
       <view class='withdraw-bold ' style="margin-top:-150px">
         Select the Language
       </view>
-      <button size="default" class="pop-up-btn-no" onTap ="changeLanguageToenglish">  English
+      <button size="default" class="pop-up-btn-no" onTap="changeLanguageToenglish">  English
       </button>
       <button size="default" class="pop-up-btn-yes" onTap="changetoswahili">  Swahili
       </button>
@@ -375,6 +522,3 @@
   </model>
   <navbar></navbar>
 </view>
-
-
-

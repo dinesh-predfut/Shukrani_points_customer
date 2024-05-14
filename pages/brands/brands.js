@@ -1,16 +1,35 @@
-import brandCategoryList from '/data/brandCategoryList'
-
+import {
+  brandCategoryList,
+  TransbrandCategoryList
+} from '/data/brandCategoryList';
+import {
+  getTranslatedCategory
+} from '../translation.js'
+const app = getApp()
 Page({
+
   onLoad(query) {
     // Page load
-    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);     
+    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+    this.setData({
+      hello: app.translate("hello"),
+      brands: app.translate("brands")
+    });
+
+    const language = app.globalData.language
+    this.setData({
+      currentLanguage: language
+    })
+    console.log("currentlg", this.data.currentLanguage);
+
   },
   onReady() {
     // Page loading is complete
   },
   onShow() {
     // Page display
-    this.brandsListDataAPI()
+    this.brandsListDataAPI();
+
   },
   onHide() {
     // Page hidden
@@ -38,37 +57,41 @@ Page({
 
   data: {
     brandCategoryList,
+    TransbrandCategoryList,
+    translatedCategories: "",
+    currentLanguage: "",
     modalOpened: false,
-    rewardsOn:false,
-    menuOn:false,
-    reviewOn:false,
+    rewardsOn: false,
+    menuOn: false,
+    reviewOn: false,
     array: ['Mlimani city1', 'Mlimani city2', 'Mlimani city3', 'Mlimani city4'],
     index: 0,
-    brandsData:[],
-    brandsSearchResult:[],
+    brandsData: [],
+    brandsSearchResult: [],
     isSearch: false,
-    getMerchantDetails:[],
-    pickerSelectedLocation:null,
-    selectedCategory:'All',
-    filteredBrandsData:[]
+    getMerchantDetails: [],
+    pickerSelectedLocation: null,
+    selectedCategory: 'All',
+    filteredBrandsData: [],
+    brandsCategory: ""
   },
   openPopup() {
     console.log('open clicked')
     this.setData({
       modalOpened: true,
     });
-    },
-    closePopup() {
+  },
+  closePopup() {
     console.log('close clicked from redeem file ---')
     this.setData({
       modalOpened: false,
-      categoryOn:false,
-      rewardsOn:false,
-      menuOn:false,
-      reviewOn:false
+      categoryOn: false,
+      rewardsOn: false,
+      menuOn: false,
+      reviewOn: false
       // nextPage:false
     });
-    },
+  },
   onModalClick() {
     this.setData({
       modalOpened: false,
@@ -79,24 +102,24 @@ Page({
       modalOpened: false,
     });
   },
-  onCategoryModalClick(){
+  onCategoryModalClick() {
     this.setData({
-      categoryOn:!this.data.categoryOn
+      categoryOn: !this.data.categoryOn
     })
   },
-  onRewardsModalClick(){
+  onRewardsModalClick() {
     this.setData({
-      rewardsOn:true
+      rewardsOn: true
     })
   },
-  onMenuModalClick(){
+  onMenuModalClick() {
     this.setData({
-      menuOn:true
+      menuOn: true
     })
   },
-  onReviewModalClick(){
+  onReviewModalClick() {
     this.setData({
-      reviewOn:true
+      reviewOn: true
     })
   },
   bindPickerChange(e) {
@@ -142,59 +165,77 @@ Page({
       });
     }
   },
+
+  translateCategory() {
+    // Assume selectedLanguage is globally available
+    const selectedLanguage = 'es'; // Change this to your actual selected language
+    const item = this.data
+
+
+    console.log(item, "items");
+  },
+
   // category filter
-  onSelectedCategory(e){
+  onSelectedCategory(e) {
     const index = e.currentTarget.dataset.index;
     const selectedCategory = this.data.brandCategoryList[index];
-    console.log('Selected Category:', selectedCategory);
+  
     this.setData({
       selectedCategory: selectedCategory.name
     });
 
-    // Filter brandsData based on selectedCategory.name
+  
     const filteredBrandsData = this.data.brandsData.filter(brand => brand.category === selectedCategory.name);
-    console.log('Filtered Brands Data:', filteredBrandsData);
-    if(filteredBrandsData.length > 0){
+
+    if (filteredBrandsData.length > 0) {
       this.setData({
-        filteredBrandsData:filteredBrandsData,
-        categoryOn:!this.data.categoryOn
+        filteredBrandsData: filteredBrandsData, 
+        categoryOn: !this.data.categoryOn
       })
-    }else{
-      my.alert({content: 'No data found...!'})
+    } else {
+      my.alert({
+        content: 'No data found...!'
+      })
       this.setData({
-        categoryOn:!this.data.categoryOn
+        categoryOn: !this.data.categoryOn
       })
     }
   },
 
-  onSelectAllCategory(){
+  onSelectAllCategory() {
     this.setData({
-      selectedCategory:'All',
-      categoryOn:!this.data.categoryOn,
-      filteredBrandsData:[]
+      selectedCategory: 'All',
+      categoryOn: !this.data.categoryOn,
+      filteredBrandsData: []
     })
   },
 
   // open Direction in the MAP
-  openLocation(){    
-    if(this.data.pickerSelectedLocation){
+  openLocation() {
+    if (this.data.pickerSelectedLocation) {
       my.openLocation({
         name: 'Selected Location',
         address: this.data.pickerSelectedLocation.location,
-        scale: 18        
-      });      
-    }else{
-      my.alert({ content: 'Please select any location first!' });
+        scale: 18
+      });
+    } else {
+      my.alert({
+        content: 'Please select any location first!'
+      });
     }
   },
 
   // makePhoneCall on Call Click
   makePhoneCall() {
     console.log('checking phone number ---->>> ', this.data.getMerchantDetails.userInformation.phoneNumber);
-    if(this.data.getMerchantDetails.userInformation.phoneNumber){
-      my.makePhoneCall({ number: this.data.getMerchantDetails.userInformation.phoneNumber });
-    }else{
-      my.alert({ content: 'Unable to make a phone call...!' });
+    if (this.data.getMerchantDetails.userInformation.phoneNumber) {
+      my.makePhoneCall({
+        number: this.data.getMerchantDetails.userInformation.phoneNumber
+      });
+    } else {
+      my.alert({
+        content: 'Unable to make a phone call...!'
+      });
     }
   },
 
@@ -206,40 +247,73 @@ Page({
       url: 'http://52.51.249.84:8080/api/app/getRewardDataByBrand',
       method: 'GET',
       // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw" },
+      headers: {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"
+      },
       dataType: 'json',
       success: function (res) {
         table.setData({
-          brandsData: res.data // Set the response value in the 'count' data property
+          brandsData: res.data, // Set the response value in the 'count' data property
+          // brandsCategory:res.data.category
         });
-        console.log("brandsData checking ", table.data.brandsData); // Access 'count' using 'self.data.count'
+        const brandsDataWithTranslatedCategories = res.data.map((item, index) => {
+          // console.log("items", item);
+          const categories = res.data.map(item => item.category)
+          const language = app.globalData.language
+          const lang = language;
+          // console.log("Language Selected:", lang);
+          const translatedCategories = categories.map(category => getTranslatedCategory(category, lang));
+          // console.log("Translated translatedCategories[index] :", translatedCategories[index] );
+          return {
+            ...item,
+            category: translatedCategories[index] 
+            // Assuming categories and brandsData are of equal length
+          };
+
+        });
+
+        // table.setData({
+        //   brandsData: translatedBrandsData
+        // });
+
+
+        table.setData({
+          brandsData: brandsDataWithTranslatedCategories
+        });
+        console.log("Translated index:", table.data);
       },
       fail: function (res) {
-        my.alert({ content: 'fail...!' });
+        my.alert({
+          content: 'fail...!'
+        });
       },
     });
   },
-  
+
   getMerchantDetailsAPI(merchantId) {
-    console.log('merchantId in API -=-=-=->>'  , merchantId);
+    console.log('merchantId in API -=-=-=->>', merchantId);
     const table = this;
     my.request({
       // url: 'http://52.51.249.84:8080/api/app/getRewardDataByBrand', -- http://52.51.249.84:8080/api/auth/getMerchantDetail?merchantId=654d39af67b2c15399e0a0d8
       url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?merchantId=${merchantId}`,
       method: 'GET',
       // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw" },
+      headers: {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"
+      },
       dataType: 'json',
-      success: function (res) {        
+      success: function (res) {
         table.setData({
           getMerchantDetails: res.data, // Set the response value in the 'count' data property
-          modalOpened: true,          
+          modalOpened: true,
           pickerSelectedLocation: res.data.locations[0] // Set the default selected location to the first item in the locations array
         });
         console.log("getMerchantDetails checking ", table.data.getMerchantDetails); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {
-        my.alert({ content: 'fail...!' });
+        my.alert({
+          content: 'fail...!'
+        });
       },
     });
   }

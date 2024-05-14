@@ -12,6 +12,8 @@ App({
     return translate(key, language);
     
   },
+
+
   onLaunch(options) {
     // Page opens for the first time
     console.info('App onLaunch');

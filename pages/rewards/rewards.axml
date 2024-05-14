@@ -36,11 +36,13 @@
     
       </view>
     </view >
+   
+
   <view class="f-body d-flex" >
     <f-input placeholder="Search" class="p-20" onInput="onSearchInput">
       <image src="/Assets/icons8-search-150.png" slot="iconInnerLeft" />
     </f-input>
-  
+    <rich-text nodes="{{htmlContent}}"></rich-text>
     <picker onChange="bindObjPickerChange" class="categoryBTN" value="{{arrIndex}}" range="{{currentLanguage === 'es' ? spanishOptions : objectArray }}" range-key="name">
       <view class="row categaryBtn">
         <view class="row-title">{{ currentLanguage === 'es' ? spanishOptions[arrIndex].name: objectArray[arrIndex].name}}</view>

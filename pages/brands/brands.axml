@@ -84,8 +84,9 @@
             {{item.merchantName}}
           </view>
           <!-- {{'transactionData[0].merchantName'}} -->
+          <!-- {{item.category === "Beauty" ? "its bar":"Reatil" ?"its Retail":"" }} -->
           {{item.category}}
-        </f-cell-label>
+        </f-cell-label>  
       </f-cell-content>
       <f-cell-action class="f-flex flex-center">
   
@@ -111,7 +112,7 @@
     
   </view>
   <view class="category-list">
-    <view class="list" a:for="{{brandCategoryList}}" onTap="onSelectedCategory" data-index="{{index}}">
+    <view class="list" a:for="{{ currentLanguage === 'es' ? TransbrandCategoryList:brandCategoryList}}" onTap="onSelectedCategory" data-index="{{index}}">
       <view class="category-list-name">
         <view class="category-list-icon">
           <!-- <image mode="scaleToFill" src="/assets/shoping.png" /> -->
@@ -463,7 +464,7 @@
 
 
 <!-- End brand Reviews model -->
-
+ 
 </model>
 
 

@@ -53,7 +53,8 @@ const languages = {
     "rewards": "Rewards",
     "redeem": "Redeem",
     "brands": "Brands",
-    "hello":"Hello"
+    "hello":"Hello",
+    "enter_otp": "Enter OTP"
 
   },
   es: {
@@ -98,6 +99,7 @@ const languages = {
     "terms_condition": "Vigezo na Masharti",
     "i_accept": "Nimekubali",
     "phone_number": "Namba ya simu",
+    "enter_otp": "Ingiza OTP"
 
   }
   
@@ -122,14 +124,28 @@ const getLanguage = () => {
   // Instead, you can return a default language and handle the actual language when it's retrieved
   return finallanguage;
 };
+const getTranslatedCategory = (category, lang) =>{
+  const lowerCaseCategory = category.toLowerCase();
 
+
+   
+  if (languages[lang] && languages[lang][lowerCaseCategory]) {
+    
+      return languages[lang][lowerCaseCategory];
+     
+  } else {
+      // Fallback to English if translation not found
+      return category;
+  }
+}
 const translate = (key, language) => {
   // If the current language is not defined, default to English
-  const languageStrings = languages[language] || languages.en;
+  const languageStrings = languages[language] || languages.en; 
   return languageStrings[key] || ""; // Return the translated string or empty string if not found
 };
 
 export default {
   getLanguage,
-  translate
+  translate,
+  getTranslatedCategory
 };

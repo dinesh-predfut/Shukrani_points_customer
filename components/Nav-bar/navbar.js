@@ -14,12 +14,8 @@ Component({
   didMount() {},
   didUpdate() {},
   didUnmount() {},
-  changeIconColor() {
-    var navItems = document.getElementById("#redeem");
-   
-    navItems.classList.add('active');
-  }
-    ,
+ 
+    
   methods: {
     loadImage(e) {
       this.setData({
@@ -29,7 +25,21 @@ Component({
         
       }); 
       console.info("Image Loaded")
+    },
+    changeIconColor(element) {
+      // Get all icon elements
+      const icons = document.querySelectorAll('.nav-icon');
+    
+      // Reset all icon colors to their default color
+      icons.forEach(icon => {
+        icon.style.fill = ''; // Reset to default color
+      });
+    
+      // Change the color of the tapped icon
+      const icon = element.querySelector('.nav-icon');
+      icon.style.fill = 'red'; // Change color to red (or any color you prefer)
     }
+    
    
 
   }

@@ -5,6 +5,7 @@ import base64url from 'base64-url'
 const app = getApp();
 
 Page({
+  // enter_otp:"",
   currentLanguage:"",
   changePin: false,
   changePinOTP: false,
@@ -13,10 +14,13 @@ Page({
   ShowPrivacyandPolicy: false,
   Showabout: false,
   showfaq: "false",
+  showksg:"false",
+  showeng:" ",
 
   reenderpin: "",
   mixins: [],
   data: {
+    currentLanguage:"",
     greeting: "",
     providers,
     showlanguageoption: false,
@@ -26,7 +30,8 @@ Page({
     userProfile: [],
     phoneNumber: [],
     changenumberOTP: [],
-    terms_condition:""
+    terms_condition:"",
+    enter_otp:"",
   },
 
   didMount() {},
@@ -36,7 +41,7 @@ Page({
     // this.onLoad()
     this.setData({ 
       terms_condition: app.translate("terms_condition"),
-      farewell: app.translate("farewell")
+      enter_otp: app.translate("enter_otp"),
     });
     // Page load
     console.info(`Page onLoad witsh query`, providers);
@@ -44,6 +49,11 @@ Page({
       providersSearchResult: this.data.providers,
       userProfile: this.data.userProfile
     })
+    const language = app.globalData.language
+    this.setData({
+      currentLanguage: language
+    })
+    console.log("currentlang",this.data.currentLanguage);
   },
   onReady() {},
   onShow() {
@@ -93,35 +103,41 @@ Page({
   },
   changeLanguageToenglish() {
     const newLanguage = 'en'// Toggle between English and Spanish for demonstration
-    my.setStorage({
-      key: 'language',
-      data: {
-        newLanguage:'en'
-      },
-      success: function() {
-        my.navigateTo({
-          url: '/pages/Settings/setting'
-        })
-      }
-    });
+    // my.setStorage({
+    //   key: 'language',
+    //   data: {
+    //     newLanguage:'en'
+    //   },
+    //   success: function() {
+    //     my.navigateTo({
+    //       url: '/pages/Settings/setting'
+    //     })
+    //   }
+    // });
     app.setLanguage(newLanguage);
     this.onLoad(); // Reload the current page to reflect the language change
+    my.navigateTo({
+      url: '/pages/Settings/setting' 
+    })
   },
   changetoswahili() {
     const newLanguage = 'es'; // Toggle between English and Spanish for demonstration
-    my.setStorage({
-      key: 'language',
-      data: {
-        newLanguage:'es'
-      },  
-      success: function() {
-        my.navigateTo({
-          url: '/pages/Settings/setting'
-        })
-      }
-    });
+    // my.setStorage({
+    //   key: 'language',
+    //   data: {
+    //     newLanguage:'es'
+    //   },  
+    //   success: function() {
+    //     my.navigateTo({
+    //       url: '/pages/Settings/setting'
+    //     })
+    //   }
+    // });
     app.setLanguage(newLanguage);
     this.onLoad(); // Reload the current page to reflect the language change
+    my.navigateTo({
+            url: '/pages/Settings/setting'
+          })
   },
   setLanguage(language) {
     // localStorage.setItem("preferredLanguage", language);
@@ -129,7 +145,7 @@ Page({
     this.setData({
       currentLanguage: language,
       terms_condition: translate("terms_condition", language),
-      farewell: translate("farewell", language)
+      enter_otp: translate("farewell", enter_otp)
     });
   },
   closelanguagepopup() {
@@ -318,7 +334,7 @@ Page({
         fileName: 'image',
         filePath: imagePath,
         headers: {
-          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
         },
       });
 
@@ -365,7 +381,7 @@ Page({
       },
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
       dataType: 'json',
       success: function (res) {
@@ -401,7 +417,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
       dataType: 'json',
       success: function (res) {
@@ -433,7 +449,7 @@ Page({
       url: `http://52.51.249.84:8080/api/app/downloaduserimage/${imageDataId}`,
       method: 'get',
       headers: {
-        'authorization': ['Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw']
+        'authorization': ['Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ']
       },
       dataType: 'json',
 
@@ -546,7 +562,7 @@ Page({
 
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
 
       success: function (res) {

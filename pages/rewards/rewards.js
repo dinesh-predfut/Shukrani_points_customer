@@ -10,6 +10,8 @@ Page({
 
   mixins: [],
   data: {
+    activeTab: 'projects' ,
+    htmlContent: "",
     hello: '',
     brands: '',
     currentLanguage: '',
@@ -21,6 +23,7 @@ Page({
     userProfile: [],
     CategoryFilter: [],
     selectedCategory: [],
+    selectedmerchant:"",
     categoryrespon: [],
     isSearch: false,
     sharepointsvalue: [],
@@ -142,133 +145,135 @@ Page({
 
     ],
     spanishOptions: [{
-      id: 0,
-      name: "category",
-    },
-    {
-      id: 1,
-      name: 'Bakery',
-    },
-    {
-      id: 2,
-      name: 'Bar',
-    },
-    {
-      id: 3,
-      name: 'Urembo',
-    },
-    {
-      id: 4,
-      name: 'Duka la vitabu',
-    },
-    {
-      id: 5,
-      name: 'Aina ya Biashara',
-    },
-    {
-      id: 6,
-      name: 'Maduka ya nyama',
-    },
-    {
-      id: 7,
-      name: 'Coffee Shops',
-    },
-    {
-      id: 8,
-      name: 'Vipodozi',
-    },
-    {
-      id: 9,
-      name: 'Samani',
-    },
-    {
-      id: 10,
-      name: 'Vifaa vya umeme',
-    },
-    {
-      id: 11,
-      name: 'Mitindo',
-    },
-    {
-      id: 12,
-      name: 'Wauza maua',
-    },
-    {
-      id: 13,
-      name: 'Florists',
-    },
-    {
-      id: 14,
-      name: 'Groceries',
-    }, {
-      id: 15,
-      name: 'Gym',
-    },
-    {
-      id: 16,
-      name: 'Hoteli',
-    },
-    {
-      id: 17,
-      name: 'Dobi',
-    },
-    {
-      id: 18,
-      name: 'Maduka ya pombe',
-    },
-    {
-      id: 19,
-      name: 'Pets',
-    },
-    {
-      id: 20,
-      name: 'Mapumziko',
-    },
-    {
-      id: 21,
-      name: 'Mgahawa',
-    },
-    {
-      id: 22,
-      name: 'Saluni',
-    },
-    {
-      id: 23,
-      name: 'Manunuzi',
-    }, {
-      id: 24,
-      name: 'Spa',
-    },
-    {
-      id: 25,
-      name: 'Maduka makubwa',
-    },
-    {
-      id: 26,
-      name: 'Usafiri',
-    },
-    {
-      id: 27,
-      name: 'Yoga',
-    },
-    
+        id: 0,
+        name: "category",
+      },
+      {
+        id: 1,
+        name: 'Bakery',
+      },
+      {
+        id: 2,
+        name: 'Bar',
+      },
+      {
+        id: 3,
+        name: 'Urembo',
+      },
+      {
+        id: 4,
+        name: 'Duka la vitabu',
+      },
+      {
+        id: 5,
+        name: 'Aina ya Biashara',
+      },
+      {
+        id: 6,
+        name: 'Maduka ya nyama',
+      },
+      {
+        id: 7,
+        name: 'Coffee Shops',
+      },
+      {
+        id: 8,
+        name: 'Vipodozi',
+      },
+      {
+        id: 9,
+        name: 'Samani',
+      },
+      {
+        id: 10,
+        name: 'Vifaa vya umeme',
+      },
+      {
+        id: 11,
+        name: 'Mitindo',
+      },
+      {
+        id: 12,
+        name: 'Wauza maua',
+      },
+      {
+        id: 13,
+        name: 'Florists',
+      },
+      {
+        id: 14,
+        name: 'Groceries',
+      }, {
+        id: 15,
+        name: 'Gym',
+      },
+      {
+        id: 16,
+        name: 'Hoteli',
+      },
+      {
+        id: 17,
+        name: 'Dobi',
+      },
+      {
+        id: 18,
+        name: 'Maduka ya pombe',
+      },
+      {
+        id: 19,
+        name: 'Pets',
+      },
+      {
+        id: 20,
+        name: 'Mapumziko',
+      },
+      {
+        id: 21,
+        name: 'Mgahawa',
+      },
+      {
+        id: 22,
+        name: 'Saluni',
+      },
+      {
+        id: 23,
+        name: 'Manunuzi',
+      }, {
+        id: 24,
+        name: 'Spa',
+      },
+      {
+        id: 25,
+        name: 'Maduka makubwa',
+      },
+      {
+        id: 26,
+        name: 'Usafiri',
+      },
+      {
+        id: 27,
+        name: 'Yoga',
+      },
+
     ],
     arrIndex: 0,
     index: 0
   },
+  
   didMount() {},
   didUpdate() {},
   didUnmount() {},
   onLoad(query) {
+    const htmlContent = "LIABILITY (DISCLAIMER)\n Shukurani Points will do our utmost to ensure that availability of the Shukurani Points Services will be uninterrupted and that transmissions will be error-free. However, due to the nature of the internet, this cannot be guaranteed. Also, your access to Shukurani Points Services may also be occasionally suspended or restricted to allow for repairs, maintenance, or the introduction of new facilities or services. Upon notification to its client Shukurani Points will attempt to limit the frequency and duration of any such suspension or restriction.\n\n Shukurani Points will not be responsible for (i) losses that were not caused by any breach on our part, or (ii) any business loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill, or wasted expenditure), or (iii) any loss caused by Fraud or misrepresentation, or (iv) any indirect or consequential losses that were not foreseeable to both you and us when you commenced using the Shukurani Points Services.\n\nEach product and description displayed on the platform is according to information received from the Merchant.\n\nThe sole responsibility of Shukurani Points is to facilitate the contractual process between buyer/deal seekers and deal owners/Merchant. Shukurani Points stands as an agent and therefore does not provide warrant, guarantee, or any kind of assurance on its services provided on the platform.\n\nDISPUTE SETTLEMENT\nAny dispute arising from the formation, validity, binding effect, interpretation of or the performance of the terms and conditions hereunder shall be resolved amicably by mediation. If mediation fails, the said dispute will be referred to Arbitration in the presence of an Arbitrator agreed by both parties and pursuant to the current arbitration rules. For the purpose of avoiding doubt, the place of mediation shall be within the United Republic of Tanzania, and the language for arbitration will be in English or Kiswahili upon the client’s choosing. The arbitration award shall be accepted as final and binding upon the Parties, and in any case where the complainant claims for damages, it should be limited to the value of the customer’s exposure to the transaction on the platform.\n\nAPPLICABLE LAW\nThese conditions are governed by and construed in accordance with the laws of the United Republic of Tanzania. We both agree to submit to the jurisdiction of the courts of Tanzania, which means that you may bring a claim to enforce your rights in connection with these Conditions of Sale in Tanzania.\n\nALTERATIONS TO SERVICE OR AMENDMENTS TO THE CONDITIONS OF USE\n Shukurani Points reserves the right to make changes to any Shukurani Points Services with notification to our client, policies, terms and conditions including these Conditions of Use, and Service Terms at any time. However, we will notify the customers of all the changes that have been made. You will be subject to the terms and conditions, policies and Conditions of Use in force at the time that you use the Shukurani Points Services. If any of these Conditions of Use is deemed invalid, void, or for any reason unenforceable, that condition will be deemed severable and will not affect the validity and enforceability of any remaining condition.\n\nWAIVER\nIf you breach these Conditions of Use and we take no action, Shukurani Points  will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use.\n\n Shukurani Points’S CONTACT DETAILS\nThis App and website is owned and maintained by Pannecia Consulting Services limited.\nOff-Kimweri Road, Plot number 503/1, Block number G\nDar es salaam, Tanzania\nE-mail: info@shukurani.tz\nPhone: +255 748 007 966\nWhatsApp: +255 748 007 966',"
     this.setData({
       hello: app.translate("hello"),
-      brands: app.translate("brands") 
+      brands: app.translate("brands")
     });
     const language = app.globalData.language
     this.setData({
       currentLanguage: language
     })
-    console.info(`Page onLoad witsh query`, language);
+    console.info(`Page onLoad witsh query`,  this.data.transactionData[0]);
     this.userinfo()
     this.setData({
       providersSearchResult: this.data.providers,
@@ -298,7 +303,7 @@ Page({
   onReachBottom() {
     // Page is pulled to the bottom
   },
-  
+
   setLanguage(language) {
     this.setData({
       currentLanguage: language,
@@ -336,8 +341,11 @@ Page({
       provider
     } = props
     this.setData({
-      providerName: provider
+      providerName: provider,
+      selectedmerchant:provider.merchantId
     })
+    console.log("provider",this.data.selectedmerchant);
+    this.onLoad()
   },
   onTapFiatCell() {
     my.navigateTo({
@@ -399,7 +407,7 @@ Page({
       url: `http://52.51.249.84:8080/api/app/getRewardDataByCategory?category=${finalValue.name}`,
       method: 'GET',
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
       dataType: 'json',
       success: function (res) {
@@ -454,7 +462,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
       dataType: 'json',
       success: function (res) {
@@ -481,7 +489,7 @@ Page({
         url: 'http://52.51.249.84:8080/api/app/transactions',
         method: 'GET',
         headers: {
-          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
         },
         dataType: 'json',
         success: function (res) {
@@ -517,11 +525,21 @@ Page({
     console.log("e value", this);
 
   },
+  getDataByPropertyValue(array, property, value) {
+    for (const item of array) {
+      if (item.hasOwnProperty(property) && item[property] === value) {
+        return item; // Return the first object with the specified property and value
+      }
+    }
+    return null; // Return null if no matching object is found
+  },
+
   RequestsharePoint() {
+    
     const self = this;
     const pointsdata = this.data.points;
     const ShareNumber = this.data.phoneNumber;
-    const merchantId = this.data.transactionData[0].merchantId;
+    const merchantId = this.data.selectedmerchant;
     console.log("e value", merchantId);
     my.request({
       url: 'http://52.51.249.84:8080/api/app/sharePoints',
@@ -529,10 +547,10 @@ Page({
       data: {
         points: pointsdata,
         phoneNumber: ShareNumber,
-        merchantId: merchantId
+        merchantId: merchantId   
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
       dataType: 'json',
       success: function (res) {
@@ -601,7 +619,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE0NzE0MTY1LCJleHAiOjE3MTQ4MDA1NjV9.dS82jCyPtb7CJrBjRRkgvkYcKgdrWQdFa69pdi9czjw"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ"]
       },
       dataType: 'json',
       success: function (res) {
