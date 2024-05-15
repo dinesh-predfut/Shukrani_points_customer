@@ -40,8 +40,9 @@
 
   </view >
   <view class="language-name-profile2">Change language ?</view>
-  <view  class="language" id="ksw" onTap="changelanguagebtn"> {{ currentLanguage === "es" ? "KSW" : "ENG" }}</view>
-  <!-- <view show={{}} class="language" id="eng" onTap="changelanguagebtn">Eng</view> -->
+  <view class="language" id="ksw" onTap="changelanguagebtn"> {{ currentLanguage === "es" ? "KSW" : "ENG" }}
+  </view>
+  <!--<view show={{}} class="language" id="eng" onTap="changelanguagebtn">Eng</view> -->
   <view class="language-name-profile" onTap="opendelect">Delect my account</view>
   <view class="language-name-profile3">About Shukarani V.2</view>
   <button size="default" class="sigin-out-btn" type="primary">
@@ -332,13 +333,13 @@
         </view>
         <view class="paragraph">
           The payments are made in accordance with price as shown on an item displayed. Further, the payment made can only be used to spent on deals advertised. Our platform allows you to buy deals in advance.
-        </view> 
+        </view>
         <view class="heading">
           PROHIBITED ACTIVITIES
-        <view class="paragraph">
-          You may not access or use the website and Mobile App for any purpose other than that for which we make the Platform available. The website and Mobile App may not be used in connection with any commercial endeavours except those that are specifically endorsed or approved by us. As a user of the website and Mobile App, you agree not to (i) Systematically retrieve data or other content from the website and Mobile App to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us, (ii) Make any unauthorized use of the website and Mobile App, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretences, (iii) Circumvent, disable, or otherwise interfere with security-related features of the website and Mobile App, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the website and Mobile App and/or the Content contained therein, (iv) engage in unauthorized framing of link or publicly distribution of website and Mobile App link to people other than social connection, (v) attempt to impersonate another user or person or use the username of another user, (vi) use any product information obtained from the website and Mobile App in order to harass, abuse, or harm another person economically or in any other way, (vii) attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site, or (viii) use the Site in a manner inconsistent with any applicable laws or regulations.
+          <view class="paragraph">
+            You may not access or use the website and Mobile App for any purpose other than that for which we make the Platform available. The website and Mobile App may not be used in connection with any commercial endeavours except those that are specifically endorsed or approved by us. As a user of the website and Mobile App, you agree not to (i) Systematically retrieve data or other content from the website and Mobile App to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us, (ii) Make any unauthorized use of the website and Mobile App, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretences, (iii) Circumvent, disable, or otherwise interfere with security-related features of the website and Mobile App, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the website and Mobile App and/or the Content contained therein, (iv) engage in unauthorized framing of link or publicly distribution of website and Mobile App link to people other than social connection, (v) attempt to impersonate another user or person or use the username of another user, (vi) use any product information obtained from the website and Mobile App in order to harass, abuse, or harm another person economically or in any other way, (vii) attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site, or (viii) use the Site in a manner inconsistent with any applicable laws or regulations.
+          </view>
         </view>
-      </view>
       </view>
     </view>
   </model>
@@ -425,7 +426,7 @@
       <collapse
         className="demo-collapse"
         collapseKey="collapse1"
-        activeKey="{{['item-11', 'item-13']}}"
+        activeKey="{{['item-11']}}"
         onChange="onChange"
       >
         <collapse-item
@@ -482,7 +483,11 @@
             <view>There are no set limitations on the number of points customers can earn. The more you shop, the more points you accumulate.</view>
           </view>
         </collapse-item>
-        <collapse-item header="7. How long are earned points valid for redemption?" itemKey="item-17" collapseKey="collapse1">
+        <collapse-item
+          header="7. How long are earned points valid for redemption?"
+          itemKey="item-17"
+          collapseKey="collapse1"
+        >
           <view class="item-content content3">
             <view>Earned points are typically valid for redemption at any point, the customer has a choice to use the points at any time from the same merchant the purchase was made from</view>
           </view>
@@ -514,6 +519,145 @@
             <view>When the customer makes payment using M-Pesa, the points will reflect immediately. In the event the customer makes payment in cash the points are usually credited to a customer's account shortly after a qualifying purchase, but processing times may vary.</view>
           </view>
         </collapse-item>
+        <collapse-item
+          header="11. Can customers earn points for past purchases made before joining Shukurani Points?"
+          itemKey="item-21"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Points can typically only be earned for purchases made after a customer joins the Shukurani Points program. The customer will have the option to make payments to earn the points but they will be reflected in the customer Shukurani app once the customer has registered.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="12. How can customers check their point balance in the app?"
+          itemKey="item-22"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Customers can view their current point balance in the Shukurani Points app dashboard or profile section. They will be able to view the total points from all merchants they bought from and from a specific merchant</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="13. Are there any specific rules for redeeming points for rewards?"
+          itemKey="item-23"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>There is no rules for redeeming points, the customer has the choice of when to redeem the points, how ever the customer is encouraged to accumulate as many points as possible to enjoy better rewards from the merchant</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="14. Can customers earn points for purchases made at any merchant using Shukurani Points?"
+          itemKey="item-24"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Customers can only earn points for purchases made at merchants that are part of the Shukurani Points program. These merchants must have Shukurani Points Merchant app on their phones and registered their businesses</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="15. What happens to my points if I return a purchase?"
+          itemKey="item-25"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Points earned from a purchase that is later returned may be deducted from the customer's point balance.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="16. How can merchants set up their reward points structure within the app?"
+          itemKey="item-26"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Merchants can easily set up their reward points structure through the merchant portal in the Shukurani Points app</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="17. Can merchants customize the rewards they offer to customers?"
+          itemKey="item-27"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Yes, merchants have the flexibility to customize the rewards they offer in terms of points</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="18. How can customers provide feedback or suggestions for the Shukurani Points app?"
+          itemKey="item-28"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Customers can share their feedback or suggestions by using the in-app feedback feature or by contacting customer support via email. (feedback@shukurani.tz)</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="19. Are there any membership tiers or levels within the Shukurani Points program?"
+          itemKey="item-29"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Shukurani Points may offer membership tiers or levels with varying benefits based on the customer's point accumulation or spending levels.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="20. Can customers earn points for referrals to friends or family members?"
+          itemKey="item-30"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Some programs may offer bonus points for successful referrals, which will be communicated within the app or program details</view>
+          </view>
+        </collapse-item>
+       
+        <collapse-item
+          header="21. How can merchants track the performance of their reward points program within Shukurani Points?"
+          itemKey="item-31"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>Merchants can access detailed analytics and reports through the merchant portal to track the performance of their reward points program.</view>
+          </view>
+        </collapse-item>
+        <collapse-item
+          header="22. What should I do if I encounter issues with earning or redeeming points in the app?"
+          itemKey="item-32"
+          collapseKey="collapse1"
+        >
+          <view class="item-content content3">
+            <view>If you experience any issues with earning or redeeming points, please contact customer support for assistance and troubleshooting. You will be able to do the same withing the Shukurani Points App</view>
+          </view>
+        </collapse-item>
+      
+      <collapse-item
+        header="23. Is there a limit to the number of rewards a customer can redeem in a single transaction?"
+        itemKey="item-33"
+        collapseKey="collapse1"
+      >
+        <view class="item-content content3">
+          <view>Specific redemption limits, if any, will be communicated within the app and may vary based on the merchant's reward offerings</view>
+        </view>
+      </collapse-item>
+
+      <collapse-item
+        header="24. Can customers earn points for purchases made with gift cards or vouchers?"
+        itemKey="item-34"
+        collapseKey="collapse1"
+      >
+        <view class="item-content content3">
+          <view>Typically, points are earned for purchases made with M-pesa or cash when the M-pesa transaction could not be completed due to technical issues, but not on purchases made with gift cards or vouchers.</view>
+        </view>
+      </collapse-item>
+
+      <collapse-item
+        header="25. How can merchants promote their participation in the Shukurani Points program to customers?"
+        itemKey="item-35"
+        collapseKey="collapse1"
+      >
+        <view class="item-content content3">
+          <view>Merchants can promote their participation in the Shukurani Points program through in-store signage, social media announcements, and other marketing materials provided by Shukurani Points.</view>
+        </view>
+      </collapse-item>
       </collapse>
     </view>
 

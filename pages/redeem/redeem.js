@@ -144,7 +144,7 @@ Page({
     // my.request({
     //   url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?rewardNumber=${lipaNambaInput}`,
     //   method: 'GET',
-    //   headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+    //   headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
     //   dataType: 'json',
     //   success: function (res) {
     //     table.setData({
@@ -229,7 +229,7 @@ Page({
       my.request({
         url: 'http://52.51.249.84:8080/api/app/verifyPin',
         method: 'POST',
-        headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+        headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
         dataType: 'json',
         data: {
           pin: pinInput
@@ -280,7 +280,7 @@ Page({
     my.request({
       url: 'http://52.51.249.84:8080/api/app/makePayment',
       method: 'POST',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
       dataType: 'json',
       data: {
         merchantId: table.data.getRedeemMerchantDetails.merchantId,
@@ -448,7 +448,7 @@ Page({
     my.request({
       url: `http://52.51.249.84:8080/api/app/${merchantId}/reviews`,
       method: 'POST',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
       dataType: 'json',
       data: {
         rating: filledStars,
@@ -489,7 +489,7 @@ Page({
     my.request({
       url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?rewardNumber=${lipaNambaInput}&amount=${amountInput}&customerPhoneNumber=1111166666`,
       method: 'GET',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
       dataType: 'json',
       success: function (res) {
         table.setData({
@@ -517,7 +517,7 @@ Page({
     my.request({
       url: 'http://52.51.249.84:8080/api/auth/collectRewadsPoints',
       method: 'POST',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
       dataType: 'json',
       data: {
         merchantId: table.data.getRedeemMerchantDetails.merchantId,
@@ -547,7 +547,7 @@ Page({
     my.request({
       url: 'http://52.51.249.84:8080/api/app/redeemPoints',
       method: 'POST',
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NjgwODM0LCJleHAiOjE3MTU3NjcyMzR9.IwEyux0EQY8Ku66RuQZmKrqkjEYjG7iTbxpGBVu_uVQ" },
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
       dataType: 'json',
       data: {
         merchantId: table.data.getRedeemMerchantDetails.merchantId,
