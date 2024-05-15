@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+   
     "pages/rewards/rewards",
     "pages/redeem/redeem",
     "pages/brands/brands",

@@ -1,7 +1,7 @@
 
 <view class="bottom-navbar-section">
   <view class="bottom-navbar-section-content">
-    <navigator url="">
+    <navigator url="../../pages/rewards/rewards" hover-class="navigator-hover" >
       <text class="nav-item">
         <image src="/assets/Rewards.svg" onLoad="loadImage" />
         Rewards
@@ -9,8 +9,8 @@
     </navigator>
 
     <navigator url="../../pages/redeem/redeem">
-      <text class="nav-item">
-        <image src="/Assets/redeem.svg" onLoad="loadImage" /> Redeem
+      <text class="nav-item"  onTap="changeIconColor"  id="redeem">
+        <image src="/Assets/redeem.svg" onLoad="loadImage"  class="1233"/> Redeem
       </text>
     </navigator>
 

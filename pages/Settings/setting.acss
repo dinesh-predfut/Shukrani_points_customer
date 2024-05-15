@@ -6,7 +6,13 @@
   border-radius: 10px;
   position: relative;
 }
-
+.setting-container{
+  background-color: #663397 !important;
+  padding: 10px 50px 10px 0px;
+  margin-left: -8px !important;
+  overflow:auto;
+  height:650px
+}
 .sub-container image {
   width: 100px;
   height: 100px;
@@ -17,7 +23,10 @@
   display: flex;
   justify-content: center;
 }
-
+#faq{
+  width: 30px;
+  height: 30px;
+}
 .bg-camera {
   position: absolute;
   top: 90px;
@@ -81,27 +90,48 @@ button image {
   /* font-weight: 900; */
   font-size: 14px;
   margin: 18px;
+  margin-top: -20px;
+}
+.language-name-profile2{
+  margin-left: 10px;
+  color: rgba(255, 255, 255, 0.568);
+  /* font-weight: 900; */
+  font-size: 14px;
+  margin: 18px;
+  /* margin-top: 20px; */
+}
+.language-name-profile3{
+  margin-left: 10px;
+  color: rgba(255, 255, 255, 0.568);
+  /* font-weight: 900; */
+  font-size: 14px;
+  margin: 18px;
+  /* margin-top: 20px; */
 }
 .language{
   color: whitesmoke;
-  position: absolute;
+  position: relative;
   /* bottom: 0px; */
   left: 150px;
-  top: 558px;
+  top: -35px; 
   font-weight: 600;
 } 
 .sigin-out-btn{
   width: 120px !important;
-  padding: 7px 6px 13px 13px ;
-  position: absolute;
-  right: 20px;
-  top: 580px;
+  padding: 7px 30px 3px 0px ;
+  position: relative;
+  right: -240px;
+  top: -70px;
   height: 60px !important;
+  border-radius: 10px;
 }
 .sigin-out-btn image{
   width: 10px;
   height: 10px;
-  margin-top: 15px !important;
+  margin-top: -10px !important;
+  position: absolute;
+  right: 0px;
+  top: 33px;
 }
 .changePinTitle{
   display: flex;
@@ -115,7 +145,7 @@ button image {
   padding: 10px 0px 20px 10px;
   background-color: white !important;
   color:black;
-  margin-bottom: 3px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: left;
   /* margin-left: 25px; */
@@ -131,7 +161,7 @@ button image {
   padding:10px 10px 16px 10px;
   background-color: white !important;
   color:black;
-  margin-bottom: 6px;
+  margin-bottom: -10px;
    display: flex; 
  justify-content: left;
   /* margin-left: 5px; */
@@ -142,7 +172,7 @@ button image {
   font-weight: 900 !important;
   position: absolute;
   right: 10px;
-  top: 176px;
+  top: 210px;
   
 }
 .changePinImg{
@@ -153,10 +183,10 @@ button image {
   justify-content: center;
 }
 .popup {
-  height: 60%;
+  height: 90%;
   /* padding-bottom: 80px !important; */
   overflow-y: scroll !important;
-
+padding: 10px;
 } 
 
 .changepinBtnOTP{
@@ -172,13 +202,13 @@ font-size: 16px;
 width: 200px !important;
 height: 60px !important;
 font-weight: 900 !important;
-margin-top: 25px;
+margin-top: 15px;
 }
 .changePinnumber{
   margin: 30px !important;
 }
 .changePinnumberOTP{
-  margin: 30px 0px 0px 60px!important;
+  margin: 30px 0px 40px 60px!important;
 }
 .phoneNumberchange{
   margin-left: 15px !important;
@@ -243,13 +273,15 @@ margin-top: 25px;
 .container{
   color: white;
   text-align: justify;
+  position: relative;
+  display: inline-block;
 }
 .close-btn .close-icon {
   font-size: 14px; 
 position: absolute;
-top: -30px;
+top: -40px;
 right: -10px;
-margin: 0px 0px 20px 20px;
+/* margin: 0px 0px 30px 20px; */
 }
 .close-delect .close-icon-delect{
   font-size: 14px;
@@ -257,4 +289,91 @@ position: absolute;
 top: 10px;
 right: 10px;
 /* margin: 0px 0px 20px 20px; */
+}
+.popup-content-box {
+  padding: 0 0px;
+  position: relative;
+} 
+
+
+.changepinBtn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px; /* Adjust this value according to your layout */
+  width: 20px; /* Adjust the width of the image */
+  height: auto; /* Maintain aspect ratio */
+}
+.f-input__clear-button .a-image {
+  display: none !important;
+}
+.OTPenterbox{
+  position: relative;
+  top: 10px;
+}
+.p-10{
+  margin-bottom: -30px !important;
+  position: relative;
+  top: 60%;
+}
+.faqHeaders{
+  background-color: white;
+  color: black;
+  width: 500px;
+  height: 30px;
+  padding: 10px;
+  margin-top: 80px;
+  position: relative;
+}
+.faqimmg{
+  width: 30px;
+  height: 30px;
+  justify-content: right; 
+  position: absolute;
+  right: 6px;
+}    
+.item-content {
+  padding: 14px 16px;
+  font-size: 17px;
+  color: #333;
+  line-height: 24px;
+}
+
+.content1 {
+  height: auto;
+}
+
+.content2 {
+  height: auto;
+}
+
+.content3 {
+  height: auto;
+}
+
+.demo-title {
+  padding: 14px 16px;
+  color: #999;
+}
+
+.demo-collapse {  
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  margin-top: 40px;
+border-radius: 15px;
+}  
+.faqTitle{
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 20px 20px;
 }

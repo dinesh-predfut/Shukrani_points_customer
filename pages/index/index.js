@@ -1,5 +1,6 @@
 import providers from '/data/providers'
-
+import { encrypt, decrypt } from 'secure-encrypt';
+import 'i18n'
 
 Page({
 
@@ -9,74 +10,28 @@ Page({
     count: [],
     transactionData: [],
     providersSearchResult: [],
+    providerName: [],
     isSearch: false,
-    array: ['Saloon', 'Bakery', 'Bar', 'Beauty'],
-    objectArray: [
-      {
-        id: 0,
-        name: 'Category',
-      },
-      {
-        id: 1,
-        name: 'Bakery',
-      },
-      {
-        id: 2,
-        name: 'Bar',
-      },
-      {
-        id: 3,
-        name: 'Beauty',
-      },
-      {
-        id: 4,
-        name: 'Book Store',
-      },
-      {
-        id: 5,
-        name: 'Butcheries',
-      },
-      {
-        id: 6,
-        name: 'Doctors',
-      },
-      {
-        id: 7,
-        name: 'Electronics',
-      },
-      {
-        id: 8,
-        name: 'Fast Foods',
-      },
-      {
-        id: 9,
-        name: 'Florists',
-      },
-      {
-        id: 10,
-        name: 'Cosmetrics',
-      },
-    ],
+    sharepointsvalue: [],
+
+
     arrIndex: 0,
     index: 0
   },
-  didMount() { },
-  didUpdate() { },
-  didUnmount() { },
+  didMount() {},
+  didUpdate() {},
+  didUnmount() {},
   onLoad(query) {
     // Page load
 
-    console.info(`Page onLoad witsh query`, providers);
-    this.setData({ providersSearchResult: this.data.providers },
-    )
+    // this.userinfo()
+    this.onApi()
   },
-  onReady() { },
+  onReady() {},
   onShow() {
-    // Page display
-    // this.setData({ count:1}
-    //   )
-    this.RequestrewardPoint();
-    this.transactionAPI();
+    my.navigateTo({
+      url: '/pages/rewards/rewards'
+    })
 
   },
   onHide() {
@@ -88,7 +43,7 @@ Page({
   onTitleClick() {
     // Title clicked
   },
-  onPullDownRefresh() { },
+  onPullDownRefresh() {},
   onReachBottom() {
     // Page is pulled to the bottom
   },
@@ -99,126 +54,140 @@ Page({
       desc: 'DANA Mini Program tempalate for bill payment',
       path: 'pages/index/index',
     };
-  },
 
-  onProviderCellTap(e, props) {
-    this.setData({
-      showTop: true,
-    });
-    const { provider } = props
-    this.setData({ providerName: provider.name })
-  },
-  onTapFiatCell() {
-    my.navigateTo({
-      url: '/pages/fiat/index/index'
-    })
-  },
-  closePopup() {
-    this.setData({
-      showTop: false,
 
-    });
-  },
-  showshare() {
-    this.setData({
-      shareShowtop: true,
-      showTop: false,
-    })
-  },
-  closesharepoint() {
-    this.setData({
-      shareShowtop: false,
 
-    })
-  },
-  showwithdraw() {
-    this.setData({
-      shareShowtop: false,
-      showWithdraw: true,
-      showTop: false,
 
-    })
-  },
-  closewithdraw() {
-    this.setData({
-      shareShowtop: false,
-      showWithdraw: false,
-      showTop: false,
 
-    })
-  },
-  bindPickerChange(e) {
-    console.log('picker sends selection change, carried value ', e.detail.value);
-    this.setData({
-      index: e.detail.value,
-    });
-  },
-  bindObjPickerChange(e) {
-    console.log('picker sends selection change, carried value ', e.detail.value);
-    this.setData({
-      arrIndex: e.detail.value,
-    });
-  },
 
-  onSearchInput(e) {
-    const searchKey = e.detail.value || '';
-    const lowerCaseSearchKey = searchKey.toLowerCase();
+  },
+  environment() {
+    // Implementation of environment function
+    return {
+      emulator: true // Or false, depending on your setup
+    };
+  },
+  onApi() {
+    // change language
+    // 
+      // const languages = {
+      //   en: {
+      //     greeting: "Hello!",
+      //     farewell: "Goodbye!",
+      //   },
+      //   es: {
+      //     greeting: "¡Hola!",
+      //     farewell: "¡Adiós!",
+      //   },
+      //   fr: {
+      //     greeting: "Bonjour!",
+      //     farewell: "Au revoir!",
+      //   },
+      // };
+      // function getLanguage() {
+      //   // You can implement logic here to determine the user's preferred language
+      //   // For simplicity, let's just use English as the default
+      //   const userLanguage = "es"; // Default to English
+      //   return userLanguage;
+      // }
+      
+      // // Function to translate text based on selected language
+      // function translate(key) {
+      //   const currentLanguage = getLanguage();
+      //   // If the current language is not defined, default to English
+      //   const languageStrings = languages[currentLanguage] || languages.en;
+      //   return languageStrings[key] || ""; // Return the translated string or empty string if not found
+      // }
+      
+      // const greeting = translate("greeting");
+      // const farewell = translate("farewell");
+      
+      // console.log(greeting); // Output: Hello! (in English)
+      // console.log(farewell); // Output: Goodbye! (in English)
+// 
+    const env = this.environment();
+    if (!env.emulator) {
+      const serviceID = 'C2BNamecheck';
+      const KYCPayload = {
+        service: "Get Customer KYC",
+        provider: "MFS",
+        senderMsisdn: "${MSISDN}"
+      };
 
-    const filtered = this.data.transactionData.filter(transactionData => {
-      const lowerCaseTransactionName = transactionData.name.toLowerCase();
-      return lowerCaseTransactionName.indexOf(lowerCaseSearchKey) !== -1;
-    });
+      const serviceAdapterPayload = {
+        msisdn: 'msisdn',
+        proxiedRequest: {
+          needsIdentity: true,
+          needsPIN: false,
+          requestInfo: {
+            httpMethod: 'POST',
+            payload: JSON.stringify(KYCPayload),
+          },
+        },
+      };
 
-    if (searchKey) {
-      this.setData({
-        providersSearchResult: filtered,
-        isSearch: true,
+      return new Promise((resolve, reject) => {
+        my.call('makeRequest', {
+          replaceParams: ['msisdn'],
+          payload: JSON.stringify(serviceAdapterPayload),
+          url: `/service-adapter/v1/generic/proxy/external/${serviceID}`,
+          success: function (result) {
+            let response = JSON.parse(result.proxiedResponse.data.content);
+
+           
+            let encryptedData = encrypt(JSON.stringify(response), 'encryptionKey');
+
+            resolve({
+              success: true,
+              message: 'KYC retrieved successfully!',
+              data: encryptedData
+            });
+          },
+          fail: function (res) {
+            reject({
+              success: false,
+              message: 'There was a problem trying to fetch KYC details.'
+            });
+          },
+        });
       });
     } else {
-      this.setData({
-        providersSearchResult: this.data.transactionData, // Assuming you want to reset to the original 'transactionData'
-        isSearch: false,
+      // If in emulator mode, return dummy data
+      let response = {
+        firstName: "John",
+        lastName: "Doe",
+        fullName: "John Doe",
+        locale: "EN",
+        msisdn: "255754111111"
+      };
+
+      // Encrypting the dummy data
+      let encryptedData = encrypt(JSON.stringify(response), 'encryptionKey');
+      const se='encryptionKey'
+      const decryptedValue = decrypt(encryptedData,se); 
+
+      console.log(decryptedValue,"the decrypt ata");
+      console.log(encryptedData, "the Crypt data"); 
+
+      return new Promise((resolve, reject) => {
+        resolve({
+          success: true,
+          message: 'KYC retrieved successfully!',
+          data: encryptedData
+        });
       });
     }
   },
 
-
-  bindObjPickerChange(e) {
-    // console.log('picker sends selection change, carried value ', CarddataBrands);
-    this.setData({
-      arrIndex: e.detail.value,
-    });
-  },
-
-  // API Call
-  RequestrewardPoint() {
-    const self = this;
-    my.request({
-      url: 'http://52.51.249.84:8080/api/app/getRewardSummary',
-      method: 'GET',
-      headers: { "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g"] },
-      dataType: 'json',
-      success: function (res) {
-        self.setData({
-          count: res.data // Set the response value in the 'count' data property
-        });
-        // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
-      },
-      fail: function (res) {
-        my.alert({ content: 'fail' });
-      },
-
-    });
-
-
-  },
   transactionAPI() {
     const table = this;
     my.request({
       url: 'http://52.51.249.84:8080/api/app/transactions',
       method: 'GET',
       // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
-      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0MzQyLCJleHAiOjE3MTIyMjA3NDJ9.wDn9zNfxvEaeD9yh8uUqNL5cM5Bkjxf75M9w6sre9FA" },
+      headers: {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEyMTM0MzQyLCJleHAiOjE3MTIyMjA3NDJ9.wDn9zNfxvEaeD9yh8uUqNL5cM5Bkjxf75M9w6sre9FA"
+      },
       dataType: 'json',
       success: function (res) {
         table.setData({
@@ -227,13 +196,12 @@ Page({
         console.log("12344", table.data.transactionData); // Access 'count' using 'self.data.count'
       },
       fail: function (res) {
-        my.alert({ content: 'fail...!' });
+        my.alert({
+          content: 'fail...!'
+        });
       },
 
     });
 
   }
 })
-
-
-

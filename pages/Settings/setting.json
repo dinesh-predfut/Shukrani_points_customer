@@ -5,7 +5,9 @@
     "provider-select":"/pages/provider-select/provider-select",
     "navbar":"/components/Nav-bar/navbar",
     "model":"/components/bottom-model/bottom-model",
-    "f-input":"/components/fiat/f-input/f-input" 
+    "f-input":"/components/fiat/f-input/f-input" ,
+    "collapse": "mini-antui/es/collapse/index",
+    "collapse-item": "mini-antui/es/collapse/collapse-item/index"
    
   }
   

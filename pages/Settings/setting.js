@@ -6,31 +6,52 @@ Page({
   changePinOTP: false,
   ShowchangePNumber: false,
   ShowTermsandconditoins: false,
-  ShowPrivacyandPolicy:false,
-  Showabout:false,
+  ShowPrivacyandPolicy: false,
+  Showabout: false,
+  showfaq:"false",
 
-  mixins: [],
+  reenderpin: "",
+  mixins: [], 
   data: {
     providers,
     providersSearchResult: [],
     isSearch: false,
-    imageUrl:""
-
+    imageUrl: "",
+    userProfile: [],
+    phoneNumber: [],
+    changenumberOTP: []
   },
 
   didMount() {},
   didUpdate() {},
   didUnmount() {},
   onLoad(query) {
+  
     // Page load
     console.info(`Page onLoad witsh query`, providers);
     this.setData({
-      providersSearchResult: this.data.providers
+      providersSearchResult: this.data.providers,
+      userProfile: this.data.userProfile
     })
   },
   onReady() {},
   onShow() {
     // Page display
+   
+    
+    this.userinfo();
+   
+    this.UploadProfilePic();
+     
+    console.log("12344", this.data);
+  },
+  onLoad: function(options) {
+    setTimeout(() => {
+ 
+   this.downloadimg()
+  
+    
+  }, 2000);
   },
   onHide() {
     // Page hidden
@@ -58,17 +79,10 @@ Page({
       changePin: true
 
     })
-
+    console.log("12344ssss", this.data);
   },
-  showPinOTP() {
-    this.setData({
-      changePinOTP: true,
-      changePin: false
-
-    })
-
-  },
-
+ 
+  
   closewithdraw() {
     this.setData({
       changePin: false
@@ -95,7 +109,7 @@ Page({
 
     })
   },
-  ChangePhonenumber() {
+  showChangePhonenumber() {
     this.setData({
       ShowchangePNumber: true
 
@@ -109,13 +123,8 @@ Page({
 
     })
   },
-  openChangenumberOTP() {
-    this.setData({
-      ShowchangePNumberOTP: true
 
 
-    })
-  },
   closeChangeNumberOTP() {
     this.setData({
       ShowchangePNumberOTP: false
@@ -123,22 +132,7 @@ Page({
 
     })
   },
-  phoneNumberSavebtn() {
-    my.showToast({
-      type: 'success',
-      content: 'Successfully change Phone Number',
-      duration: 3000,
 
-    });
-
-    this.setData({
-      ShowchangePNumberOTP: false,
-      ShowchangePNumber: false
-
-
-
-    })
-  },
   openprofilepicturechange() {
     this.setData({
       Showchangeprofilepicture: true,
@@ -152,15 +146,8 @@ Page({
     my.chooseImage({
       count: 1,
       success: (res) => {
-        const tempFilePaths = res.apFilePaths;
-        // Assume you want to upload only one image
-        const tempFilePath = tempFilePaths[0];
-        // Display the chosen image 
-        this.setData({
-          imageUrl: tempFilePath,
-          Showchangeprofilepicture: false,
-
-        });
+        const imagePath = res.apFilePaths[0];
+        this.uploadProfilePic(imagePath);
       },
       fail: (error) => {
         console.error('Failed to choose image', error);
@@ -173,55 +160,361 @@ Page({
 
     })
   },
-  termsandconditionBtn(){
+  termsandconditionBtn() {
     this.setData({
       ShowTermsandconditoins: true,
-     
+
     })
   },
-  privacyandpolicybtn(){
+  faqBtn() {
     this.setData({
-     
-      ShowPrivacyandPolicy:true
+      showfaq: true,
+
     })
   },
-  aboutinfoBtn(){
+  privacyandpolicybtn() {
+    this.setData({
+
+      ShowPrivacyandPolicy: true
+    })
+  },
+  aboutinfoBtn() {
+
+    this.setData({
+
+      Showabout: true
+    })
+  },
+  closeconditions() {
+    this.setData({
+
+      ShowTermsandconditoins: false
+    })
+  },
+  closepprivacypolicy() {
+    this.setData({
+
+      ShowPrivacyandPolicy: false
+    })
+  },
+  closeabout() {
+    this.setData({
+
+      Showabout: false
+    })
+  },
+  opendelect() {
+    this.setData({
+
+      showDelect: true
+    })
+  },
+  closedelectpopup() {
+    this.setData({
+
+      showDelect: false
+    })
+  },
+  reenterPin(e) {
+    this.setData({
+      reenderpin: parseInt(e.detail.value),
+    });
+    console.log("e value", e);
+  },
+  changenumber(e) {
+    this.setData({
+      phoneNumber: parseInt(e.detail.value),
+
+
+    })
+    console.log("e value", e);
+
+  },
+  changenumbrtOTP(e) {
+    this.setData({
+      changenumberOTP: parseInt(e.detail.value),
+
+
+    })
+    console.log("e value", e);
+
+  },
+  enterPin(e) {
+    this.setData({
+      enderpin: parseInt(e.detail.value),
+    });
+    console.log("e value", e);
+  },
+  enterOTP(e) {
+    this.setData({
+      OTP: parseInt(e.detail.value),
+    });
+    console.log("e value", e);
+  },
+
+  async uploadProfilePic(imagePath) {
+    try {
+      my.showLoading({
+        content: 'Uploading...',
+      });
+
+      const uploadResponse = await my.uploadFile({
+        url: 'http://52.51.249.84:8080/api/app/userProfile/upload-image',
+        fileType: 'image',
+        fileName: 'image',
+        filePath: imagePath,
+        headers: {
+          "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+        },
+      });
+
+      if (uploadResponse.statusCode === 200) {
+        const decodeData = await my.httpResponse({
+          url: uploadResponse.apFilePath,
+        });
+        my.navigateTo({
+          url: '/pages/Settings/setting'
+        })
+        const result = JSON.parse(decodeData.data);
+        console.log("upload profile image response ==> ", decodeData);
+        this.setData({
+          imageUrl: result.imageUrl // Assuming 'imageUrl' is the property in the response containing the image URL
+        });
+        // Update UI or perform other actions as needed
+
+       
+      } else {
+        // console.error('Failed to upload image. Status code: ', uploadResponse.statusCode);
+        my.hideLoading();
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      my.hideLoading();
+      my.showToast({
+        content: 'Error uploading image',
+        type: 'fail',
+      });
+      throw error;
+    }
+  },
+
+  chaangePin() {
+    const self = this;
+    const changePin = this.data.reenderpin;
+
+    console.log("e value", changePin);
+    my.request({
+      url: 'http://52.51.249.84:8080/api/app/resetnewpin',
+      method: 'put',
+      data: {
+        newpin: changePin
+      },
+
+      headers: {
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+      },
+      dataType: 'json',
+      success: function (res) {
+        self.setData({
+          count: res.data,
+
+        });
+        self.setData({
+          changePinOTP: true,
+          changePin: false
+        })
+        my.alert({
+          content: 'Pin Reset Successful'
+        });
+        // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        my.alert({
+          content: 'fail'
+        });
+      },
+
+    });
+
+
+  },
+  userinfo() {
+  
+    const self = this;
     
-    this.setData({
-     
-      Showabout:true
-    })
+    my.request({
+      url: `http://52.51.249.84:8080/api/app/userProfile`,
+      method: 'GET',
+
+      headers: {
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+      },
+      dataType: 'json',
+      success: function (res) {
+        self.setData({
+          userProfile: res.data,
+
+        });
+      // downloadimg()
+        // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        my.alert({
+          content: 'fail'
+        });
+      },
+
+    });
+  
+
   },
-  closeconditions(){
-    this.setData({
+  downloadimg() {
+    const imageDataId = this.data.userProfile.image;
+    console.log("imageDataId", imageDataId);
+    
+    my.request({
+      url: `http://52.51.249.84:8080/api/app/downloaduserimage/${imageDataId}`,
+      method: 'get',
+      headers: {
+        'authorization': ['Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc']
+      },
+      dataType: 'json',
      
-      ShowTermsandconditoins:false
-    })
+      fail: function (res) {
+        my.alert({
+          content: 'fail'
+        });
+      },
+      success: (res) => {
+        // Assuming the response contains the image URL
+        const imageUrl = res.data;
+        // console.log("12344wwwww", this.data);
+        // Set the image URL to the data
+        this.setData({
+          imageUrl: imageUrl
+        });
+      },
+    });
   },
-  closepprivacypolicy(){
-    this.setData({
-     
-      ShowPrivacyandPolicy:false
-    })
-  },
-  closeabout(){
-    this.setData({
-     
-      Showabout:false
-    })
-  },
-  opendelect(){
-    this.setData({
-     
-      showDelect:true
-    })
-  },
-  closedelectpopup(){
-    this.setData({
-     
-      showDelect:false
-    })
-  }
+  
+  changePhonenumber() {
+
+    const self = this;
+    const changenumber = this.data.phoneNumber;
+    const username = this.data.userProfile.userName
+
+    console.log("12344", this.data);
 
 
+    my.request({
+      url: `http://52.51.249.84:8080/api/auth/generateOtp`,
+      method: 'post',
+      data: {
+        phoneNumber: changenumber,
+        userName: username
+
+      },
+
+      success: function (res) {
+        self.setData({
+          ShowchangePNumber: false,
+          ShowchangePNumberOTP: true
+
+        });
+
+        // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        self.setData({
+          ShowchangePNumber: false,
+          ShowchangePNumberOTP: true
+
+        });
+      },
+
+    });
+
+  },
+  finalChangenumber() {
+    const self = this;
+    const changenumberOTP = this.data.changenumberOTP;
+    const username = this.data.userProfile.userName
+
+
+
+
+    my.request({
+      url: `http://52.51.249.84:8080/api/auth/validateOtp`,
+      method: 'post',
+      data: {
+        otp: changenumberOTP,
+        userName: username
+
+      },
+
+      success: function (res) {
+        self.setData({
+          ShowchangePNumberOTP: false,
+          ShowchangePNumber: false
+
+        });
+        this.finalChangenumber()
+
+
+        // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        // self.setData({
+        //   ShowchangePNumber: false,
+        //   ShowchangePNumberOTP:true
+
+        // });
+      },
+
+    });
+
+  },
+  OTPvalidate() {
+    const self = this;
+    const changenumber = this.data.phoneNumber;
+
+
+
+
+    my.request({
+      url: `http://52.51.249.84:8080/api/app/userProfile/changePhoneNumber`,
+      method: 'post',
+      data: {
+        phoneNumber: changenumber
+
+      },
+      headers: {
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzEzMTY5MjYyLCJleHAiOjE3MTMyNTU2NjJ9.Wz50QVm8UPupxYQxOLeNpgOvZTmT-LFb3dfEqj5ILSc"]
+      },
+
+      success: function (res) {
+        self.setData({
+          ShowchangePNumberOTP: false,
+          ShowchangePNumber: false
+
+        });
+        my.showToast({
+          type: 'success',
+          content: 'Successfully change Phone Number',
+          duration: 3000,
+
+        });
+        // console.log("12344", self.data.count); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        // self.setData({
+        //   ShowchangePNumber: false,
+        //   ShowchangePNumberOTP:true
+
+        // });
+      },
+
+    });
+
+  },
 })
