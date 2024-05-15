@@ -14,7 +14,7 @@
 }
 .bell-icon{
  position: relative;
- top: -31px;
+ top: -30px;
  right: -130px;
   margin-left: 4rem;
   margin-top: 5px;

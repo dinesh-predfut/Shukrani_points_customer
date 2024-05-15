@@ -204,7 +204,7 @@ Page({
       method: 'GET',
 
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzEyMDgwMDYzLCJleHAiOjE3MTIxNjY0NjN9.LCrR9zpjExZxUPZgXaNQzqXAnWqJpjx4-D2Irn29a1Y"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0"]
       },
       dataType: 'json',
       success: function (res) {
@@ -229,7 +229,7 @@ Page({
       url: 'http://52.51.249.84:8080/api/app/transactions',
       method: 'GET',
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzEyMDgwMDYzLCJleHAiOjE3MTIxNjY0NjN9.LCrR9zpjExZxUPZgXaNQzqXAnWqJpjx4-D2Irn29a1Y"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0"]
       },
       dataType: 'json',
       success: function (res) {
@@ -276,7 +276,7 @@ Page({
         merchantId: merchantId
       },
       headers: {
-        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzEyMDgwMDYzLCJleHAiOjE3MTIxNjY0NjN9.LCrR9zpjExZxUPZgXaNQzqXAnWqJpjx4-D2Irn29a1Y"]
+        "authorization": ["Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0"]
       },
       dataType: 'json',
       success: function (res) {
