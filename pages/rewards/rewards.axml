@@ -1,11 +1,13 @@
 <view>
   <view class="title-name">
-    Hello {{userProfile.firstName}},
+    {{hello}},{{userProfile.firstName}}
+    
+  <!-- <button onTap="changeLanguage">Change Language</button> -->
     <navigator class="bell-icon" url="/pages/Notification/notification"><image
     src="https://img.icons8.com/ios-glyphs/30/FFFFFF/filled-appointment-reminders.png"
     
     
-  /></navigator>
+  /></navigator>  
   </view>
   <view >
     <view class="section" >
@@ -16,7 +18,7 @@
        {{count.count}} 
       </view>
       <view class="brand">
-        Brands
+        {{brands}}
       </view>
       <view class="empty-line">
       </view>
@@ -34,19 +36,21 @@
     
       </view>
     </view >
+   
+
   <view class="f-body d-flex" >
-    <f-input placeholder="Search your provider" class="p-20" onInput="onSearchInput">
+    <f-input placeholder="Search" class="p-20" onInput="onSearchInput">
       <image src="/Assets/icons8-search-150.png" slot="iconInnerLeft" />
     </f-input>
-  
-      <picker onChange="bindObjPickerChange" class="categoryBTN" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
-        <view class="row categaryBtn" >
-          <view class="row-title">{{objectArray[arrIndex].name}}</view>
-         
-          <image class="row-arrow" src="https://static.thenounproject.com/png/1590629-200.png" mode="aspectFill" />
-        </view>
-        </picker> 
-  
+    <rich-text nodes="{{htmlContent}}"></rich-text>
+    <picker onChange="bindObjPickerChange" class="categoryBTN" value="{{arrIndex}}" range="{{currentLanguage === 'es' ? spanishOptions : objectArray }}" range-key="name">
+      <view class="row categaryBtn">
+        <view class="row-title">{{ currentLanguage === 'es' ? spanishOptions[arrIndex].name: objectArray[arrIndex].name}}</view>
+        <image class="row-arrow" src="https://static.thenounproject.com/png/1590629-200.png" mode="aspectFill" /> 
+      </view>
+    </picker>
+    
+   
    
   
     </view>

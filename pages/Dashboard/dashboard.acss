@@ -10,7 +10,7 @@
   
 }
 .section{ 
-  position: relative;
+  position: relative; 
 }
 .bell-icon{
  position: relative;

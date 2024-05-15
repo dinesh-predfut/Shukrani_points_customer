@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "antd-mini": "^2.30.0",
+    "base64-img": "^1.0.4",
+    "base64-url": "^2.3.3",
     "cryptr": "^6.3.0",
     "i18n": "^0.15.1",
+    "i18n-js": "^4.4.3",
     "mini-antui": "^0.5.2",
     "secure-encrypt": "^1.0.12"
   }

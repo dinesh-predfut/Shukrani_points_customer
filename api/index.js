@@ -5,7 +5,7 @@ export function buy({
   till,
   amount,
   currency = "TZS",
-  description = ""
+  description = "yo buy"
 }) {
   //NOTE: This request only works on device
   return new Promise((resolve, reject) => {
