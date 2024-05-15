@@ -10,11 +10,11 @@
   
 }
 .section{ 
-  position: relative;
+  position: relative; 
 }
 .bell-icon{
  position: relative;
- top: -30px;
+ top: -31px;
  right: -130px;
   margin-left: 4rem;
   margin-top: 5px;
