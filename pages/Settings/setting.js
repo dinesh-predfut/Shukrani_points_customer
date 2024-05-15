@@ -255,6 +255,14 @@ Page({
       Showabout: true
     })
   },
+  closefasqpopup(){
+    this.setData({
+
+      showfaq:false
+    })
+  
+  },
+
   closeconditions() {
     this.setData({
 

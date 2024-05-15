@@ -218,7 +218,7 @@ Page({
         address: this.data.pickerSelectedLocation.location,
         scale: 18
       });
-    } else {
+    } else { 
       my.alert({
         content: 'Please select any location first!'
       });

@@ -419,7 +419,7 @@
   <model show="{{showfaq}}" position="bottom" closePopup="closewithdraw">
     <view class="faqTitle">FAQs</view>
     <view style="height: 400px; background: rgb(102, 51, 151, 1);color:white;  display: flex; ">
-      <view class="close-delect" onTap="closedelectpopup">
+      <view class="close-delect" onTap="closefasqpopup">
         <icon class="close-icon-delect" type="clear" aria-label="clear" />
       </view>
       <collapse
@@ -429,89 +429,89 @@
         onChange="onChange"
       >
         <collapse-item
-          header="How to get the Rewards point"
+          header="1. What is Shukurani Points?"
           itemKey="item-11"
           collapseKey="collapse1"
         >
           <view class="item-content content1">
-            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+            <view>Shukurani Points is a loyalty mobile application developed by Pannecia Consulting Services Limited that allows merchants to reward customers with points for their purchases.</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="How to send the Rewards"
+          header="2. How can I download the Shukurani Points app?"
           itemKey="item-12"
           collapseKey="collapse1"
         >
           <view class="item-content content2">
-            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+            <view>You can download the Shukurani Points app for free from the M-pesa Super App, App Store for iOS devices and Google Play Store for Android devices.</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="how to get the more rewards"
+          header="3. Is there a cost associated with using Shukurani Points?"
           itemKey="item-13"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+            <view>No, using the Shukurani Points app is completely free for. customers. Merchants will pay a nominal amount once they reach a certain number of points issues to customers per month. This application has the intention of growing merchants business hence charges will start to apply when the merchant has started to see the growth to his or her business</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="how to claim the Rewards"
+          header="4. How can merchants join the Shukurani Points program?"
           itemKey="item-14"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna nisl, dictum eget turpis non, viverra viverra dolor. Fusce ultricies ex sed erat mattis imperdiet. Vivamus elementum eros non orci pulvinar, in lobortis mi pellentesque. Nunc sed laoreet nisi. Fusce placerat risus sit amet massa ornare, vitae posuere ex aliquam. Nulla iaculis eleifend orci, non hendrerit velit suscipit sed. Pellentesque sed risus lobortis ex tincidunt efficitur eget placerat ipsum. Aliquam rhoncus dui vitae enim luctus egestas. Cras imperdiet lacus vitae erat hendrerit, et ornare urna pellentesque. Mauris consequat urna at gravida scelerisque. Duis convallis lacinia vestibulum.</view>
+            <view>Merchants interested in joining Shukurani Points can register their businesses through the app from M-pesa Super App, App Store for iOS devices and Google Play Store for Android devices.</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="what happen when payment is failed"
+          header="5. Can customers earn points for online purchases through the Shukurani Points app?"
           itemKey="item-15"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Content region</view>
+            <view>Yes, customers can earn points for both in-store and online purchases made through participating merchants</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="how to refund the unsuccessfull payment"
+          header="6. Are there any limitations on the number of points a customer can earn?"
           itemKey="item-16"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Content region</view>
+            <view>There are no set limitations on the number of points customers can earn. The more you shop, the more points you accumulate.</view>
           </view>
         </collapse-item>
-        <collapse-item header="how to reset the pin" itemKey="item-17" collapseKey="collapse1">
+        <collapse-item header="7. How long are earned points valid for redemption?" itemKey="item-17" collapseKey="collapse1">
           <view class="item-content content3">
-            <view>Content region</view>
+            <view>Earned points are typically valid for redemption at any point, the customer has a choice to use the points at any time from the same merchant the purchase was made from</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="where i can get the rewards eligibility table"
+          header="8. Can customers transfer their points to other users or accounts?"
           itemKey="item-18"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Content region</view>
+            <view>Points earned through Shukurani Points are transferable and but they can be redeemed from the same merchant who rewarded them.</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="where i can get the rewards calculation"
+          header="9. What types of rewards can customers redeem their points for?"
           itemKey="item-19"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Content region</view>
+            <view>Customers can redeem their points for various rewards, including discounts on purchases, free items, exclusive deals, and more.</view>
           </view>
         </collapse-item>
         <collapse-item
-          header="how to deactivate the my account"
+          header="10. How quickly are points credited to a customer's account after a purchase?"
           itemKey="item-20"
           collapseKey="collapse1"
         >
           <view class="item-content content3">
-            <view>Content region</view>
+            <view>When the customer makes payment using M-Pesa, the points will reflect immediately. In the event the customer makes payment in cash the points are usually credited to a customer's account shortly after a qualifying purchase, but processing times may vary.</view>
           </view>
         </collapse-item>
       </collapse>
