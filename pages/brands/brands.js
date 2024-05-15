@@ -1,7 +1,5 @@
-import {
-  brandCategoryList,
-  TransbrandCategoryList
-} from '/data/brandCategoryList';
+import brandCategoryList from '/data/brandCategoryList';
+import transBrandCategoryList from '/data/transBrandCategoryList';
 import {
   getTranslatedCategory
 } from '../translation.js'
@@ -16,11 +14,14 @@ Page({
       brands: app.translate("brands")
     });
 
+    console.log("app  ---- ", app);
     const language = app.globalData.language
+    console.log("lang --- ", language);
     this.setData({
       currentLanguage: language
     })
     console.log("currentlg", this.data.currentLanguage);
+    console.log("category list --- ", brandCategoryList);
 
   },
   onReady() {
@@ -57,7 +58,7 @@ Page({
 
   data: {
     brandCategoryList,
-    TransbrandCategoryList,
+    transBrandCategoryList,
     translatedCategories: "",
     currentLanguage: "",
     modalOpened: false,
@@ -178,7 +179,7 @@ Page({
   // category filter
   onSelectedCategory(e) {
     const index = e.currentTarget.dataset.index;
-    const selectedCategory = this.data.brandCategoryList[index];
+    const selectedCategory = this.data.currentLanguage === 'es' ? this.data.transBrandCategoryList[index] : this.data.brandCategoryList[index];
   
     this.setData({
       selectedCategory: selectedCategory.name

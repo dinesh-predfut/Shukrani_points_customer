@@ -112,7 +112,7 @@
     
   </view>
   <view class="category-list">
-    <view class="list" a:for="{{ currentLanguage === 'es' ? TransbrandCategoryList:brandCategoryList}}" onTap="onSelectedCategory" data-index="{{index}}">
+    <view class="list" a:for="{{ currentLanguage === 'es' ? transBrandCategoryList:brandCategoryList}}" onTap="onSelectedCategory" data-index="{{index}}">
       <view class="category-list-name">
         <view class="category-list-icon">
           <!-- <image mode="scaleToFill" src="/assets/shoping.png" /> -->
