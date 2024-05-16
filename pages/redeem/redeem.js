@@ -141,41 +141,41 @@ Page({
     // });
 
     const table = this;
-    // my.request({
-    //   url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?rewardNumber=${lipaNambaInput}`,
-    //   method: 'GET',
-    //   headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
-    //   dataType: 'json',
-    //   success: function (res) {
-    //     table.setData({
-    //       getRedeemMerchantDetails: res.data, // Set the response value in the 'count' data property
-    //       nextPage: true,
-    //       // pickerSelectedLocation: res.data.locations[0] // Set the default selected location to the first item in the locations array
-    //     });
-    //     console.log("getRedeemMerchantDetails checking ", table.data.getRedeemMerchantDetails); // Access 'count' using 'self.data.count'
-    //   },
-    //   fail: function (res) {
-    //     my.alert({ content: 'fail...!' });
-    //   },
-    // });
+    my.request({
+      url: `http://52.51.249.84:8080/api/auth/getMerchantDetail?rewardNumber=${lipaNambaInput}`,
+      method: 'GET',
+      headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0" },
+      dataType: 'json',
+      success: function (res) {
+        table.setData({
+          getRedeemMerchantDetails: res.data, // Set the response value in the 'count' data property
+          nextPage: true,
+          // pickerSelectedLocation: res.data.locations[0] // Set the default selected location to the first item in the locations array
+        });
+        console.log("getRedeemMerchantDetails checking ", table.data.getRedeemMerchantDetails); // Access 'count' using 'self.data.count'
+      },
+      fail: function (res) {
+        my.alert({ content: 'fail...!' });
+      },
+    });
 
-    api.buy({
-      till: lipaNambaInput.toString(),
-      amount: table.data.amountInput.toString()
-    }).then(res => {
-      console.log('buy goods res ---- ', res)
+    // api.buy({
+    //   till: lipaNambaInput.toString(),
+    //   amount: table.data.amountInput.toString()
+    // }).then(res => {
+    //   console.log('buy goods res ---- ', res)
      
       
            
          
-          console.log("getRedeemMerchantDetails checking ", table.data.getRedeemMerchantDetails); // Access 'count' using 'self.data.count'
+    //       console.log("getRedeemMerchantDetails checking ", table.data.getRedeemMerchantDetails); // Access 'count' using 'self.data.count'
        
-    }).catch(err => {
-      my.alert({
-        title: "Failed Paybill...!",
-        content: JSON.stringify(err)
-      })
-    })
+    // }).catch(err => {
+    //   my.alert({
+    //     title: "Failed Paybill...!",
+    //     content: JSON.stringify(err)
+    //   })
+    // })
   },
   makePaymentModalClick() {
     console.log('open clicked')
