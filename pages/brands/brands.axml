@@ -15,7 +15,8 @@
         <image src="/Assets/icons8-search-150.png" slot="iconInnerLeft" />
       </f-input>
       <view class="categorie" onTap="onCategoryModalClick">
-        <text class="categorie-title">Categories</text>
+        <text class="categorie-title">{{selectedCategory !== undefined ? selectedCategory : 'Categories'}}</text>
+        <!-- <text class="categorie-title"  text="{selectedCategory !== undefined ? selectedCategory : 'Categories'}" /> -->
         <image src="/assets/categorie-arrow.png"/>
       </view>
     </view>

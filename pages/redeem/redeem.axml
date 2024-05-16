@@ -1,7 +1,7 @@
 <view>
-  <view class="content">
+  <!-- <view class="content">
     <button onTap="openPopup">Open Popup</button>
-  </view>
+  </view> -->
 
   <model show="{{modalOpened}}">
   <!-- <model show="{{isPopupOpen}}" closePopup="closePopup" > -->
@@ -21,14 +21,14 @@
     <view class="amout-input">
       <input id="amountInput" placeholder="Amount" onInput="onAmountInput" type="number" />
     </view>
-    <view class="qr-container">
+    <!-- <view class="qr-container">
       <text>Bar Code</text>
     </view>
     <view class="or-line">
       <text class="line-one"></text>
       <text class="or-text">OR</text>
       <text class="line-two"></text>
-    </view>
+    </view> -->
     <view class="amout-input pay-number-input">
       <input id="lipaNambaInput" placeholder="Enter Lipa namba" onInput="onLipaNambaInput" type="number" />
     </view>
