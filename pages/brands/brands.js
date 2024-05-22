@@ -74,7 +74,9 @@ Page({
     pickerSelectedLocation: null,
     selectedCategory: 'All',
     filteredBrandsData: [],
-    brandsCategory: ""
+    brandsCategory: "",
+    webURL: "",
+    openWebview: false
   },
   openPopup() {
     console.log('open clicked')
@@ -143,6 +145,54 @@ Page({
     // const { provider } = props
     // this.setData({ providerName: provider.name })
   },
+  onSocialTap(e, props) {
+    console.log('e social on select -=-=>>> ', e);
+    console.log('props social on select -=-=>>> ', props);
+    console.log('props data provide social on select -=-=>>> ', props["data-provider"]);
+    // return
+    if (props.provider === "" || props.provider === undefined) {
+      my.alert({
+        content: 'No data found...!'
+      })
+    } else {
+      // Check if the URL starts with "https://" to determine if it uses HTTPS
+      var isHttp = props.provider.startsWith("http://");
+      var isHttps = props.provider.startsWith("https://");
+      console.log('is http checking --- ', isHttp);
+      console.log('is https checking --- ', isHttps);
+      if (isHttp || isHttps) {
+        this.setData({
+          webURL: props.provider,
+          openWebview: true
+        })
+      } else {
+        if (props["data-provider"] === 'instagram') {
+          this.setData({
+            webURL: "https://instagram.com/" + props.provider,
+            openWebview: true
+          })
+        } else if (props["data-provider"] === 'facebook') {
+          this.setData({
+            webURL: "https://facebook.com/" + props.provider,
+            openWebview: true
+          })
+        } else {
+          this.setData({
+            webURL: "https://twitter.com/" + props.provider,
+            openWebview: true
+          })
+        }
+      }
+
+    }
+    // this.getMerchantDetailsAPI(props.provider.merchantId)
+    // this.setData({
+    //   // showTop: true,
+    //   modalOpened: true,
+    // });
+    // const { provider } = props
+    // this.setData({ providerName: provider.name })
+  },
   onSearchInput(e) {
     const searchKey = e.detail.value || '';
     const lowerCaseSearchKey = searchKey.toLowerCase();
@@ -180,17 +230,17 @@ Page({
   onSelectedCategory(e) {
     const index = e.currentTarget.dataset.index;
     const selectedCategory = this.data.currentLanguage === 'es' ? this.data.transBrandCategoryList[index] : this.data.brandCategoryList[index];
-  
+
     this.setData({
       selectedCategory: selectedCategory.name
     });
 
-  
+
     const filteredBrandsData = this.data.brandsData.filter(brand => brand.category === selectedCategory.name);
 
     if (filteredBrandsData.length > 0) {
       this.setData({
-        filteredBrandsData: filteredBrandsData, 
+        filteredBrandsData: filteredBrandsData,
         categoryOn: !this.data.categoryOn
       })
     } else {
@@ -219,7 +269,7 @@ Page({
         address: this.data.pickerSelectedLocation.location,
         scale: 18
       });
-    } else { 
+    } else {
       my.alert({
         content: 'Please select any location first!'
       });
@@ -249,7 +299,7 @@ Page({
       method: 'GET',
       // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
       headers: {
-        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTk2NTU5MGE3OWIxYjBjMDMwMzJiOTkiLCJzdWIiOiIxMTExMTU1NTU1IiwiaWF0IjoxNzE1NzY3NzYyLCJleHAiOjE3MTU4NTQxNjJ9.qdTKnultGb6GXECIFeo33DmS6pgkXOiU9TLyC5eK1X0"
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjQ3NTEyOTRhMzA1ZDY5MTgxZmRlNDIiLCJzdWIiOiJtYWhlc2gyQGdtYWlsLmNvbSIsImlhdCI6MTcxNjM1NDYzNSwiZXhwIjoxNzE2NDQxMDM1fQ.UN1ESpfGoYdbLNfTkHbK1S2UNcMElynj50IE0Cu-ePM"
       },
       dataType: 'json',
       success: function (res) {
@@ -267,7 +317,7 @@ Page({
           // console.log("Translated translatedCategories[index] :", translatedCategories[index] );
           return {
             ...item,
-            category: translatedCategories[index] 
+            category: translatedCategories[index]
             // Assuming categories and brandsData are of equal length
           };
 

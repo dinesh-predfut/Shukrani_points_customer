@@ -59,21 +59,20 @@
   </view> -->
   
   <!-- List of brands searching -->
-  <view a:if="{{ isSearch }}" class="f-title title-12 text-grey-70 px-16 py-8">
+  <!-- <view a:if="{{ isSearch }}" class="f-title title-12 text-grey-70 px-16 py-8">
     SEARCH RESULT
     <view a:if="{{ brandsSearchResult.length === 0}}" class="f-text-center mt-32">
       <image class="mx-auto img-search-not-found" src="../../Assets/Search.jpg" />
       <view class="f-title title-18 my-8">
         Oops, search not found.
       </view>
-      <!-- <text>Seems like we can’t find the provider you’re looking for. Please check your spelling and try again.</text> -->
     </view>
-  </view>
+  </view> -->
 
   <!-- List of brands  -->  
   <!-- <view a:for="{{ brandsData }}"> -->
   <view a:for="{{ isSearch ? brandsSearchResult : filteredBrandsData.length > 0 ? filteredBrandsData : brandsData }}" a:if="{{ !categoryOn }}"> 
-    <f-cell class="pl-16 pr-4 py-12 brand-list-categorie" onTap="onProviderCellTap" provider="{{ brandsData[index] }}">
+    <f-cell class="pl-16 pr-4 py-12 brand-list-categorie" onTap="onProviderCellTap" provider="{{ filteredBrandsData.length > 0 ? filteredBrandsData[index] : brandsData[index] }}">
       <f-cell-icon w="30" h="30" class="mr-12">
         <image mode="scaleToFill" src="{{item.image ? item.image :'/assets/no-img.png'}}" class="transactionIMG"/> 
       </f-cell-icon>
@@ -81,17 +80,14 @@
        
         <f-cell-label>
           <view class="pointrewardItem">
-            <!-- {{'transactionData[0].points'}} -->
             {{item.merchantName}}
           </view>
-          <!-- {{'transactionData[0].merchantName'}} -->
-          <!-- {{item.category === "Beauty" ? "its bar":"Reatil" ?"its Retail":"" }} -->
           {{item.category}}
         </f-cell-label>  
       </f-cell-content>
-      <f-cell-action class="f-flex flex-center">
+      <!-- <f-cell-action class="f-flex flex-center">
   
-      </f-cell-action>
+      </f-cell-action> -->
     </f-cell>
   
     <f-divider/>
@@ -232,6 +228,9 @@
     <view class="brand-model-sub-title">
       Fast Food
     </view>
+    <view class="brand-model-sub-title2">
+     Lipa # {{getMerchantDetails.lipaNumber}}
+    </view>
 
   </view>
   <view class="brand-rateing">
@@ -285,9 +284,15 @@
 
     </view>
     <view class="minimum-spending-section-social">
-      <image src="/assets/instagram.png" />
+      <f-cell-action onTap="onSocialTap" provider="{{getMerchantDetails.userInformation.instagram }}" data-provider="instagram">
+        <image src="/assets/instagram.png" />
+      </f-cell-action>
+      <f-cell-action onTap="onSocialTap" provider="{{getMerchantDetails.userInformation.facebook }}" data-provider="facebook">
       <image src="/assets/facebook.png" />
-      <image src="/assets/twitter.png" />
+      </f-cell-action>
+       <f-cell-action onTap="onSocialTap" provider="{{getMerchantDetails.userInformation.twitter }}" data-provider="twitter">
+        <image src="/assets/twitter.png" />
+      </f-cell-action> 
     </view>
 
   </view>
@@ -467,6 +472,10 @@
 <!-- End brand Reviews model -->
  
 </model>
+
+<view a:if="{{ openWebview }}">
+  <web-view id="myWebview" src="{{ webURL }}"></web-view>
+</view>
 
 
 <!-- brand details model end -->
