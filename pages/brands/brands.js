@@ -299,7 +299,7 @@ Page({
       method: 'GET',
       // headers: { "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NTdhNmZlNWQ4MGE0YTNiZTRhYTQ5MjQiLCJzdWIiOiJyYW5qaXRoMTdAZ21haWwuY29tIiwiaWF0IjoxNzExOTQ2ODI1LCJleHAiOjE3MTIwMzMyMjV9.krBSnWOSXDxx3aWQ5VBlbV8Lj3rxxYyo0CV_X4J8B6g" },
       headers: {
-        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjQ3NTEyOTRhMzA1ZDY5MTgxZmRlNDIiLCJzdWIiOiJtYWhlc2gyQGdtYWlsLmNvbSIsImlhdCI6MTcxNjM1NDYzNSwiZXhwIjoxNzE2NDQxMDM1fQ.UN1ESpfGoYdbLNfTkHbK1S2UNcMElynj50IE0Cu-ePM"
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2NjNhMDkzOTJjYjQwNDY3Njc5ZTgzOGYiLCJzdWIiOiIyNTU0NDQ0NDU1NTU2IiwiaWF0IjoxNzE2NDQ2OTA5LCJleHAiOjE3MTY1MzMzMDl9.8hxjuZ2YaarIXmYvtGu7FU_XuuMfCXV0CLPDhUrgVs8"
       },
       dataType: 'json',
       success: function (res) {

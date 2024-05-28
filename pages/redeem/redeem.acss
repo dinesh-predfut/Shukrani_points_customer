@@ -1,5 +1,9 @@
 /* Start QR Scanner CSS */
 
+.a-page{
+  background-color:  rgb(102, 51, 151, 1) !important;
+}
+
 .popup-heading {
   font-family: Inter;
   font-size: 20px;

@@ -4,7 +4,10 @@
   <view class="brand-section">
     <view class="brand-section-title">
       <text class="title">Brands</text>
-      <image src="/assets/bell.svg" />
+      <!-- <image src="/assets/bell_new.svg" /> -->
+      <navigator  url="/pages/Notification/notification"><image
+        src="/assets/bell_new.svg"
+      /></navigator>
     </view>
     <view class="search-container">
       <!-- <view class="search-input-box">
@@ -72,7 +75,7 @@
   <!-- List of brands  -->  
   <!-- <view a:for="{{ brandsData }}"> -->
   <view a:for="{{ isSearch ? brandsSearchResult : filteredBrandsData.length > 0 ? filteredBrandsData : brandsData }}" a:if="{{ !categoryOn }}"> 
-    <f-cell class="pl-16 pr-4 py-12 brand-list-categorie" onTap="onProviderCellTap" provider="{{ filteredBrandsData.length > 0 ? filteredBrandsData[index] : brandsData[index] }}">
+    <f-cell class="pl-16 pr-4 py-12 brand-list-categorie" onTap="onProviderCellTap" provider="{{ isSearch ? brandsSearchResult[index]  : filteredBrandsData.length > 0 ? filteredBrandsData[index] : brandsData[index] }}">
       <f-cell-icon w="30" h="30" class="mr-12">
         <image mode="scaleToFill" src="{{item.image ? item.image :'/assets/no-img.png'}}" class="transactionIMG"/> 
       </f-cell-icon>
@@ -235,12 +238,30 @@
   </view>
   <view class="brand-rateing">
     <view class="brand-rateing-img">
+      <!-- <image  src="/assets/star.svg" />
       <image  src="/assets/star.svg" />
       <image  src="/assets/star.svg" />
       <image  src="/assets/star.svg" />
-      <image  src="/assets/star.svg" />
-      <image  src="/assets/star.svg" />
-      
+      <image  src="/assets/star.svg" /> -->
+
+      <image src="/assets/star_filled.svg" a:if="{{getMerchantDetails.averageRating >= 1}}" />
+      <image src="/assets/star_filled.svg" a:if="{{getMerchantDetails.averageRating >= 2}}" />
+      <image src="/assets/star_filled.svg" a:if="{{getMerchantDetails.averageRating >= 3}}" />
+      <image src="/assets/star_filled.svg" a:if="{{getMerchantDetails.averageRating >= 4}}" />
+      <image src="/assets/star_filled.svg" a:if="{{getMerchantDetails.averageRating >= 5}}" />
+  
+      <!-- Render empty stars for the remaining -->
+      <image src="/assets/star.svg" a:if="{{getMerchantDetails.averageRating < 1}}" />
+      <image src="/assets/star.svg" a:if="{{getMerchantDetails.averageRating < 2}}" />
+      <image src="/assets/star.svg" a:if="{{getMerchantDetails.averageRating < 3}}" />
+      <image src="/assets/star.svg" a:if="{{getMerchantDetails.averageRating < 4}}" />
+      <image src="/assets/star.svg" a:if="{{getMerchantDetails.averageRating < 5}}" />
+
+      <!-- Render filled stars based on average rating -->
+    <!-- <image src="/assets/star_filled.svg" a:if="{{index < getMerchantDetails.averageRating.toFixed(1)}}" a:for="{{[1, 2, 3, 4, 5]}}" a:for-index="index" /> -->
+
+    <!-- Render empty stars for the remaining -->
+    <!-- <image src="/assets/star.svg" a:if="{{index >= getMerchantDetails.averageRating.toFixed(1)}}" a:for="{{[1, 2, 3, 4, 5]}}" a:for-index="index" /> -->
     </view>
     <view class="rateing-details">
       <view class="rateing-number">
